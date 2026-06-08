@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/lib/data";
 import { FaDocker, FaLaravel, FaReact } from "react-icons/fa6";
-import { SiMysql, SiShadcnui, SiTailwindcss } from "react-icons/si";
+import { SiInertia, SiMysql, SiShadcnui, SiTailwindcss } from "react-icons/si";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -14,6 +14,7 @@ interface ProjectModalProps {
 const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
   "Laravel": { icon: FaLaravel, bg: "#fd0000", text: "#fffbfb" },
   "React": { icon: FaReact, bg: "#1a1a1a", text: "#1aefe1" },
+  "Inertia.js": { icon: SiInertia, bg: "#a025ec", text: "#ffffff" },
   "Tailwind CSS": { icon: SiTailwindcss, bg: "#38BDF8", text: "#0a0a0a" },
   "Shadcn": { icon: SiShadcnui, bg: "#010101", text: "#fbfbfb" },
   "MySQL": { icon: SiMysql, bg: "#00758F", text: "white" },
