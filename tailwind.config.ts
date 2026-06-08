@@ -22,6 +22,7 @@ const config: Config = {
           blue:   "#3B82F6",
           black:  "#0a0a0a",
           white:  "#FAFAF8",
+          red:    "#FF0000",
         },
       },
       boxShadow: {

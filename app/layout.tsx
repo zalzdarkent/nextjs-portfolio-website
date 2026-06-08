@@ -24,9 +24,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ARYO.DEV — Full Stack Developer",
+  title: "ALIF.DEV — Full Stack Developer",
   description:
-    "Portfolio Aryo Kusuma — Full Stack Developer spesialis React, Next.js, dan Node.js berbasis Jakarta, Indonesia.",
+    "Portfolio Alif Fadillah Ummar — Full Stack Developer spesialis React, Next.js, dan Node.js berbasis Jakarta, Indonesia.",
 };
 
 export default function RootLayout({

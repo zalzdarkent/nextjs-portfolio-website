@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
     <footer className="bg-brutal-black px-6 sm:px-10 lg:px-14 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 flex-wrap">
-      <span className="font-display text-2xl font-extrabold text-brutal-yellow">ARYO.DEV</span>
+      <span className="font-display text-2xl font-extrabold text-brutal-yellow">ALIF.DEV</span>
       <span className="font-mono text-xs text-white/40">
-        © 2025 Aryo Kusuma. Dibangun dengan ♥ dan banyak ☕
+        © 2025 Alif Fadillah Ummar. Dibangun dengan ♥ dan banyak ☕
       </span>
       <a
         href="#home"

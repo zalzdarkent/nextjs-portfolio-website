@@ -6,8 +6,7 @@ export interface Project {
   id: number;
   name: string;
   tags: Tag[];
-  bgColor: string;
-  emoji: string;
+  image: string;
   shortDesc: string;
   longDesc: string;
   tech: string[];
@@ -29,12 +28,12 @@ export const PROJECTS: Project[] = [
     id: 1,
     name: "Online Test UNSIKA",
     tags: ["web", "fullstack"],
-    bgImage: "/projects/online.png",
+    image: "/projects/onlinetest.png",
     shortDesc:
-      "Platform manajemen keuangan personal berbasis web dengan fitur tracking pengeluaran cerdas, grafik insight, dan laporan bulanan otomatis.",
+      "Platform tes SEP-T berbasis web untuk mahasiswa UNSIKA.",
     longDesc:
-      "DanaKu adalah aplikasi web full-stack untuk membantu pengguna mengelola keuangan pribadi. Dibangun dengan Next.js 14 dan menggunakan AI untuk mengkategorikan transaksi secara otomatis. Mendukung 50+ bank di Indonesia melalui integrasi Open Banking API.",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "OpenAI API", "Chart.js"],
+      "Sistem Tes Online UNSIKA adalah platform komprehensif yang dirancang khusus untuk mendukung proses evaluasi dan ujian di lingkungan Universitas Singaperbangsa Karawang. Dibangun dengan teknologi terdepan, sistem ini menawarkan pengalaman tes online yang aman, efisien, dan user-friendly.",
+    tech: ["Laravel", "React", "Tailwind CSS", "MySQL", "Docker"],
     features: [
       "Kategorisasi transaksi AI-powered",
       "Dashboard real-time",
@@ -42,8 +41,8 @@ export const PROJECTS: Project[] = [
       "Multi-currency support",
       "Budget alert system",
     ],
-    github: "https://github.com",
-    live: "https://danaku.dev",
+    github: "https://github.com/zalzdarkent/tes_online_unsika",
+    live: "https://onlinetest.unsika.ac.id",
   },
 ];
 

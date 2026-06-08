@@ -3,11 +3,21 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/lib/data";
+import { FaDocker, FaLaravel, FaReact } from "react-icons/fa6";
+import { SiMysql, SiTailwindcss } from "react-icons/si";
 
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
 }
+
+const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
+  "Laravel": { icon: FaLaravel, bg: "#FDE047", text: "#0a0a0a" },
+  "React": { icon: FaReact, bg: "#BFFF00", text: "#0a0a0a" },
+  "Tailwind CSS": { icon: SiTailwindcss, bg: "#38BDF8", text: "#0a0a0a" },
+  "MySQL": { icon: SiMysql, bg: "#00758F", text: "white" },
+  "Docker": { icon: FaDocker, bg: "#2496ED", text: "white" },
+};
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   // Lock scroll
@@ -52,7 +62,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Header */}
             <div
               className="flex items-start justify-between gap-4 p-6 border-b-4 border-brutal-black"
-              style={{ background: project.bgColor }}
             >
               <div>
                 <p className="font-mono text-xs font-bold uppercase tracking-widest mb-1 opacity-60">
@@ -78,14 +87,26 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   Teknologi yang Digunakan
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t, i) => (
-                    <span
-                      key={i}
-                      className="bg-brutal-black text-brutal-yellow font-mono text-xs font-bold px-3 py-1"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  {project.tech.map((techName: string, index: number) => {
+                    const techConfig = techIconMap[techName];
+                    if (!techConfig) return null;
+
+                    const IconComponent = techConfig.icon;
+
+                    return (
+                      <span
+                        key={index}
+                        title={techName} 
+                        className="flex items-center justify-center p-2 border-3 border-black shadow-brutal-sm transition-transform hover:-translate-y-0.5"
+                        style={{
+                          background: techConfig.bg,
+                          color: techConfig.text,
+                        }}
+                      >
+                        <IconComponent size={18} />
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
 
@@ -14,6 +14,59 @@ const STATS = [
 export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [downloadStatus, setDownloadStatus] = useState<"idle" | "loading" | "done">("idle");
+  const [loadingText, setLoadingText] = useState("GETTING FILE...");
+
+  const handleDownload = async () => {
+    if (downloadStatus === "loading") return;
+
+    setDownloadStatus("loading");
+
+    const texts = ["FETCHING CV...", "INJECTING STYLE...", "COMPRESSING BULK..."];
+    let textIndex = 0;
+    const interval = setInterval(() => {
+      if (textIndex < texts.length) {
+        setLoadingText(texts[textIndex]);
+        textIndex++;
+      }
+    }, 600);
+
+    try {
+      // 💡 PERBAIKAN: Jalur URL disesuaikan dengan nama file baru yang tanpa spasi
+      const response = await fetch("/resume/CV_Alif_Fadillah_Ummar.pdf");
+      if (!response.ok) throw new Error("File tidak ditemukan");
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const tempLink = document.createElement("a");
+      tempLink.href = url;
+
+      // 💡 Mengambil nama file asli otomatis ("CV_Alif_Fadillah_Ummar.pdf")
+      const fileName = "/resume/CV_Alif_Fadillah_Ummar.pdf".split("/").pop();
+      if (fileName) tempLink.download = fileName;
+
+      document.body.appendChild(tempLink);
+      tempLink.click();
+
+      document.body.removeChild(tempLink);
+      window.URL.revokeObjectURL(url);
+
+      clearInterval(interval);
+      setDownloadStatus("done");
+
+      setTimeout(() => {
+        setDownloadStatus("idle");
+        setLoadingText("GETTING FILE...");
+      }, 2000);
+
+    } catch (error) {
+      console.error(error);
+      clearInterval(interval);
+      setLoadingText("ERROR FETCHING!");
+      setTimeout(() => setDownloadStatus("idle"), 2000);
+    }
+  };
 
   return (
     <section
@@ -43,12 +96,22 @@ export default function AboutSection() {
             </p>
           ))}
 
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 mt-4 px-7 py-3.5 bg-brutal-yellow border-4 border-brutal-black shadow-brutal font-body font-bold text-sm uppercase tracking-widest transition-all duration-100 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-hover active:translate-x-[6px] active:translate-y-[6px] active:shadow-none"
+          <button
+            onClick={handleDownload}
+            disabled={downloadStatus === "loading"}
+            className={`inline-flex items-center gap-2 mt-4 px-7 py-3.5 border-4 border-brutal-black shadow-brutal font-body font-bold text-sm uppercase tracking-widest transition-all duration-100 cursor-pointer disabled:cursor-not-allowed
+        ${downloadStatus === "idle"
+                ? "bg-brutal-yellow text-brutal-black hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-hover active:translate-x-[6px] active:translate-y-[6px] active:shadow-none"
+                : downloadStatus === "loading"
+                  ? "bg-brutal-orange text-white translate-x-[3px] translate-y-[3px] shadow-brutal-hover animate-pulse" // Efek kaku berkedip pas loading
+                  : "bg-brutal-lime text-brutal-black translate-x-[6px] translate-y-[6px] shadow-none" // Amblas rata tanah pas sukses
+              }
+      `}
           >
-            Download CV →
-          </a>
+            {downloadStatus === "idle" && "Download CV →"}
+            {downloadStatus === "loading" && `⚡ ${loadingText}`}
+            {downloadStatus === "done" && "✦ SUCCESS DOWNLOADING! ✦"}
+          </button>
         </motion.div>
 
         {/* Stats */}
@@ -101,9 +164,8 @@ export function SectionHeader({
         {num} //
       </span>
       <h2
-        className={`font-display text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold tracking-tight ${
-          light ? "text-brutal-white" : "text-brutal-black"
-        }`}
+        className={`font-display text-[clamp(1.75rem,4vw,2.75rem)] font-extrabold tracking-tight ${light ? "text-brutal-white" : "text-brutal-black"
+          }`}
       >
         {title}
       </h2>

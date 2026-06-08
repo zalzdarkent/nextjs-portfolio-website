@@ -113,7 +113,8 @@ function ProjectCard({
       <div
         className="h-44 flex items-center justify-center border-b-4 border-brutal-black relative text-5xl font-bold"
       >
-        <span className="select-none">{project.emoji}</span>
+        <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+        {/* <span className="select-none">{project.emoji}</span> */}
         <span className="absolute top-2 right-2 font-mono text-xs font-bold bg-brutal-black text-brutal-yellow px-2 py-0.5">
           #{String(project.id).padStart(3, "0")}
         </span>

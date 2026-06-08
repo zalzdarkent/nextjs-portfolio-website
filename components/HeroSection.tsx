@@ -88,8 +88,8 @@ export default function HeroSection() {
         </Sticker>
 
         {/* Floating code tags */}
-        <div className="absolute top-[10%] left-[5%] -rotate-2 border-3 border-brutal-black bg-brutal-white px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm">
-          {`{"status": "active"}`}
+        <div className="absolute top-[10%] left-[5%] -rotate-2 border-3 border-brutal-black bg-brutal-red px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm ">
+          {`php artisan serve ▶`}
         </div>
         <div className="absolute bottom-[20%] right-[3%] rotate-3 border-3 border-brutal-black bg-brutal-white px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm">
           npm run dev ▶
