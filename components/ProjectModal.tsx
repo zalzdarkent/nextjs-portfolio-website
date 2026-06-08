@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/lib/data";
 import { FaDocker, FaLaravel, FaReact } from "react-icons/fa6";
-import { SiMysql, SiTailwindcss } from "react-icons/si";
+import { SiMysql, SiShadcnui, SiTailwindcss } from "react-icons/si";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -15,6 +15,7 @@ const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
   "Laravel": { icon: FaLaravel, bg: "#FDE047", text: "#0a0a0a" },
   "React": { icon: FaReact, bg: "#BFFF00", text: "#0a0a0a" },
   "Tailwind CSS": { icon: SiTailwindcss, bg: "#38BDF8", text: "#0a0a0a" },
+  "Shadcn": { icon: SiShadcnui, bg: "#010101", text: "#fbfbfb" },
   "MySQL": { icon: SiMysql, bg: "#00758F", text: "white" },
   "Docker": { icon: FaDocker, bg: "#2496ED", text: "white" },
 };
@@ -94,20 +95,75 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     const IconComponent = techConfig.icon;
 
                     return (
-                      <span
+                      <div
                         key={index}
-                        title={techName} 
-                        className="flex items-center justify-center p-2 border-3 border-black shadow-brutal-sm transition-transform hover:-translate-y-0.5"
-                        style={{
-                          background: techConfig.bg,
-                          color: techConfig.text,
-                        }}
+                        className="relative group"
                       >
-                        <IconComponent size={18} />
-                      </span>
+                        <span
+                          className="flex items-center justify-center p-2 border-3 border-black shadow-brutal-sm transition-transform hover:-translate-y-0.5"
+                          style={{
+                            background: techConfig.bg,
+                            color: techConfig.text,
+                          }}
+                        >
+                          <IconComponent size={18} />
+                        </span>
+
+                        {/* Neo Brutalist Tooltip */}
+                        <div
+                          className="
+            absolute
+            left-1/2
+            -translate-x-1/2
+            bottom-full
+            mb-3
+            opacity-0
+            invisible
+            group-hover:opacity-100
+            group-hover:visible
+            transition-all
+            duration-200
+            z-50
+            whitespace-nowrap
+          "
+                        >
+                          <div
+                            className="
+              bg-brutal-white
+              border-3
+              border-brutal-black
+              shadow-brutal-sm
+              px-3
+              py-1
+              font-mono
+              text-xs
+              font-bold
+            "
+                          >
+                            {techName}
+                          </div>
+
+                          {/* Arrow */}
+                          <div
+                            className="
+              absolute
+              left-1/2
+              -translate-x-1/2
+              w-3
+              h-3
+              bg-brutal-white
+              border-r-3
+              border-b-3
+              border-brutal-black
+              rotate-45
+              -bottom-1
+            "
+                          />
+                        </div>
+                      </div>
                     );
                   })}
-                </div>
+                </div>  
               </div>
 
               {/* Features */}

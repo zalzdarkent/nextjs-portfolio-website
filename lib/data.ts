@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
       "Platform tes SEP-T (Singaperbangsa English Proficiency Test) berbasis web untuk mahasiswa UNSIKA.",
     longDesc:
       "Sistem Tes Online UNSIKA adalah platform komprehensif yang dirancang khusus untuk mendukung proses evaluasi dan ujian di lingkungan Universitas Singaperbangsa Karawang. Dibangun dengan teknologi terdepan, sistem ini menawarkan pengalaman tes online yang aman, efisien, dan user-friendly.",
-    tech: ["Laravel", "React", "Tailwind CSS", "MySQL", "Docker"], 
+    tech: ["Laravel", "React", "Tailwind CSS", "Shadcn", "MySQL", "Docker"], 
     // 💡 FITUR DIUBAH MURNI DARI README KAMU:
     features: [
       "Manajemen Kategori Tes & Penjadwalan Fleksibel",
