@@ -3,12 +3,39 @@
 import { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
+import { BriefcaseBusiness, FolderKanban, Handshake, GitBranch } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { BiBriefcaseAlt } from "react-icons/bi";
 
 const STATS = [
-  { num: "3+", label: "Tahun Pengalaman" },
-  { num: "5+", label: "Proyek Selesai" },
-  { num: "5+", label: "Klien Puas" },
-  { num: "8", label: "Open Source Repo" },
+  {
+    num: "3+",
+    label: "Tahun Pengalaman",
+    icon: <BiBriefcaseAlt size={32} />,
+    bgColor: "bg-brutal-lime",
+    textColor: "text-brutal-black",
+  },
+  {
+    num: "5+",
+    label: "Proyek Selesai",
+    icon: <FolderKanban size={32} />,
+    bgColor: "bg-brutal-orange",
+    textColor: "text-brutal-black",
+  },
+  {
+    num: "5+",
+    label: "Klien Puas",
+    icon: <Handshake size={32} />,
+    bgColor: "bg-brutal-blue",
+    textColor: "text-brutal-black",
+  },
+  {
+    num: "8",
+    label: "Open Source Repo",
+    icon: <GitBranch size={32} />,
+    bgColor: "bg-brutal-purple",
+    textColor: "text-brutal-black",
+  },
 ];
 
 export default function AboutSection() {
@@ -32,7 +59,6 @@ export default function AboutSection() {
     }, 600);
 
     try {
-      // 💡 PERBAIKAN: Jalur URL disesuaikan dengan nama file baru yang tanpa spasi
       const response = await fetch("/resume/CV_Alif_Fadillah_Ummar.pdf");
       if (!response.ok) throw new Error("File tidak ditemukan");
 
@@ -42,7 +68,6 @@ export default function AboutSection() {
       const tempLink = document.createElement("a");
       tempLink.href = url;
 
-      // 💡 Mengambil nama file asli otomatis ("CV_Alif_Fadillah_Ummar.pdf")
       const fileName = "/resume/CV_Alif_Fadillah_Ummar.pdf".split("/").pop();
       if (fileName) tempLink.download = fileName;
 
@@ -125,13 +150,16 @@ export default function AboutSection() {
             <motion.div
               key={i}
               whileHover={{ x: 4, y: 4, boxShadow: "2px 2px 0px #0a0a0a" }}
-              className="bg-brutal-black text-brutal-white border-4 border-brutal-black shadow-brutal p-6 text-center cursor-default"
+              className={
+                `${s.bgColor} border-4 border-brutal-black shadow-brutal p-6 text-center cursor-default `
+              }
               style={{ boxShadow: "6px 6px 0px #0a0a0a" }}
             >
-              <span className="font-display text-4xl font-extrabold text-brutal-yellow block">
+              <span className="text-3xl block">{s.icon}</span>
+              <span className={`font-display text-4xl font-extrabold block mt-1 ${s.textColor}`}>
                 {s.num}
               </span>
-              <span className="font-body font-bold text-xs uppercase tracking-widest text-white/60 mt-1 block">
+              <span className="font-body font-bold text-xs uppercase tracking-widest text-black/60 mt-1 block">
                 {s.label}
               </span>
             </motion.div>

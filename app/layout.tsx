@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// 💡 Import pasukan font pemberontak baru
 import { Rubik_Glitch, Special_Elite, VT323 } from "next/font/google"; 
 import "./globals.css";
 
