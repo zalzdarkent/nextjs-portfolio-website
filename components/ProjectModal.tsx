@@ -12,8 +12,8 @@ interface ProjectModalProps {
 }
 
 const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
-  "Laravel": { icon: FaLaravel, bg: "#FDE047", text: "#0a0a0a" },
-  "React": { icon: FaReact, bg: "#BFFF00", text: "#0a0a0a" },
+  "Laravel": { icon: FaLaravel, bg: "#fd0000", text: "#fffbfb" },
+  "React": { icon: FaReact, bg: "#1a1a1a", text: "#1aefe1" },
   "Tailwind CSS": { icon: SiTailwindcss, bg: "#38BDF8", text: "#0a0a0a" },
   "Shadcn": { icon: SiShadcnui, bg: "#010101", text: "#fbfbfb" },
   "MySQL": { icon: SiMysql, bg: "#00758F", text: "white" },
