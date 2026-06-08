@@ -1,42 +1,40 @@
 import type { Metadata } from "next";
-import { Syne, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
+// 💡 Import pasukan font pemberontak baru
+import { Rubik_Glitch, Special_Elite, VT323 } from "next/font/google"; 
 import "./globals.css";
 
-const syne = Syne({
+const rubikGlitch = Rubik_Glitch({
   subsets: ["latin"],
-  weight: ["700", "800"],
-  variable: "--font-syne",
+  weight: ["400"], // Font glitch hanya ada satu weight tebal
+  variable: "--font-glitch",
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const specialElite = Special_Elite({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-space-grotesk",
+  weight: ["400"], // Font mesin tik rusak
+  variable: "--font-special-elite",
   display: "swap",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+const vt323 = VT323({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-ibm-mono",
+  weight: ["400"],
+  variable: "--font-vt323",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "ALIF.DEV — Full Stack Developer",
-  description:
-    "Portfolio Alif Fadillah Ummar — Full Stack Developer spesialis React, Next.js, dan Node.js berbasis Jakarta, Indonesia.",
+  description: "Portfolio Alif Fadillah Ummar.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${syne.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}>
-      <body>{children}</body>
+    <html lang="id" className={`${rubikGlitch.variable} ${specialElite.variable} ${vt323.variable} scroll-smooth`}>
+      <body className="bg-brutal-white antialiased text-brutal-black">
+        {children}
+      </body>
     </html>
   );
 }

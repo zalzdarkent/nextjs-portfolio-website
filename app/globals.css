@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Special+Elite&family=VT323&display=swap');
 
 :root {
-  --font-syne: "Syne", sans-serif;
-  --font-space-grotesk: "Space Grotesk", sans-serif;
-  --font-ibm-mono: "IBM Plex Mono", monospace;
+  --font-glitch: 'Rubik Glitch', system-ui, sans-serif;
+  --font-special-elite: 'Special Elite', monospace;
+  --font-vt323: 'VT323', monospace;
 }
 
 * {
@@ -23,7 +23,7 @@ html {
 body {
   background-color: #FAFAF8;
   color: #0a0a0a;
-  font-family: var(--font-space-grotesk);
+  font-family: var(--font-special-elite);
   overflow-x: hidden;
   cursor: none;
 }

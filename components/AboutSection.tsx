@@ -5,9 +5,9 @@ import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
 
 const STATS = [
-  { num: "5+", label: "Tahun Pengalaman" },
-  { num: "40+", label: "Proyek Selesai" },
-  { num: "25+", label: "Klien Puas" },
+  { num: "3+", label: "Tahun Pengalaman" },
+  { num: "5+", label: "Proyek Selesai" },
+  { num: "5+", label: "Klien Puas" },
   { num: "8", label: "Open Source Repo" },
 ];
 
