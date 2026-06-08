@@ -18,7 +18,7 @@ export default function Home() {
         <HeroSection />
         <Marquee />
         <AboutSection />
-        {/* <ExperienceSection /> */}
+        <ExperienceSection />
         <TechSection />
         <PortfolioSection />
         <ContactSection />
