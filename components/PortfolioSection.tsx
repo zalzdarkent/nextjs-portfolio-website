@@ -137,7 +137,7 @@ function ProjectCard({
         </div>
 
         <h3 className="font-display text-lg font-extrabold mb-2">{project.name}</h3>
-        <p className="font-body text-sm leading-relaxed text-black/60 flex-1">{project.shortDesc}</p>
+        <p className="font-body text-sm leading-relaxed text-black/60 flex-1 line-clamp-2">{project.shortDesc}</p>
 
         {/* Footer */}
         <button

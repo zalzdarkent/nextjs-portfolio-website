@@ -3,12 +3,13 @@
 import { useRef, useState, FormEvent } from "react";
 import { useInView, motion, AnimatePresence } from "framer-motion";
 import { SectionHeader } from "./AboutSection";
+import { FaGithub, FaLinkedin, FaVoicemail } from "react-icons/fa6";
+import { SiGmail } from "react-icons/si";
 
 const CONTACT_LINKS = [
-  { icon: "✉", label: "aryo@email.com", href: "mailto:aryo@email.com" },
-  { icon: "⌥", label: "github.com/aryokusuma", href: "https://github.com" },
-  { icon: "in", label: "linkedin.com/in/aryokusuma", href: "https://linkedin.com" },
-  { icon: "𝕏", label: "@aryokusuma", href: "https://twitter.com" },
+  { icon: <SiGmail />, label: "arszalzdarker@email.com", href: "mailto:arszalzdarker@email.com" },
+  { icon: <FaGithub />, label: "github.com/zalzdarkent", href: "https://github.com/zalzdarkent" },
+  { icon: <FaLinkedin />, label: "linkedin.com/in/alif-fadillah-ummar-07001224b/", href: "https://linkedin.com/in/alif-fadillah-ummar-07001224b/" },
 ];
 
 export default function ContactSection() {
