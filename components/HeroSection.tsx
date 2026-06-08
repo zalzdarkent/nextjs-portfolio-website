@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FaLaravel, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiNextdotjs, SiCodeigniter } from "react-icons/si";
+import { TypeAnimation } from "react-type-animation";
 import Image from "next/image";
 
 const techStack = [
@@ -55,14 +56,14 @@ export default function HeroSection() {
           variants={item}
           className="font-display text-[clamp(3rem,8vw,6rem)] font-extrabold leading-[0.93] tracking-tight mb-6"
         >
-          <span className="block">HALO,</span>
+          <span className="block">HALO!!</span>
           <span className="block">
             SAYA{" "}
             <span className="inline-block bg-brutal-yellow px-2 border-3 border-brutal-black shadow-brutal -rotate-1">
               ALIF
             </span>
           </span>
-          <span className="block">DEVELOPER</span>
+          <span className="block">FADILLAH UMMAR</span>
         </motion.h1>
 
         {/* Desc */}
@@ -90,8 +91,8 @@ export default function HeroSection() {
         <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"
           style={{
-            backgroundImage: 
-            `repeating-linear-gradient(
+            backgroundImage:
+              `repeating-linear-gradient(
                 45deg,
                 #000,
                 #000 1px,
@@ -148,7 +149,22 @@ export default function HeroSection() {
             {/* Name */}
             <div className="text-center">
               <p className="font-display text-xl font-extrabold">Alif Fadillah Ummar</p>
-              <p className="font-mono text-xs text-black/60 mt-0.5">Full Stack Developer</p>
+              <TypeAnimation
+                sequence={[
+                  "SOFTWARE ENGINEER",
+                  2000,
+                  "FULLSTACK WEB DEV",
+                  2000,
+                  "LARAVEL ENTHUSIAST",
+                  2000,
+                  "MERN DEVELOPER",
+                  2000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+                className="font-mono text-xs text-black/60 mt-0.5"
+              />
             </div>
 
             {/* Status */}
