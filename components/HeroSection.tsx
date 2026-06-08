@@ -79,7 +79,7 @@ export default function HeroSection() {
 
       {/* Right — Mengambil 5 dari 12 bagian kolom (Lebih Sempit) */}
       {/* 💡 UBAH DI SINI: Tambahkan lg:col-span-5 */}
-      <div className="hidden lg:flex lg:col-span-5 items-center justify-center bg-brutal-yellow relative overflow-hidden">
+      <div className="flex lg:flex items-center justify-center bg-brutal-yellow relative overflow-hidden py-12 lg:py-0 lg:col-span-5">
         {/* Decorative stickers */}
         <Sticker className="top-[15%] right-[6%] rotate-[8deg] bg-brutal-orange text-white">
           3+ YRS EXP
@@ -89,10 +89,10 @@ export default function HeroSection() {
         </Sticker>
 
         {/* Floating code tags */}
-        <div className="absolute top-[10%] left-[5%] -rotate-2 border-3 border-brutal-black bg-brutal-red px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm ">
+        <div className="absolute top-[10%] z-50 left-[5%] -rotate-2 border-3 border-brutal-black bg-brutal-red px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm ">
           {`php artisan serve ▶`}
         </div>
-        <div className="absolute bottom-[20%] right-[3%] rotate-3 border-3 border-brutal-black bg-brutal-white px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm">
+        <div className="absolute bottom-[20%] z-20 right-[3%] rotate-3 border-3 border-brutal-black bg-brutal-white px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm">
           npm run dev ▶
         </div>
 
@@ -101,7 +101,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30, rotate: -2 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ delay: 0.4, type: "spring", stiffness: 200, damping: 24 }}
-          className="relative w-72 bg-brutal-white border-4 border-brutal-black shadow-brutal-lg"
+          className="relative z-10 w-72 bg-brutal-white border-4 border-brutal-black shadow-brutal-lg"
         >
           <div className="flex flex-col items-center gap-4 p-8">
             {/* Avatar */}
@@ -190,7 +190,7 @@ function BrutalBtn({
 function Sticker({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <div
-      className={`absolute border-3 border-brutal-black shadow-brutal-sm px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest ${className}`}
+      className={`absolute z-20 border-3 border-brutal-black shadow-brutal-sm px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest ${className}`}
     >
       {children}
     </div>
