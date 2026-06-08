@@ -29,6 +29,14 @@ export default function HeroSection() {
       id="home"
       className="min-h-screen pt-16 grid grid-cols-1 lg:grid-cols-12 border-b-4 border-brutal-black"
     >
+      <div
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #000 1.5px, transparent 1.5px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
       <motion.div
         variants={container}
         initial="hidden"
@@ -78,8 +86,20 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Right — Mengambil 5 dari 12 bagian kolom (Lebih Sempit) */}
-      {/* 💡 UBAH DI SINI: Tambahkan lg:col-span-5 */}
       <div className="flex lg:flex items-center justify-center bg-brutal-yellow relative overflow-hidden py-12 lg:py-0 lg:col-span-5">
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage: 
+            `repeating-linear-gradient(
+                45deg,
+                #000,
+                #000 1px,
+                transparent 1px,
+                transparent 8px
+            )`,
+          }}
+        />
         {/* Decorative stickers */}
         <Sticker className="top-[15%] right-[6%] rotate-[8deg] bg-brutal-orange text-white">
           3+ YRS EXP
