@@ -7,6 +7,7 @@ import PortfolioSection from "@/components/PortfolioSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
+import ExperienceSection from "@/components/ExperienceSection";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <HeroSection />
         <Marquee />
         <AboutSection />
+        {/* <ExperienceSection /> */}
         <TechSection />
         <PortfolioSection />
         <ContactSection />
