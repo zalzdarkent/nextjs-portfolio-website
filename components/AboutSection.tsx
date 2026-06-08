@@ -87,9 +87,9 @@ export default function AboutSection() {
           className="space-y-5"
         >
           {[
-            "Saya adalah Full Stack Developer berbasis di Jakarta, Indonesia. Dengan latar belakang Computer Science dari UI, saya memiliki passion mendalam dalam membangun produk digital yang tidak hanya fungsional tapi juga memiliki pengalaman pengguna yang luar biasa.",
-            "Saya percaya bahwa kode yang baik adalah kode yang bisa dibaca manusia, bukan sekadar mesin. Setiap proyek yang saya kerjakan selalu mengedepankan performa, aksesibilitas, dan maintainability jangka panjang.",
-            "Di luar koding, saya aktif berkontribusi di komunitas open-source lokal dan berbagi ilmu lewat tulisan teknis di blog pribadi saya.",
+            "Full Stack Developer yang berfokus pada pembuatan aplikasi web end-to-end yang tangguh dan responsif. Merupakan lulusan Informatika UNSIKA yang memiliki ketertarikan mendalam pada pengembangan produk digital berkualitas tinggi.",
+            "Setiap baris kode ditulis dengan standar tinggi agar mudah dibaca dan dikembangkan ke depannya. Penguasaan teknologi mencakup MERN Stack dan Laravel untuk menghasilkan sistem yang efisien dan andal.",
+            "Pengalaman memimpin tim Laboratorium Komputer, aktif di Google Developer Student Club (GDSC), serta keterlibatan di PT AT Indonesia dalam membangun sistem deteksi APD berbasis Python  menjadi bukti nyata dari kapabilitas eksekusi proyek di dunia nyata.",
           ].map((p, i) => (
             <p key={i} className="font-body text-lg leading-relaxed text-black/70">
               {p}

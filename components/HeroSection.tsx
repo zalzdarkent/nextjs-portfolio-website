@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FaLaravel, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiNextdotjs, SiCodeigniter } from "react-icons/si";
+import Image from "next/image";
 
 const techStack = [
   { name: "Laravel", Icon: FaLaravel, bg: "#FDE047", text: "#0a0a0a" },
@@ -109,9 +110,18 @@ export default function HeroSection() {
               {/* Layer Bayangan Hitam di Belakang (Bulat Sempurna!) */}
               <div className="absolute inset-0 rounded-full bg-brutal-black translate-x-[6px] translate-y-[6px]" />
 
-              {/* Layer Konten Utama di Depan */}
-              <div className="absolute inset-0 rounded-full bg-brutal-black border-4 border-brutal-black flex items-center justify-center transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]">
-                <span className="font-display text-3xl font-extrabold text-brutal-yellow">AFU</span>
+              {/* Layer Konten Utama di Depan (Tempat Foto) */}
+              <div className="absolute inset-0 rounded-full bg-brutal-white border-4 border-brutal-black overflow-hidden flex items-center justify-center transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]">
+
+                <Image
+                  src="/profile/zahw.jpeg" // 💡 Taruh file foto kamu di dalam folder 'public' dengan nama ini
+                  alt="Alif Fadillah Umar"
+                  width={112} // Sesuaikan dengan ukuran w-28 (28 * 4 = 112px)
+                  height={112}
+                  className="w-full h-full object-cover grayscale contrast-125 transition-all duration-300 group-hover:grayscale-0"
+                // 💡 Efek Brutalist: Foto auto-hitam-putih tajam, pas di-hover berubah jadi berwarna!
+                />
+
               </div>
             </div>
 
