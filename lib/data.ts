@@ -26,20 +26,23 @@ export interface Tech {
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    name: "Online Test UNSIKA",
+    name: "Tes SEP-T UNSIKA", // Disesuaikan dengan nama asli proyekmu di CV 
     tags: ["web", "fullstack"],
     image: "/projects/onlinetest.png",
     shortDesc:
-      "Platform tes SEP-T berbasis web untuk mahasiswa UNSIKA.",
+      "Platform tes SEP-T (Singaperbangsa English Proficiency Test) berbasis web untuk mahasiswa UNSIKA.",
     longDesc:
       "Sistem Tes Online UNSIKA adalah platform komprehensif yang dirancang khusus untuk mendukung proses evaluasi dan ujian di lingkungan Universitas Singaperbangsa Karawang. Dibangun dengan teknologi terdepan, sistem ini menawarkan pengalaman tes online yang aman, efisien, dan user-friendly.",
-    tech: ["Laravel", "React", "Tailwind CSS", "MySQL", "Docker"],
+    tech: ["Laravel", "React", "Tailwind CSS", "MySQL", "Docker"], 
+    // 💡 FITUR DIUBAH MURNI DARI README KAMU:
     features: [
-      "Kategorisasi transaksi AI-powered",
-      "Dashboard real-time",
-      "Export laporan PDF",
-      "Multi-currency support",
-      "Budget alert system",
+      "Manajemen Kategori Tes & Penjadwalan Fleksibel",
+      "Sistem Soal Canggih (Pilihan Ganda, Esai, Skala Likert, & Rumus LaTeX)",
+      "Media Pendukung (Upload Audio & Gambar untuk Soal)",
+      "Keamanan Ujian (Anti-Cheating Deteksi Tab & Sesi Terkunci)",
+      "Sistem Auto-Save Jawaban & Timer Real-time",
+      "Dashboard Analytics & Scoring Otomatis untuk Soal Objektif",
+      "Panel Koreksi Manual Khusus Soal Esai",
     ],
     github: "https://github.com/zalzdarkent/tes_online_unsika",
     live: "https://onlinetest.unsika.ac.id",
