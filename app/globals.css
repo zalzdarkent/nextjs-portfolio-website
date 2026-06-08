@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;700&display=swap');
+
+:root {
+  --font-syne: "Syne", sans-serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-ibm-mono: "IBM Plex Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAFAF8;
+  color: #0a0a0a;
+  font-family: var(--font-space-grotesk);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (max-width: 640px) {
+  body { cursor: auto; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #FAFAF8; border-left: 3px solid #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #0a0a0a; }
+
+/* ── Marquee ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* ── Pulse dot ── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+/* ── Cursor ── */
+/* Container Utama (Menentukan titik pusat kursor berada di tengah mouse) */
+.custom-brutalist-cursor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0;
+  height: 0;
+}
+
+/* Bentuk Kursor - Kotak Kaku dengan Border Tebal & Hard Shadow */
+.cursor-box {
+  width: 16px;
+  height: 16px;
+  background-color: #BFFF00; /* Warna Limau / Neon khas Brutalism */
+  border: 3px solid #000000;
+  /* Hard shadow kaku tanpa blur */
+  box-shadow: 2px 2px 0px #000000; 
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.15s;
+}
+
+/* EFEK HOVER 1: Kotak membesar, berputar sedikit, dan ganti warna */
+.custom-brutalist-cursor.hovered .cursor-box {
+  width: 32px;
+  height: 32px;
+  background-color: #FF6B35; /* Ganti warna kontras lain saat hover */
+  transform: rotate(45deg); /* Berputar kaku ala brutalism */
+  box-shadow: 3px 3px 0px #000000;
+}
+
+/* EFEK HOVER 2: Menampilkan Badge Teks (Opsional) */
+.cursor-badge {
+  position: absolute;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #ffffff;
+  border: 2px solid #000000;
+  padding: 1px 4px;
+  white-space: nowrap;
+  display: none;
+  top: 24px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.custom-brutalist-cursor.has-text .cursor-badge {
+  display: block;
+}
+
+/* ── Fade-in on scroll ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Stagger children ── */
+.stagger > *:nth-child(1) { transition-delay: 0s; }
+.stagger > *:nth-child(2) { transition-delay: 0.08s; }
+.stagger > *:nth-child(3) { transition-delay: 0.16s; }
+.stagger > *:nth-child(4) { transition-delay: 0.24s; }
+.stagger > *:nth-child(5) { transition-delay: 0.32s; }
+.stagger > *:nth-child(6) { transition-delay: 0.40s; }
+
+/* ── Modal scroll lock ── */
+body.modal-open { overflow: hidden; }
