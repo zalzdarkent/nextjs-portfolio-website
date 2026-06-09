@@ -19,6 +19,18 @@ const EDUCATION = [
     accent: "#BFFF00",
   },
   {
+    title: "MSIB Studi Independen @ Vocasia",
+    place: "Fullstack Web MERN Development",
+    period: "2024 - 2024",
+    highlights: [
+      "Fresh Graduate with cumlaude honor.",
+      "Fokus pada pengembangan aplikasi web end-to-end dan struktur data.",
+      "Membangun project berbasis teknologi modern dan mengutamakan kualitas kode.",
+      "Aktif dalam kegiatan kampus dan organisasi untuk memperluas pengalaman kolaborasi.",
+    ],
+    accent: "#00ff37",
+  },
+  {
     title: "Praktik Industri / Magang",
     place: "PT Century Batteries Indonesia & PT AT Indonesia",
     period: "2025 - Sekarang",
@@ -114,8 +126,8 @@ export default function EducationSection() {
           className="lg:col-span-2"
         >
           <div className="space-y-4">
-            <div className="bg-brutal-yellow text-brutal-black border-4 border-brutal-black shadow-brutal p-5">
-              <p className="font-mono font-bold text-sm uppercase tracking-widest">
+            <div className="bg-brutal-yellow text-brutal-black border-4 border-brutal-black shadow-brutal-white p-5">
+              <p className="font-display font-bold text-sm uppercase tracking-widest">
                 KOMPETENSI
               </p>
               <div className="mt-4 space-y-3">

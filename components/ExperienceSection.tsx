@@ -2,10 +2,12 @@
 
 import { useRef } from "react";
 import { useInView, motion } from "framer-motion";
+import Image from "next/image";
 import { SectionHeader } from "./AboutSection";
 
 const EXPERIENCE = [
   {
+    logo: "/brands/gdsc.png",
     role: "Google Developer Student Club (GDSC)",
     place: "Chapter Kampus",
     period: "Agustus 2023 - September 2024",
@@ -17,6 +19,7 @@ const EXPERIENCE = [
     accent: "#BFFF00",
   },
   {
+    logo: "/brands/logo_aslab.png",
     role: "Laboratorium Komputer",
     place: "Universitas / Organisasi Kampus",
     period: "Januari 2024 - Januari 2026",
@@ -28,6 +31,7 @@ const EXPERIENCE = [
     accent: "#FDE047",
   },
   {
+    logo: "/brands/cbi.png",
     role: "PT Century Batteries Indonesia",
     place: "Magang",
     period: "Maret 2025 - Juni 2025",
@@ -38,6 +42,7 @@ const EXPERIENCE = [
     accent: "#35ffff",
   },
   {
+    logo: "/brands/ati.png",
     role: "PT AT Indonesia",
     place: "Magang",
     period: "Januari 2026 - Sekarang",
@@ -81,8 +86,7 @@ export default function ExperienceSection() {
                     Fokus eksekusi proyek & kolaborasi
                   </p>
                   <p className="font-display font-extrabold text-[clamp(1.25rem,3vw,1.65rem)] leading-tight">
-                    Dari mentoring lab sampai proyek industri: saya terbiasa bekerja
-                    dengan target dan timeline.
+                    Dari mentoring lab sampai proyek industri.
                   </p>
                 </div>
               </div>
@@ -103,9 +107,20 @@ export default function ExperienceSection() {
                     style={{ boxShadow: "6px 6px 0px #0a0a0a" }}
                   >
                     <div className="flex flex-wrap items-baseline justify-between gap-3">
-                      <div>
-                        <p className="font-display font-extrabold text-lg">{exp.role}</p>
-                        <p className="font-body text-sm text-black/60">{exp.place}</p>
+                      <div className="flex items-start gap-3">
+                        <span className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black shadow-brutal-sm">
+                          <Image
+                            src={exp.logo}
+                            alt={`${exp.role} logo`}
+                            width={40}
+                            height={40}
+                            className="w-8 h-8 object-contain"
+                          />
+                        </span>
+                        <div>
+                          <p className="font-display font-extrabold text-lg">{exp.role}</p>
+                          <p className="font-body text-sm text-black/60">{exp.place}</p>
+                        </div>
                       </div>
                       <span
                         className="font-mono text-[10px] font-bold uppercase tracking-widest px-2 py-1 border-2 border-brutal-black"

@@ -38,6 +38,8 @@ const config: Config = {
         "brutal-pink": "6px 6px 0px #FF3CAC",
         "brutal-blue": "6px 6px 0px #3B82F6",
         "brutal-red": "6px 6px 0px #FF0000",
+        "brutal-white": "6px 6px 0px #FAFAF8",
+        "brutal-white-hover": "3px 3px 0px #FAFAF8",
       },
       borderWidth: {
         "3": "3px",

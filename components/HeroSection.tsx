@@ -263,7 +263,7 @@ function BrutalBtn({
     "inline-flex items-center justify-center gap-2 px-7 py-3.5 font-body font-bold text-sm uppercase tracking-widest border-4 border-brutal-black shadow-brutal transition-all duration-100 active:translate-x-[6px] active:translate-y-[6px] active:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-hover";
   const variants = {
     yellow: "bg-brutal-yellow text-brutal-black",
-    dark: "bg-brutal-black text-brutal-yellow shadow-brutal-yellow hover:shadow-brutal-yellow-hover",
+    dark: "bg-brutal-black text-brutal-yellow shadow-brutal-yellow hover:shadow-brutal-yellow-hover border-brutal-white",
   };
   return (
     <a href={href} className={`${base} ${variants[variant]}`}>
