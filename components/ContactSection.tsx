@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useState, FormEvent } from "react";
+import { useRef, useState, FormEvent, useEffect } from "react";
 import { useInView, motion, AnimatePresence } from "framer-motion";
 import { SectionHeader } from "./AboutSection";
-import { FaGithub, FaLinkedin, FaVoicemail } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
+import { useForm, ValidationError } from '@formspree/react';
 
 const CONTACT_LINKS = [
   { icon: <SiGmail />, label: "arszalzdarker@email.com", href: "mailto:arszalzdarker@email.com" },
@@ -14,15 +15,16 @@ const CONTACT_LINKS = [
 
 export default function ContactSection() {
   const ref = useRef<HTMLElement>(null);
+  const [state, handleSubmit] = useForm("mwvjbojr");
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [toast, setToast] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    (e.target as HTMLFormElement).reset();
-    setToast(true);
-    setTimeout(() => setToast(false), 3500);
-  };
+  useEffect(() => {
+    if (state.succeeded) {
+      setToast(true);
+      setTimeout(() => setToast(false), 3500);
+    }
+  }, [state.succeeded]);
 
   return (
     <>
@@ -77,8 +79,8 @@ export default function ContactSection() {
             className="flex flex-col gap-4"
           >
             {[
-              { label: "Nama Lengkap", type: "text", placeholder: "John Doe" },
-              { label: "Email", type: "email", placeholder: "john@email.com" },
+              { label: "Nama Lengkap", name: "name", type: "text", placeholder: "John Doe" },
+              { label: "Email", name: "email", type: "email", placeholder: "john@email.com" },
             ].map((field, i) => (
               <div key={i} className="flex flex-col gap-1.5">
                 <label className="font-body font-bold text-xs uppercase tracking-widest">
@@ -87,8 +89,15 @@ export default function ContactSection() {
                 <input
                   type={field.type}
                   placeholder={field.placeholder}
+                  name={field.name}
                   required
                   className="bg-brutal-white border-4 border-brutal-black shadow-brutal-sm px-4 py-3 font-body text-base font-medium outline-none transition-all focus:translate-x-1 focus:translate-y-1 focus:shadow-none placeholder:text-black/30"
+                />
+                <ValidationError
+                  prefix={field.label}
+                  field={field.name}
+                  errors={state.errors}
+                  className="text-red-600 text-sm mt-1"
                 />
               </div>
             ))}
@@ -99,6 +108,7 @@ export default function ContactSection() {
               </label>
               <textarea
                 placeholder="Ceritakan proyek impian kamu..."
+                name="message"
                 required
                 rows={5}
                 className="bg-brutal-white border-4 border-brutal-black shadow-brutal-sm px-4 py-3 font-body text-base font-medium outline-none resize-none transition-all focus:translate-x-1 focus:translate-y-1 focus:shadow-none placeholder:text-black/30"
@@ -112,9 +122,9 @@ export default function ContactSection() {
               className="mt-2 px-8 py-4 bg-brutal-black text-brutal-yellow border-4 border-brutal-black font-body font-bold text-sm uppercase tracking-widest"
               style={{ boxShadow: "6px 6px 0px #0a0a0a" }}
             >
-              Kirim Pesan ✦
+              {state.submitting ? "Mengirim..." : "Kirim Pesan ✦"}
             </motion.button>
-          </motion.form>
+          </motion.form>  
         </div>
       </section>
 
