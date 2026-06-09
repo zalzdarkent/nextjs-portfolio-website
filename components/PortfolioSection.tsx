@@ -94,6 +94,7 @@ function ProjectCard({
     fullstack: "bg-brutal-yellow",
     mobile: "bg-brutal-orange text-white",
     ai: "bg-brutal-pink text-white",
+    ml: "bg-brutal-blue text-white",
   };
 
   return (
