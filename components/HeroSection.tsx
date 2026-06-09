@@ -42,14 +42,41 @@ export default function HeroSection() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-16 lg:col-span-7 lg:border-r-4 border-brutal-black"
+        className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-16 lg:col-span-7 lg:border-r-4 border-brutal-black"
       >
         {/* Badge */}
         <motion.div variants={item} className="mb-6 self-start">
           <span className="inline-block bg-brutal-lime border-3 border-brutal-black shadow-brutal-sm px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
-            ✦ Available for hire ✦
+            ✦ Available for
+            <TypeAnimation
+              sequence={[
+                " HIRE",
+                2000,
+                " FREELANCE",
+                2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+              className="text-black"
+            /> ✦
           </span>
         </motion.div>
+        {/* <motion.div
+          animate={{
+            y: [0, -10, 0],
+            rotate: [-4, 2, -4],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+          }}
+          className="absolute top-32 right-8 bg-brutal-pink border-4 border-brutal-black px-4 py-2 shadow-brutal"
+        >
+          <span className="font-mono font-bold text-xs">
+            100% HANDCRAFTED
+          </span>
+        </motion.div> */}
 
         {/* Title */}
         <motion.h1
@@ -63,7 +90,7 @@ export default function HeroSection() {
               ALIF
             </span>
           </span>
-          <span className="block">FADILLAH UMMAR</span>
+          {/* <span className="block">FADILLAH UMMAR</span> */}
         </motion.h1>
 
         {/* Desc */}
@@ -110,12 +137,34 @@ export default function HeroSection() {
         </Sticker>
 
         {/* Floating code tags */}
-        <div className="absolute top-[10%] z-30 left-[5%] text-white -rotate-2 border-3 border-brutal-black bg-brutal-red px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm ">
+        <motion.div
+          animate={{
+            y: [0, -12, 0],
+            rotate: [-2, 1, -2],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-[10%] z-30 left-[5%] text-white -rotate-2 border-3 border-brutal-black bg-brutal-red px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm"
+        >
           {`php artisan serve ▶`}
-        </div>
-        <div className="absolute bottom-[20%] z-20 right-[3%] rotate-3 border-3 border-brutal-black bg-brutal-white px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm">
+        </motion.div>
+        <motion.div
+          animate={{
+            y: [0, 10, 0],
+            rotate: [3, 0, 3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-[20%] z-20 right-[3%] rotate-3 border-3 border-brutal-black bg-brutal-white px-2 py-1 font-mono text-xs font-bold shadow-brutal-sm"
+        >
           npm run dev ▶
-        </div>
+        </motion.div>
 
         {/* Profile card */}
         <motion.div
@@ -214,7 +263,7 @@ function BrutalBtn({
     "inline-flex items-center justify-center gap-2 px-7 py-3.5 font-body font-bold text-sm uppercase tracking-widest border-4 border-brutal-black shadow-brutal transition-all duration-100 active:translate-x-[6px] active:translate-y-[6px] active:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-brutal-hover";
   const variants = {
     yellow: "bg-brutal-yellow text-brutal-black",
-    dark: "bg-brutal-black text-brutal-yellow",
+    dark: "bg-brutal-black text-brutal-yellow shadow-brutal-yellow hover:shadow-brutal-yellow-hover",
   };
   return (
     <a href={href} className={`${base} ${variants[variant]}`}>
@@ -223,12 +272,27 @@ function BrutalBtn({
   );
 }
 
-function Sticker({ children, className }: { children: React.ReactNode; className?: string }) {
+function Sticker({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div
+    <motion.div
+      animate={{
+        y: [0, -8, 0],
+        rotate: [0, 2, -2, 0],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
       className={`absolute z-20 border-3 border-brutal-black shadow-brutal-sm px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest ${className}`}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

@@ -42,7 +42,7 @@ const EXPERIENCE = [
     place: "Magang",
     period: "Januari 2026 - Sekarang",
     items: [
-      "Membangun sistem deteksi APD berbasis Python.",
+      "Membangun sistem deteksi APD berbasis Camera Vision menggunakan Yolo.",
       "Mengoptimalkan proses data input dan pengolahan hasil deteksi.",
       "Menerapkan evaluasi sederhana untuk memastikan performa.",
     ],
@@ -138,8 +138,8 @@ export default function ExperienceSection() {
           className="lg:col-span-2"
         >
           <div className="space-y-4">
-            <div className="bg-brutal-black text-brutal-white border-4 border-brutal-black shadow-brutal p-5">
-              <p className="font-mono font-bold text-sm uppercase tracking-widest text-brutal-yellow">
+            <div className="bg-brutal-yellow text-brutal-white border-4 border-brutal-black shadow-brutal p-5">
+              <p className="font-mono font-bold text-sm uppercase tracking-widest text-black">
                 KEBIASAAN KERJA
               </p>
               <div className="mt-4 space-y-3">
@@ -152,8 +152,8 @@ export default function ExperienceSection() {
                     key={r.k}
                     className="border-3 border-brutal-black bg-brutal-white/0 p-3"
                   >
-                    <p className="font-body font-bold text-sm">{r.k}</p>
-                    <p className="font-body text-xs text-white/70 mt-1">{r.v}</p>
+                    <p className="font-body font-bold text-black">{r.k}</p>
+                    <p className="font-body text-xs text-brutal-black mt-1">{r.v}</p>
                   </div>
                 ))}
               </div>
@@ -167,7 +167,7 @@ export default function ExperienceSection() {
                 {[
                   { num: "3+", label: "Rangkaian peran" },
                   { num: "1+", label: "Proyek industri" },
-                  { num: "Python", label: "Deteksi APD" },
+                  { num: "Yolo", label: "Deteksi APD" },
                   { num: "Tim", label: "Kolaborasi aktif" },
                 ].map((s) => (
                   <div

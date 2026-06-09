@@ -30,7 +30,14 @@ const config: Config = {
         "brutal-lg": "8px 8px 0px #0a0a0a",
         "brutal-sm": "4px 4px 0px #0a0a0a",
         "brutal-hover": "3px 3px 0px #0a0a0a",
-        "brutal-dark": "6px 6px 0px #555555",
+
+        "brutal-yellow": "6px 6px 0px #FDE047",
+        "brutal-yellow-hover": "3px 3px 0px #FDE047",
+        "brutal-orange": "6px 6px 0px #FF6B35",
+        "brutal-lime": "6px 6px 0px #BFFF00",
+        "brutal-pink": "6px 6px 0px #FF3CAC",
+        "brutal-blue": "6px 6px 0px #3B82F6",
+        "brutal-red": "6px 6px 0px #FF0000",
       },
       borderWidth: {
         "3": "3px",
