@@ -24,8 +24,20 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "ALIF.DEV — Full Stack Developer",
-  description: "Portfolio Alif Fadillah Ummar.",
+  metadataBase: new URL('https://alif-fadillah-portfolio.vercel.app'),
+  title: {
+    default: 'Alif Fadillah Ummar - Junior Software Engineer',
+    template: '%s | Alif Fadillah Ummar', 
+  },
+  description: 'Fresh Graduate S1 Informatika Unsika.',
+  openGraph: {
+    title: 'Alif Fadillah Ummar - Junior Software Engineer',
+    description: 'Deskripsi singkat untuk sosial media.',
+    url: 'https://alif-fadillah-portfolio.vercel.app',
+    siteName: 'Alif Fadillah Ummar Portfolio',
+    locale: 'id_ID',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
