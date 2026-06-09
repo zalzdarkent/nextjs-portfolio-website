@@ -99,6 +99,7 @@ export const NAV_LINKS = [
   { href: "#pengalaman", label: "Pengalaman" },
   { href: "#tech", label: "Keahlian" },
   { href: "#portfolio", label: "Portofolio" },
+  { href: "#education", label: "Pendidikan" },
   { href: "#contact", label: "Kontak" },
 ];
 

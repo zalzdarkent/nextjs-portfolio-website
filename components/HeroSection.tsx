@@ -133,7 +133,7 @@ export default function HeroSection() {
           3+ YRS EXP
         </Sticker>
         <Sticker className="bottom-[12%] left-[4%] -rotate-[5deg] bg-brutal-pink text-white">
-          OPEN TO WORK
+          {'{OPEN TO WORK!}'}
         </Sticker>
 
         {/* Floating code tags */}
