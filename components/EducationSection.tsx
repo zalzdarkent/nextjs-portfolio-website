@@ -70,9 +70,9 @@ export default function EducationSection() {
     <section
       ref={ref}
       id="education"
-      className="bg-brutal-black px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
+      className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
     >
-      <SectionHeader num="04" title="EDUCATION" inView={inView} light />
+      <SectionHeader num="04" title="EDUCATION" inView={inView} />
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mt-10">
         {/* Main list */}
@@ -88,9 +88,9 @@ export default function EducationSection() {
               initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.35, delay: idx * 0.06 }}
-              whileHover={{ x: 4, y: 4, boxShadow: "2px 2px 0px #FDE047" }}
+              whileHover={{ x: 4, y: 4, boxShadow: "2px 2px 0px #000000" }}
               className="bg-brutal-white border-4 border-brutal-black shadow-brutal p-5"
-              style={{ boxShadow: "6px 6px 0px #FDE047" }}
+              style={{ boxShadow: "6px 6px 0px #000000" }}
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="space-y-1">
@@ -126,7 +126,7 @@ export default function EducationSection() {
           className="lg:col-span-2"
         >
           <div className="space-y-4">
-            <div className="bg-brutal-yellow text-brutal-black border-4 border-brutal-black shadow-brutal-white p-5">
+            <div className="bg-brutal-yellow text-brutal-black border-4 border-brutal-black shadow-brutal p-5">
               <p className="font-display font-bold text-sm uppercase tracking-widest">
                 KOMPETENSI
               </p>
@@ -147,7 +147,7 @@ export default function EducationSection() {
               </div>
             </div>
 
-            <div className="bg-brutal-white border-4 border-brutal-black shadow-brutal-yellow p-5">
+            <div className="bg-brutal-white border-4 border-brutal-black shadow-brutal p-5">
               <p className="font-mono font-bold text-sm uppercase tracking-widest text-black/60">
                 ACHIEVEMENTS
               </p>

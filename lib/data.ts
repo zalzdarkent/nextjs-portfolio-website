@@ -96,9 +96,9 @@ export const PROJECTS: Project[] = [
 export const NAV_LINKS = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "Tentang" },
-  { href: "#pengalaman", label: "Pengalaman" },
   { href: "#tech", label: "Keahlian" },
   { href: "#portfolio", label: "Portofolio" },
+  { href: "#pengalaman", label: "Pengalaman" },
   { href: "#education", label: "Pendidikan" },
   { href: "#contact", label: "Kontak" },
 ];

@@ -63,9 +63,9 @@ export default function ExperienceSection() {
     <section
       ref={ref}
       id="pengalaman"
-      className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
+      className="bg-brutal-black px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
     >
-      <SectionHeader num="02" title="PENGALAMAN" inView={inView} />
+      <SectionHeader num="02" title="PENGALAMAN" inView={inView} light />
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mt-10">
         {/* Left: big timeline card */}
@@ -75,7 +75,7 @@ export default function ExperienceSection() {
           transition={{ duration: 0.55 }}
           className="lg:col-span-3"
         >
-          <div className="bg-brutal-white border-4 border-brutal-black shadow-brutal">
+          <div className="bg-brutal-white border-4 border-brutal-black shadow-brutal-yellow">
             <div className="p-6 sm:p-7">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 flex items-center justify-center bg-brutal-black border-4 border-brutal-black shadow-brutal-sm">
@@ -174,7 +174,7 @@ export default function ExperienceSection() {
               </div>
             </div>
 
-            <div className="bg-brutal-white border-4 border-brutal-black shadow-brutal p-5">
+            <div className="bg-brutal-white border-4 border-brutal-black shadow-brutal-yellow p-5">
               <p className="font-mono font-bold text-sm uppercase tracking-widest text-black/60">
                 SNAPSHOT
               </p>

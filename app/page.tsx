@@ -20,9 +20,9 @@ export default function Home() {
         <Marquee />
         <AboutSection />
         {/* <EducationSection /> */}
-        <ExperienceSection />
         <TechSection />
         <PortfolioSection />
+        <ExperienceSection />
         <EducationSection />
         <ContactSection />
       </main>
