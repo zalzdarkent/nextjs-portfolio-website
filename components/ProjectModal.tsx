@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/lib/data";
-import { FaDocker, FaLaravel, FaReact } from "react-icons/fa6";
-import { SiInertia, SiMysql, SiShadcnui, SiTailwindcss } from "react-icons/si";
+import { FaDocker, FaLaravel, FaPython, FaReact } from "react-icons/fa6";
+import { SiInertia, SiMysql, SiOpencv, SiShadcnui, SiTailwindcss, SiYolo, SiFlask, SiOnnx } from "react-icons/si";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -12,13 +12,19 @@ interface ProjectModalProps {
 }
 
 const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
-  "Laravel": { icon: FaLaravel, bg: "#fd0000", text: "#fffbfb" },
-  "React": { icon: FaReact, bg: "#1a1a1a", text: "#1aefe1" },
-  "Inertia.js": { icon: SiInertia, bg: "#a025ec", text: "#ffffff" },
-  "Tailwind CSS": { icon: SiTailwindcss, bg: "#38BDF8", text: "#0a0a0a" },
-  "Shadcn": { icon: SiShadcnui, bg: "#010101", text: "#fbfbfb" },
-  "MySQL": { icon: SiMysql, bg: "#00758F", text: "white" },
-  "Docker": { icon: FaDocker, bg: "#2496ED", text: "white" },
+  "Laravel": { icon: FaLaravel, bg: "#FF2D20", text: "#FFFFFF" },
+  "React": { icon: FaReact, bg: "#20232A", text: "#61DAFB" },
+  "Inertia.js": { icon: SiInertia, bg: "#9553E9", text: "#FFFFFF" },
+  "Tailwind CSS": { icon: SiTailwindcss, bg: "#06B6D4", text: "#FFFFFF" },
+  "Shadcn": { icon: SiShadcnui, bg: "#000000", text: "#FFFFFF" },
+  "MySQL": { icon: SiMysql, bg: "#00758F", text: "#F29111" },
+  "Docker": { icon: FaDocker, bg: "#2496ED", text: "#FFFFFF" },
+
+  "Python": { icon: FaPython, bg: "#FFFFF", text: "#3776AB" },
+  "OpenCV": { icon: SiOpencv, bg: "#FFFFFF", text: "#5C3EE8" },
+  "Yolo": { icon: SiYolo, bg: "#FFFFF", text: "#005CED" },
+  "Flask": { icon: SiFlask, bg: "#000000", text: "#FFFFFF" },
+  "ONNX": { icon: SiOnnx, bg: "#005CED", text: "#FFFFFF" },
 };
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
