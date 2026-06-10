@@ -72,7 +72,7 @@ export default function EducationSection() {
       id="education"
       className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
     >
-      <SectionHeader num="04" title="EDUCATION" inView={inView} />
+      <SectionHeader num="05" title="PENDIDIKAN" inView={inView} />
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mt-10">
         {/* Main list */}

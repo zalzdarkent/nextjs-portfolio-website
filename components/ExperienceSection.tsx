@@ -65,7 +65,7 @@ export default function ExperienceSection() {
       id="pengalaman"
       className="bg-brutal-black px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
     >
-      <SectionHeader num="02" title="PENGALAMAN" inView={inView} light />
+      <SectionHeader num="04" title="PENGALAMAN" inView={inView} light />
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mt-10">
         {/* Left: big timeline card */}

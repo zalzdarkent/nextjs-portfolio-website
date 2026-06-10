@@ -33,7 +33,7 @@ export default function ContactSection() {
         id="contact"
         className="bg-brutal-yellow px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
       >
-        <SectionHeader num="04" title="HUBUNGI SAYA" inView={inView} />
+        <SectionHeader num="06" title="HUBUNGI SAYA" inView={inView} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-10">
           {/* Info */}

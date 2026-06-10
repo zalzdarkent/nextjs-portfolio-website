@@ -18,16 +18,16 @@ import EducationSection from "@/components/EducationSection";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState<boolean | null>(null);
   const [showPortfolio, setShowPortfolio] = useState(false);
 
-  const handleEnter = () => {
-    sessionStorage.setItem("visited", "true");
+  const handleComplete = () => {
+    localStorage.setItem("portfolioVisited", "true");
     setShowSplash(false);
   };
 
   useEffect(() => {
-    const visited = sessionStorage.getItem("visited");
+    const visited = localStorage.getItem("portfolioVisited");
 
     if (visited) {
       setShowSplash(false);
@@ -52,7 +52,7 @@ export default function Home() {
         }}
       >
         {showSplash && (
-          <SplashScreen onEnter={handleEnter} />
+          <SplashScreen onComplete={handleComplete} />
         )}
       </AnimatePresence>
 

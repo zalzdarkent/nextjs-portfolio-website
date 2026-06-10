@@ -126,7 +126,7 @@ export default function AboutSection() {
     <section
       ref={ref}
       id="about"
-      className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
+      className="relative overflow-hidden px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
     >
       {/* Section header */}
       <SectionHeader num="01" title="TENTANG SAYA" inView={inView} />
