@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Rubik_Glitch, Special_Elite, VT323 } from "next/font/google"; 
 import "./globals.css";
+import Script from "next/dist/client/script";
 
 const rubikGlitch = Rubik_Glitch({
   subsets: ["latin"],
@@ -45,6 +46,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="id" className={`${rubikGlitch.variable} ${specialElite.variable} ${vt323.variable} scroll-smooth`}>
       <body className="bg-brutal-white antialiased text-brutal-black">
         {children}
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="72b95bc8-c7a9-45e3-8779-e405fc1eaedf"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
