@@ -62,7 +62,7 @@ export default function Navbar() {
           onClick={() => handleNavClick("#home")}
           className="font-display text-2xl font-extrabold tracking-tight text-brutal-black hover:opacity-80 transition-opacity"
         >
-          ALIF.DEV
+          PORTFOLIO
         </a>
 
         {/* Desktop links */}

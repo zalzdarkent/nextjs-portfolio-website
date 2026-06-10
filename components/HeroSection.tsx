@@ -5,6 +5,7 @@ import { FaLaravel, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiNextdotjs, SiCodeigniter } from "react-icons/si";
 import { TypeAnimation } from "react-type-animation";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const techStack = [
   { name: "Laravel", Icon: FaLaravel, bg: "#FDE047", text: "#0a0a0a" },
@@ -13,6 +14,7 @@ const techStack = [
   { name: "CodeIgniter", Icon: SiCodeigniter, bg: "#FFD700", text: "#0a0a0a" },
   { name: "NodeJS", Icon: FaNodeJs, bg: "#FF6B35", text: "white" },
 ];
+const available = [" HIRE", " FREELANCE"];
 
 const container = {
   hidden: {},
@@ -23,6 +25,59 @@ const item = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 28 } },
 };
+
+export function ScrambleText() {
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    let wordIndex = 0;
+
+    const scrambleToWord = (target: string) => {
+      const chars = "!<>-_\\/[]{}—=+*^?#________";
+      let frame = 0;
+
+      const interval = setInterval(() => {
+        let output = "";
+
+        for (let i = 0; i < target.length; i++) {
+          if (i < frame) {
+            output += target[i];
+          } else {
+            output += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+
+        setText(output);
+
+        frame += 0.5;
+
+        if (frame >= target.length) {
+          clearInterval(interval);
+          setText(target);
+        }
+      }, 40);
+
+      return interval;
+    };
+
+    const run = () => {
+      scrambleToWord(available[wordIndex]);
+
+      setTimeout(() => {
+        wordIndex = (wordIndex + 1) % available.length;
+        run();
+      }, 3000);
+    };
+
+    run();
+  }, []);
+
+  return (
+    <span className="text-black">
+      {text}
+    </span>
+  );
+}
 
 export default function HeroSection() {
   return (
@@ -48,18 +103,7 @@ export default function HeroSection() {
         <motion.div variants={item} className="mb-6 self-start">
           <span className="inline-block bg-brutal-lime border-3 border-brutal-black shadow-brutal-sm px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
             ✦ Available for
-            <TypeAnimation
-              sequence={[
-                " HIRE",
-                2000,
-                " FREELANCE",
-                2000,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-              className="text-black"
-            /> ✦
+            <ScrambleText />
           </span>
         </motion.div>
         {/* <motion.div

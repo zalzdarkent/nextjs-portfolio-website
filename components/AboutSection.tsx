@@ -1,42 +1,71 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useInView } from "framer-motion";
-import { motion } from "framer-motion";
-import { BriefcaseBusiness, FolderKanban, Handshake, GitBranch } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { useInView, motion, animate, useMotionValue, useTransform } from "framer-motion";
+import { FolderKanban, Handshake, GitBranch } from "lucide-react";
 import { BiBriefcaseAlt } from "react-icons/bi";
 
 const STATS = [
   {
-    num: "3+",
+    num: 3,
+    suffix: "+",
     label: "Tahun Pengalaman",
     icon: <BiBriefcaseAlt size={32} />,
     bgColor: "bg-brutal-lime",
     textColor: "text-brutal-black",
   },
   {
-    num: "5+",
+    num: 5,
+    suffix: "+",
     label: "Proyek Selesai",
     icon: <FolderKanban size={32} />,
     bgColor: "bg-brutal-orange",
     textColor: "text-brutal-black",
   },
   {
-    num: "5+",
+    num: 5,
+    suffix: "+",
     label: "Klien Puas",
     icon: <Handshake size={32} />,
     bgColor: "bg-brutal-blue",
     textColor: "text-brutal-black",
   },
   {
-    num: "8",
+    num: 8,
+    suffix: "+",
     label: "Open Source Repo",
     icon: <GitBranch size={32} />,
     bgColor: "bg-brutal-purple",
     textColor: "text-brutal-black",
   },
 ];
+
+function Counter({
+  value,
+  inView,
+}: {
+  value: number;
+  inView: boolean;
+}) {
+  const count = useMotionValue(0);
+
+  const rounded = useTransform(count, (latest) =>
+    Math.round(latest)
+  );
+
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(count, value, {
+        duration: 1.5,
+        ease: "easeOut",
+      });
+
+      return controls.stop;
+    }
+  }, [inView, value, count]);
+
+  return <motion.span>{rounded}</motion.span>;
+}
 
 export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);
@@ -156,8 +185,11 @@ export default function AboutSection() {
               style={{ boxShadow: "6px 6px 0px #0a0a0a" }}
             >
               <span className="text-3xl block">{s.icon}</span>
-              <span className={`font-display text-4xl font-extrabold block mt-1 ${s.textColor}`}>
-                {s.num}
+              <span
+                className={`font-display text-4xl font-extrabold block mt-1 ${s.textColor}`}
+              >
+                <Counter value={s.num} inView={inView} />
+                {s.suffix}
               </span>
               <span className="font-body font-bold text-xs uppercase tracking-widest text-black/60 mt-1 block">
                 {s.label}

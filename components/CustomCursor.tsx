@@ -68,7 +68,7 @@ export default function CustomCursor() {
     <div 
       ref={cursorRef} 
       // "fixed top-0 left-0" wajib agar koordinat transform-nya presisi dari titik 0,0
-      className="custom-brutalist-cursor hidden sm:block fixed top-0 left-0 pointer-events-none z-[9999] will-change-transform"
+      className="custom-brutalist-cursor hidden sm:block fixed top-0 left-0 pointer-events-none z-[999999] will-change-transform"
     >
       {/* Kotak Utama Kursor */}
       <div className="cursor-box" />
