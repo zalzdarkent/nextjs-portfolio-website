@@ -21,6 +21,10 @@ export default function Home() {
   const [showSplash, setShowSplash] = useState<boolean | null>(null);
   const [showPortfolio, setShowPortfolio] = useState(false);
 
+  const handleEnter = () => {
+    // Called when user clicks ENTER button
+  };
+
   const handleComplete = () => {
     localStorage.setItem("portfolioVisited", "true");
     setShowSplash(false);
@@ -52,7 +56,7 @@ export default function Home() {
         }}
       >
         {showSplash && (
-          <SplashScreen onComplete={handleComplete} />
+          <SplashScreen onEnter={handleEnter} onComplete={handleComplete} />
         )}
       </AnimatePresence>
 
