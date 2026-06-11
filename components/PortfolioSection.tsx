@@ -5,11 +5,12 @@ import { useInView, motion, AnimatePresence } from "framer-motion";
 import { SectionHeader } from "./AboutSection";
 import ProjectModal from "./ProjectModal";
 import { PROJECTS, FILTER_OPTIONS, Project } from "@/lib/data";
+import { useTranslations } from "next-intl";
 
 export default function PortfolioSection() {
+  const t = useTranslations("portfolio");
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -19,20 +20,11 @@ export default function PortfolioSection() {
 
   return (
     <>
-      <section
-        ref={ref}
-        id="portfolio"
-        className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
-      >
-        <SectionHeader num="03" title="PORTOFOLIO" inView={inView} />
+      <section ref={ref} id="portfolio" className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black">
+        <SectionHeader num="03" title={t("title")} inView={inView} />
 
         {/* Filter bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.1 }}
-          className="flex flex-wrap gap-3 mt-8 mb-10"
-        >
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.1 }} className="flex flex-wrap gap-3 mt-8 mb-10">
           {FILTER_OPTIONS.map((opt) => (
             <motion.button
               key={opt.value}
@@ -44,12 +36,9 @@ export default function PortfolioSection() {
                   ? "bg-brutal-black text-brutal-yellow translate-x-1 translate-y-1"
                   : "bg-brutal-white text-brutal-black"
               }`}
-              style={{
-                boxShadow:
-                  activeFilter === opt.value ? "none" : "4px 4px 0px #0a0a0a",
-              }}
+              style={{ boxShadow: activeFilter === opt.value ? "none" : "4px 4px 0px #0a0a0a" }}
             >
-              {opt.label}
+              {t(`filter.${opt.key}`)} {/* ← */}
             </motion.button>
           ))}
         </motion.div>
@@ -69,26 +58,15 @@ export default function PortfolioSection() {
         </motion.div>
       </section>
 
-      {/* Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </>
   );
 }
 
-// ── Project Card ──────────────────────────────────────────────────────────────
+function ProjectCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
+  const t = useTranslations("portfolio");
+  const id = String(project.id);
 
-function ProjectCard({
-  project,
-  index,
-  onOpen,
-}: {
-  project: Project;
-  index: number;
-  onOpen: () => void;
-}) {
   const TAG_STYLES: Record<string, string> = {
     web: "bg-brutal-yellow",
     fullstack: "bg-brutal-yellow",
@@ -110,42 +88,34 @@ function ProjectCard({
       className="bg-brutal-white border-4 border-brutal-black cursor-pointer flex flex-col"
       style={{ boxShadow: "8px 8px 0px #0a0a0a" }}
     >
-      {/* Image area */}
-      <div
-        className="h-44 flex items-center justify-center border-b-4 border-brutal-black relative text-5xl font-bold"
-      >
-        <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
-        {/* <span className="select-none">{project.emoji}</span> */}
+      <div className="h-44 flex items-center justify-center border-b-4 border-brutal-black relative text-5xl font-bold">
+        <img src={project.image} alt={t(`projects.${id}.name`)} className="w-full h-full object-cover" />
         <span className="absolute top-2 right-2 font-mono text-xs font-bold bg-brutal-black text-brutal-yellow px-2 py-0.5">
           #{String(project.id).padStart(3, "0")}
         </span>
       </div>
 
-      {/* Body */}
       <div className="p-5 flex flex-col flex-1">
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-3">
           {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className={`font-mono text-[10px] font-bold uppercase tracking-widest border-2 border-brutal-black px-2 py-0.5 ${
-                TAG_STYLES[tag] ?? "bg-brutal-yellow"
-              }`}
-            >
+            <span key={tag} className={`font-mono text-[10px] font-bold uppercase tracking-widest border-2 border-brutal-black px-2 py-0.5 ${TAG_STYLES[tag] ?? "bg-brutal-yellow"}`}>
               {tag}
             </span>
           ))}
         </div>
 
-        <h3 className="font-display text-lg font-extrabold mb-2">{project.name}</h3>
-        <p className="font-body text-sm leading-relaxed text-black/60 flex-1 line-clamp-2">{project.shortDesc}</p>
+        <h3 className="font-display text-lg font-extrabold mb-2">
+          {t(`projects.${id}.name`)} {/* ← */}
+        </h3>
+        <p className="font-body text-sm leading-relaxed text-black/60 flex-1 line-clamp-2">
+          {t(`projects.${id}.shortDesc`)} {/* ← */}
+        </p>
 
-        {/* Footer */}
         <button
           onClick={(e) => { e.stopPropagation(); onOpen(); }}
-          className="mt-4 self-start px-4 py-2 bg-brutal-black text-brutal-yellow border-3 border-brutal-black shadow-brutal-sm font-body font-bold text-xs uppercase tracking-widest transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-1 active:translate-y-1"
+          className="mt-4 self-start px-4 py-2 bg-brutal-black text-brutal-yellow border-3 border-brutal-black shadow-brutal-sm font-body font-bold text-xs uppercase tracking-widest transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
         >
-          Detail →
+          {t("detailBtn")} {/* ← */}
         </button>
       </div>
     </motion.article>

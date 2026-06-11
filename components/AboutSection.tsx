@@ -4,41 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { useInView, motion, animate, useMotionValue, useTransform } from "framer-motion";
 import { FolderKanban, Handshake, GitBranch } from "lucide-react";
 import { BiBriefcaseAlt } from "react-icons/bi";
-
-const STATS = [
-  {
-    num: 3,
-    suffix: "+",
-    label: "Tahun Pengalaman",
-    icon: <BiBriefcaseAlt size={32} />,
-    bgColor: "bg-brutal-lime",
-    textColor: "text-brutal-black",
-  },
-  {
-    num: 5,
-    suffix: "+",
-    label: "Proyek Selesai",
-    icon: <FolderKanban size={32} />,
-    bgColor: "bg-brutal-orange",
-    textColor: "text-brutal-black",
-  },
-  {
-    num: 5,
-    suffix: "+",
-    label: "Klien Puas",
-    icon: <Handshake size={32} />,
-    bgColor: "bg-brutal-blue",
-    textColor: "text-brutal-black",
-  },
-  {
-    num: 8,
-    suffix: "+",
-    label: "Open Source Repo",
-    icon: <GitBranch size={32} />,
-    bgColor: "bg-brutal-purple",
-    textColor: "text-brutal-black",
-  },
-];
+import { useTranslations } from "next-intl";
 
 function Counter({
   value,
@@ -68,6 +34,41 @@ function Counter({
 }
 
 export default function AboutSection() {
+  const t = useTranslations("about");
+  const STATS = [
+    {
+      num: 3,
+      suffix: "+",
+      label: t("stats.experiences"),
+      icon: <BiBriefcaseAlt size={32} />,
+      bgColor: "bg-brutal-lime",
+      textColor: "text-brutal-black",
+    },
+    {
+      num: 5,
+      suffix: "+",
+      label: t("stats.projects"),
+      icon: <FolderKanban size={32} />,
+      bgColor: "bg-brutal-orange",
+      textColor: "text-brutal-black",
+    },
+    {
+      num: 5,
+      suffix: "+",
+      label: t("stats.clients"),
+      icon: <Handshake size={32} />,
+      bgColor: "bg-brutal-blue",
+      textColor: "text-brutal-black",
+    },
+    {
+      num: 8,
+      suffix: "+",
+      label: t("stats.open_source"),
+      icon: <GitBranch size={32} />,
+      bgColor: "bg-brutal-purple",
+      textColor: "text-brutal-black",
+    },
+  ];
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [downloadStatus, setDownloadStatus] = useState<"idle" | "loading" | "done">("idle");
@@ -129,7 +130,7 @@ export default function AboutSection() {
       className="relative overflow-hidden px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
     >
       {/* Section header */}
-      <SectionHeader num="01" title="TENTANG SAYA" inView={inView} />
+      <SectionHeader num="01" title={t("title")} inView={inView} />
 
       {/* Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-10">
@@ -141,9 +142,7 @@ export default function AboutSection() {
           className="space-y-5"
         >
           {[
-            "Full Stack Developer yang berfokus pada pembuatan aplikasi web end-to-end yang tangguh dan responsif. Merupakan lulusan Informatika UNSIKA yang memiliki ketertarikan mendalam pada pengembangan produk digital berkualitas tinggi.",
-            "Setiap baris kode ditulis dengan standar tinggi agar mudah dibaca dan dikembangkan ke depannya. Penguasaan teknologi mencakup MERN Stack dan Laravel untuk menghasilkan sistem yang efisien dan andal.",
-            "Pengalaman memimpin tim Laboratorium Komputer, aktif di Google Developer Student Club (GDSC), serta keterlibatan di PT AT Indonesia dalam membangun sistem deteksi APD berbasis Python  menjadi bukti nyata dari kapabilitas eksekusi proyek di dunia nyata.",
+            t("desc")
           ].map((p, i) => (
             <p key={i} className="font-body text-lg leading-relaxed text-black/70">
               {p}

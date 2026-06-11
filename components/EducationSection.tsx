@@ -3,68 +3,25 @@
 import { useRef } from "react";
 import { useInView, motion } from "framer-motion";
 import { SectionHeader } from "./AboutSection";
-import { span } from "framer-motion/m";
+import { useTranslations } from "next-intl";
 
-const EDUCATION = [
-  {
-    title: "S1 Informatika",
-    place: "Universitas Singaperbangsa Karawang (UNSIKA)",
-    period: "2022 - 2026",
-    highlights: [
-      "Fresh Graduate with cumlaude honor.",
-      "Fokus pada pengembangan aplikasi web end-to-end dan struktur data.",
-      "Membangun project berbasis teknologi modern dan mengutamakan kualitas kode.",
-      "Aktif dalam kegiatan kampus dan organisasi untuk memperluas pengalaman kolaborasi.",
-    ],
-    accent: "#BFFF00",
-  },
-  {
-    title: "MSIB Studi Independen @ Vocasia",
-    place: "Fullstack Web MERN Development",
-    period: "2024 - 2024",
-    highlights: [
-      "Fresh Graduate with cumlaude honor.",
-      "Fokus pada pengembangan aplikasi web end-to-end dan struktur data.",
-      "Membangun project berbasis teknologi modern dan mengutamakan kualitas kode.",
-      "Aktif dalam kegiatan kampus dan organisasi untuk memperluas pengalaman kolaborasi.",
-    ],
-    accent: "#00ff37",
-  },
-  {
-    title: "Praktik Industri / Magang",
-    place: "PT Century Batteries Indonesia & PT AT Indonesia",
-    period: "2025 - Sekarang",
-    highlights: [
-      "Membangun sistem E-Checksheet Pre-Use dan dashboard Preventive Maintenance.",
-      "Mengembangkan sistem deteksi APD berbasis Camera Vision menggunakan YOLO.",
-      "Menerapkan evaluasi dan optimasi pipeline data agar hasil lebih stabil.",
-    ],
-    accent: "#FF6B35",
-  },
-];
-
-const achievements = [
-  {
-    text: "Head of Technical Core Team @ GDSC",
-    color: "bg-brutal-lime",
-  },
-  {
-    text: "Built E-Checksheet System",
-    color: "bg-brutal-yellow",
-  },
-  {
-    text: "Preventive Maintenance Dashboard",
-    color: "bg-brutal-orange",
-  },
-  {
-    text: "PPE Detection using YOLO",
-    color: "bg-brutal-pink",
-  },
-];
+const ACCENTS = ["#BFFF00", "#00ff37", "#FF6B35"];
+const ACHIEVEMENT_COLORS = ["bg-brutal-lime", "bg-brutal-yellow", "bg-brutal-orange", "bg-brutal-pink"];
 
 export default function EducationSection() {
+  const t = useTranslations("education");
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const eduList = t.raw("list") as {
+    title: string;
+    place: string;
+    period: string;
+    highlights: string[];
+  }[];
+
+  const competencies = t.raw("competencies.items") as { k: string; v: string }[];
+  const achievements = t.raw("achievements.items") as string[];
 
   return (
     <section
@@ -72,7 +29,7 @@ export default function EducationSection() {
       id="education"
       className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
     >
-      <SectionHeader num="05" title="PENDIDIKAN" inView={inView} />
+      <SectionHeader num="05" title={t("title")} inView={inView} />
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mt-10">
         {/* Main list */}
@@ -82,7 +39,7 @@ export default function EducationSection() {
           transition={{ duration: 0.55 }}
           className="lg:col-span-3 space-y-4"
         >
-          {EDUCATION.map((edu, idx) => (
+          {eduList.map((edu, idx) => (
             <motion.article
               key={edu.title}
               initial={{ opacity: 0, y: 12 }}
@@ -97,10 +54,9 @@ export default function EducationSection() {
                   <p className="font-display font-extrabold text-lg">{edu.title}</p>
                   <p className="font-body text-sm text-black/60">{edu.place}</p>
                 </div>
-
                 <span
                   className="font-mono text-[10px] font-bold uppercase tracking-widest px-2 py-1 border-2 border-brutal-black"
-                  style={{ background: edu.accent, color: "#0a0a0a" }}
+                  style={{ background: ACCENTS[idx], color: "#0a0a0a" }}
                 >
                   {edu.period}
                 </span>
@@ -128,18 +84,11 @@ export default function EducationSection() {
           <div className="space-y-4">
             <div className="bg-brutal-yellow text-brutal-black border-4 border-brutal-black shadow-brutal p-5">
               <p className="font-display font-bold text-sm uppercase tracking-widest">
-                KOMPETENSI
+                {t("competencies.label")}
               </p>
               <div className="mt-4 space-y-3">
-                {[
-                  { k: "Teknis", v: "Web development, integrasi sistem, dan struktur kode" },
-                  { k: "Analitik", v: "Proses data yang rapi untuk hasil yang bisa diukur" },
-                  { k: "Eksekusi", v: "Membangun fitur end-to-end dengan target & timeline" },
-                ].map((r) => (
-                  <div
-                    key={r.k}
-                    className="border-3 border-brutal-black bg-brutal-white/0 p-3"
-                  >
+                {competencies.map((r) => (
+                  <div key={r.k} className="border-3 border-brutal-black bg-brutal-white/0 p-3">
                     <p className="font-body font-bold text-black">{r.k}</p>
                     <p className="font-body text-xs text-black/70 mt-1">{r.v}</p>
                   </div>
@@ -149,16 +98,16 @@ export default function EducationSection() {
 
             <div className="bg-brutal-white border-4 border-brutal-black shadow-brutal p-5">
               <p className="font-mono font-bold text-sm uppercase tracking-widest text-black/60">
-                ACHIEVEMENTS
+                {t("achievements.label")}
               </p>
               <div className="mt-4 space-y-3">
-                {achievements.map((achievement, index) => (
+                {achievements.map((text, index) => (
                   <div
                     key={index}
-                    className={`flex items-center justify-between gap-4 border-3 border-brutal-black ${achievement.color} shadow-brutal-sm p-3`}
+                    className={`flex items-center justify-between gap-4 border-3 border-brutal-black ${ACHIEVEMENT_COLORS[index]} shadow-brutal-sm p-3`}
                     style={{ boxShadow: "6px 6px 0px #0a0a0a" }}
                   >
-                    <p className="font-body font-bold text-sm">{achievement.text}</p>
+                    <p className="font-body font-bold text-sm">{text}</p>
                   </div>
                 ))}
               </div>
@@ -169,4 +118,3 @@ export default function EducationSection() {
     </section>
   );
 }
-

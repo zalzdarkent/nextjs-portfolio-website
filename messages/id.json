@@ -1,0 +1,235 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "tech": "Keahlian",
+    "portfolio": "Portofolio",
+    "experience": "Pengalaman",
+    "education": "Pendidikan",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "available": "✦ Available for",
+    "greeting": "HALO!!",
+    "name": "SAYA",
+    "desc": "Full Stack Developer dengan semangat membangun produk digital yang berdampak. Spesialis Laravel, React, Next.js, CodeIgniter, dan Node.js dengan 3+ tahun pengalaman nyata.",
+    "btnProject": "Lihat Proyek →",
+    "btnContact": "Hubungi Saya",
+    "status": "Tersedia untuk Proyek",
+    "sticker": {
+      "exp": "3+ YRS EXP",
+      "open": "OPEN TO WORK!"
+    }
+  },
+  "about": {
+    "title": "TENTANG SAYA",
+    "desc": "Saya adalah seorang Full Stack Developer dengan pengalaman lebih dari 3 tahun dalam membangun aplikasi web yang inovatif dan efisien. Keahlian saya meliputi Laravel, React, Next.js, CodeIgniter, dan Node.js. Saya memiliki rekam jejak yang terbukti dalam mengembangkan solusi digital yang berdampak, bekerja sama dengan tim lintas fungsi untuk mencapai hasil yang luar biasa.",
+    "btn": "Unduh CV",
+    "stats": {
+      "experiences": "Tahun Pengalaman",
+      "projects": "Proyek Selesai",
+      "clients": "Klien Puas",
+      "open_source": "Repositori Open Source"
+    }
+  },
+  "tech": {
+    "title": "KEAHLIAN TEKNIS",
+    "levels": {
+      "Expert": "Ahli",
+      "Advanced": "Mahir",
+      "Intermediate": "Menengah",
+      "Beginner": "Pemula"
+    }
+  },
+  "portfolio": {
+    "title": "PORTOFOLIO",
+    "detailBtn": "Detail →",
+    "filter": {
+      "all": "Semua",
+      "web": "Web App",
+      "mobile": "Mobile",
+      "ai": "AI / ML",
+      "fullstack": "Full Stack"
+    },
+    "projects": {
+      "1": {
+        "name": "Tes SEP-T UNSIKA",
+        "shortDesc": "Platform tes SEP-T (Singaperbangsa English Proficiency Test) berbasis web untuk mahasiswa UNSIKA.",
+        "longDesc": "Sistem Tes Online UNSIKA adalah platform komprehensif yang dirancang khusus untuk mendukung proses evaluasi dan ujian di lingkungan Universitas Singaperbangsa Karawang. Dibangun dengan teknologi terdepan, sistem ini menawarkan pengalaman tes online yang aman, efisien, dan user-friendly.",
+        "features": [
+          "Manajemen Kategori Tes & Penjadwalan Fleksibel",
+          "Sistem Soal Canggih (Pilihan Ganda, Esai, Skala Likert, & Rumus LaTeX)",
+          "Media Pendukung (Upload Audio & Gambar untuk Soal)",
+          "Keamanan Ujian (Anti-Cheating Deteksi Tab & Sesi Terkunci)",
+          "Sistem Auto-Save Jawaban & Timer Real-time",
+          "Dashboard Analytics & Scoring Otomatis untuk Soal Objektif",
+          "Panel Koreksi Manual Khusus Soal Esai"
+        ]
+      },
+      "2": {
+        "name": "Absen Asisten Lab",
+        "shortDesc": "Platform asisten laboratorium berbasis web untuk asisten laboratorium Fakultas Ilmu Komputer Universitas Singaperbangsa Karawang.",
+        "longDesc": "Sistem manajemen asisten lab yang di dalamnya terdapat beberapa fitur seperti manajemen data asisten lab, manajemen inventaris lab, manajemen jadwal piket asisten lab, serta fitur absensi piket asisten lab yang sudah terintegrasi dengan RFID untuk memudahkan proses absensi.",
+        "features": [
+          "Manajemen Data Asisten Lab",
+          "Manajemen Inventaris Lab",
+          "Manajemen Jadwal Piket",
+          "Absensi Terintegrasi RFID",
+          "Notifikasi Pengingat Piket",
+          "Laporan Kehadiran Asisten Lab"
+        ]
+      },
+      "3": {
+        "name": "Deteksi APD Karyawan",
+        "shortDesc": "Sistem deteksi APD karyawan berbasis AI untuk memastikan kepatuhan terhadap protokol keselamatan di tempat kerja.",
+        "longDesc": "Sistem deteksi APD karyawan berbasis AI yang dapat mengenali apakah karyawan memakai peralatan pelindung diri (APD) yang sesuai saat berada di area kerja. Sistem ini menggunakan teknologi computer vision untuk menganalisis gambar atau video secara real-time.",
+        "features": [
+          "Deteksi APD Real-time via Computer Vision",
+          "Notifikasi Pelanggaran Keselamatan",
+          "Analisis Video & Gambar Otomatis",
+          "Integrasi dengan Sistem Keamanan",
+          "Laporan Kepatuhan APD"
+        ]
+      },
+      "modal": {
+        "techLabel": "Teknologi yang Digunakan",
+        "featuresLabel": "Highlight Fitur"
+      }
+    }
+  },
+  "experience": {
+    "title": "PENGALAMAN",
+    "subtitle": "Fokus eksekusi proyek & kolaborasi",
+    "headline": "Dari mentoring lab sampai proyek industri.",
+    "workHabits": {
+      "label": "KEBIASAAN KERJA",
+      "items": [
+        { "k": "Cepat adaptasi", "v": "Belajar teknologi baru + penerapan langsung" },
+        { "k": "Rapi & scalable", "v": "Struktur kode & alur pengerjaan yang jelas" },
+        { "k": "Kolaboratif", "v": "Komunikasi tim untuk mencapai target" }
+      ]
+    },
+    "snapshot": {
+      "label": "SNAPSHOT",
+      "items": [
+        { "num": "3+", "label": "Rangkaian peran" },
+        { "num": "1+", "label": "Proyek industri" },
+        { "num": "Yolo", "label": "Deteksi APD" },
+        { "num": "Tim", "label": "Kolaborasi aktif" }
+      ]
+    },
+    "list": [
+      {
+        "role": "Google Developer Student Club (GDSC)",
+        "place": "Chapter Kampus",
+        "period": "Agustus 2023 - September 2024",
+        "items": [
+          "Berpartisipasi dalam program mentoring dan pengembangan komunitas.",
+          "Membangun project dan mengikuti kegiatan berbasis teknologi.",
+          "Melatih kemampuan kolaborasi dan komunikasi teknis."
+        ]
+      },
+      {
+        "role": "Laboratorium Komputer",
+        "place": "Universitas / Organisasi Kampus",
+        "period": "Januari 2024 - Januari 2026",
+        "items": [
+          "Membimbing praktikum dan membantu operasional kegiatan lab.",
+          "Menyusun materi dan alur pembelajaran yang terstruktur.",
+          "Berkoordinasi dengan tim untuk memastikan kelancaran event."
+        ]
+      },
+      {
+        "role": "PT Century Batteries Indonesia",
+        "place": "Magang",
+        "period": "Maret 2025 - Juni 2025",
+        "items": [
+          "Membangun sistem E-Checksheet Pre-Use untuk pemantauan terhadap mesin-mesin yang ada oleh departemen maintenance.",
+          "Mengembangkan sistem dashboard Preventive Maintenance untuk departemen maintenance."
+        ]
+      },
+      {
+        "role": "PT AT Indonesia",
+        "place": "Magang",
+        "period": "Januari 2026 - Sekarang",
+        "items": [
+          "Membangun sistem deteksi APD berbasis Camera Vision menggunakan Yolo.",
+          "Mengoptimalkan proses data input dan pengolahan hasil deteksi.",
+          "Menerapkan evaluasi sederhana untuk memastikan performa."
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "PENDIDIKAN",
+    "competencies": {
+      "label": "KOMPETENSI",
+      "items": [
+        { "k": "Teknis", "v": "Web development, integrasi sistem, dan struktur kode" },
+        { "k": "Analitik", "v": "Proses data yang rapi untuk hasil yang bisa diukur" },
+        { "k": "Eksekusi", "v": "Membangun fitur end-to-end dengan target & timeline" }
+      ]
+    },
+    "achievements": {
+      "label": "ACHIEVEMENTS",
+      "items": [
+        "Head of Technical Core Team @ GDSC",
+        "Built E-Checksheet System",
+        "Preventive Maintenance Dashboard",
+        "PPE Detection using YOLO"
+      ]
+    },
+    "list": [
+      {
+        "title": "S1 Informatika",
+        "place": "Universitas Singaperbangsa Karawang (UNSIKA)",
+        "period": "2022 - 2026",
+        "highlights": [
+          "Fresh Graduate with cumlaude honor.",
+          "Fokus pada pengembangan aplikasi web end-to-end dan struktur data.",
+          "Membangun project berbasis teknologi modern dan mengutamakan kualitas kode.",
+          "Aktif dalam kegiatan kampus dan organisasi untuk memperluas pengalaman kolaborasi."
+        ]
+      },
+      {
+        "title": "MSIB Studi Independen @ Vocasia",
+        "place": "Fullstack Web MERN Development",
+        "period": "2024 - 2024",
+        "highlights": [
+          "Fresh Graduate with cumlaude honor.",
+          "Fokus pada pengembangan aplikasi web end-to-end dan struktur data.",
+          "Membangun project berbasis teknologi modern dan mengutamakan kualitas kode.",
+          "Aktif dalam kegiatan kampus dan organisasi untuk memperluas pengalaman kolaborasi."
+        ]
+      },
+      {
+        "title": "Praktik Industri / Magang",
+        "place": "PT Century Batteries Indonesia & PT AT Indonesia",
+        "period": "2025 - Sekarang",
+        "highlights": [
+          "Membangun sistem E-Checksheet Pre-Use dan dashboard Preventive Maintenance.",
+          "Mengembangkan sistem deteksi APD berbasis Camera Vision menggunakan YOLO.",
+          "Menerapkan evaluasi dan optimasi pipeline data agar hasil lebih stabil."
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "title": "HUBUNGI SAYA",
+    "desc1": "Punya ide proyek yang keren? Atau sekadar ingin ngobrol soal teknologi? Saya selalu terbuka untuk kolaborasi baru dan kesempatan menarik.",
+    "desc2": "Biasanya saya membalas dalam 24 jam kerja.",
+    "form": {
+      "name": "Nama Lengkap",
+      "email": "Email",
+      "message": "Pesan",
+      "messagePlaceholder": "Ceritakan proyek impian kamu...",
+      "submit": "Kirim Pesan ✦",
+      "submitting": "Mengirim..."
+    },
+    "toast": "✦ Pesan berhasil dikirim!"
+  },
+  "footer": {
+    "copy": "© 2026 Alif Fadillah Ummar. Dibangun dengan banyak ☕",
+    "backToTop": "↑ Ke Atas"
+  }
+}

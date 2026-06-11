@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS } from "@/lib/data";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Navbar() {
+  const t = useTranslations("nav");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home"); // State untuk simpan link yang aktif
@@ -75,19 +78,20 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  // 💡 DI SINI PERUBAHANNYA: Class dinamis kalau lagi active (Invert warna / khas Brutalist)
                   className={`block px-5 py-2 font-body font-bold text-sm uppercase tracking-widest text-brutal-black border-l-3 border-brutal-black transition-all ${
                     isActive
                       ? "bg-brutal-black text-brutal-yellow shadow-none scale-100" 
                       : "hover:bg-brutal-black/10"
                   } ${i === NAV_LINKS.length - 1 ? "border-r-3" : ""}`}
                 >
-                  {link.label}
+                  {t(link.key)} 
                 </a>
               </li>
             );
           })}
         </ul>
+
+        <LanguageSwitcher />
 
         {/* Hamburger */}
         <button
@@ -139,7 +143,7 @@ export default function Navbar() {
                       : "hover:bg-brutal-black hover:text-brutal-yellow"
                   }`}
                 >
-                  {link.label}
+                  {t(link.key)}
                 </a>
               );
             })}

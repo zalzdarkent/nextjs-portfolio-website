@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { FaLaravel, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiNextdotjs, SiCodeigniter } from "react-icons/si";
 import { TypeAnimation } from "react-type-animation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useTranslations } from "next-intl";
 
 const techStack = [
   { name: "Laravel", Icon: FaLaravel, bg: "#FDE047", text: "#0a0a0a" },
@@ -80,19 +81,29 @@ export function ScrambleText() {
 }
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const t = useTranslations("hero");
+
   return (
     <section
+      ref={sectionRef}
       id="home"
-      className="min-h-screen pt-16 grid grid-cols-1 lg:grid-cols-12 border-b-4 border-brutal-black"
+      className="min-h-screen pt-16 grid grid-cols-1 lg:grid-cols-12 border-b-4 border-brutal-black overflow-hidden relative"
     >
-      <div
+      <motion.div
         className="absolute inset-0 opacity-15 pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, #000 1.5px, transparent 1.5px)",
-          backgroundSize: "24px 24px",
-        }}
-      />
+        initial={{ opacity: 0.15 }}
+        animate={{ opacity: 0.15 }}
+      >
+        <div
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #000 1.5px, transparent 1.5px)",
+            backgroundSize: "24px 24px",
+          }}
+          className="w-full h-full"
+        />
+      </motion.div>
       <motion.div
         variants={container}
         initial="hidden"
@@ -102,39 +113,23 @@ export default function HeroSection() {
         {/* Badge */}
         <motion.div variants={item} className="mb-6 self-start">
           <span className="inline-block bg-brutal-lime border-3 border-brutal-black shadow-brutal-sm px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
-            ✦ Available for
+            {t("available")} {/* ← */}
             <ScrambleText />
           </span>
         </motion.div>
-        {/* <motion.div
-          animate={{
-            y: [0, -10, 0],
-            rotate: [-4, 2, -4],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-          }}
-          className="absolute top-32 right-8 bg-brutal-pink border-4 border-brutal-black px-4 py-2 shadow-brutal"
-        >
-          <span className="font-mono font-bold text-xs">
-            100% HANDCRAFTED
-          </span>
-        </motion.div> */}
 
         {/* Title */}
         <motion.h1
           variants={item}
           className="font-display text-[clamp(3rem,8vw,6rem)] font-extrabold leading-[0.93] tracking-tight mb-6"
         >
-          <span className="block">HALO!!</span>
+          <span className="block">{t("greeting")}</span>
           <span className="block">
-            SAYA{" "}
+            {t("name")}{" "}
             <span className="inline-block bg-brutal-yellow px-2 border-3 border-brutal-black shadow-brutal -rotate-1">
               ALIF
             </span>
           </span>
-          {/* <span className="block">FADILLAH UMMAR</span> */}
         </motion.h1>
 
         {/* Desc */}
@@ -142,17 +137,16 @@ export default function HeroSection() {
           variants={item}
           className="text-lg leading-relaxed text-black/70 max-w-lg mb-8 font-body"
         >
-          Full Stack Developer dengan semangat membangun produk digital yang berdampak.
-          Spesialis Laravel, React, Next.js, CodeIgniter, dan Node.js dengan 3+ tahun pengalaman nyata.
+          {t("desc")}
         </motion.p>
 
         {/* Buttons */}
         <motion.div variants={item} className="flex flex-col sm:flex-row gap-3">
           <BrutalBtn href="#portfolio" variant="yellow">
-            Lihat Proyek →
+            {t("btnProject")}
           </BrutalBtn>
           <BrutalBtn href="#contact" variant="dark">
-            Hubungi Saya
+            {t("btnContact")}
           </BrutalBtn>
         </motion.div>
       </motion.div>
@@ -174,10 +168,10 @@ export default function HeroSection() {
         />
         {/* Decorative stickers */}
         <Sticker className="top-[15%] right-[6%] rotate-[8deg] bg-brutal-orange text-white">
-          3+ YRS EXP
+          {t("sticker.exp")} {/* ← */}
         </Sticker>
         <Sticker className="bottom-[12%] left-[4%] -rotate-[5deg] bg-brutal-pink text-white">
-          {'{OPEN TO WORK!}'}
+          {t("sticker.open")}
         </Sticker>
 
         {/* Floating code tags */}
@@ -210,7 +204,7 @@ export default function HeroSection() {
           npm run dev ▶
         </motion.div>
 
-        {/* Profile card */}
+        {/* Profile card */}  
         <motion.div
           initial={{ opacity: 0, y: 30, rotate: -2 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
@@ -263,7 +257,7 @@ export default function HeroSection() {
             {/* Status */}
             <div className="flex items-center gap-2 border-3 border-brutal-black shadow-brutal-sm bg-brutal-lime px-3 py-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-green-600 animate-pulse-dot" />
-              <span className="font-body font-bold text-xs">Tersedia untuk Proyek</span>
+              <span className="font-body font-bold text-xs">{t("status")}</span>
             </div>
 
             {/* Tech badges */}

@@ -1,0 +1,231 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "tech": "Skills",
+    "portfolio": "Portfolio",
+    "experience": "Experience",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "hero": {
+    "available": "✦ Available for",
+    "greeting": "HELLO!!",
+    "name": "I'M",
+    "desc": "Full Stack Developer passionate about building impactful digital products. Specialist in Laravel, React, Next.js, CodeIgniter, and Node.js with 3+ years of real experience.",
+    "btnProject": "View Projects →",
+    "btnContact": "Contact Me",
+    "status": "Available for Projects",
+    "sticker": {
+      "exp": "3+ YRS EXP",
+      "open": "OPEN TO WORK!"
+    }
+  },
+  "about": {
+    "title": "ABOUT ME",
+    "desc": "I am a Full Stack Developer with over 3 years of experience in building innovative and efficient web applications. My expertise includes Laravel, React, Next.js, CodeIgniter, and Node.js. I have a proven track record of developing impactful digital solutions, collaborating with cross-functional teams to achieve outstanding results.",
+    "btn": "Download CV",
+    "stats": {
+      "experiences": "Years Experience",
+      "projects": "Projects Completed",
+      "clients": "Happy Clients",
+      "open_source": "Open Source Repositories"
+    }
+  },
+  "tech": {
+    "title": "TECHNICAL SKILLS,",
+    "levels": {
+      "Expert": "Expert",
+      "Advanced": "Advanced",
+      "Intermediate": "Intermediate",
+      "Beginner": "Beginner"
+    }
+  },
+  "portfolio": {
+    "title": "PORTFOLIO",
+    "detailBtn": "Detail →",
+    "filter": {
+      "all": "All",
+      "web": "Web App",
+      "mobile": "Mobile",
+      "ai": "AI / ML",
+      "fullstack": "Full Stack"
+    },
+    "projects": {
+      "1": {
+        "name": "UNSIKA SEP-T Test",
+        "shortDesc": "Web-based SEP-T (Singaperbangsa English Proficiency Test) platform for UNSIKA students.",
+        "longDesc": "UNSIKA Online Test System is a comprehensive platform designed to support evaluation and examination processes at Universitas Singaperbangsa Karawang. Built with modern technology, offering a secure, efficient, and user-friendly online testing experience.",
+        "features": [
+          "Test Category Management & Flexible Scheduling",
+          "Advanced Question System (Multiple Choice, Essay, Likert Scale, & LaTeX Formula)",
+          "Supporting Media (Audio & Image Upload for Questions)",
+          "Exam Security (Anti-Cheating Tab Detection & Locked Session)",
+          "Auto-Save Answer System & Real-time Timer",
+          "Analytics Dashboard & Auto-Scoring for Objective Questions",
+          "Manual Correction Panel for Essay Questions"
+        ]
+      },
+      "2": {
+        "name": "Lab Assistant Attendance",
+        "shortDesc": "Web-based laboratory assistant platform for the Faculty of Computer Science at Universitas Singaperbangsa Karawang.",
+        "longDesc": "Lab assistant management system featuring assistant data management, lab inventory management, duty schedule management, and RFID-integrated attendance system to simplify the attendance process.",
+        "features": [
+          "Lab Assistant Data Management",
+          "Lab Inventory Management",
+          "Duty Schedule Management",
+          "RFID-Integrated Attendance",
+          "Duty Reminder Notifications",
+          "Lab Assistant Attendance Reports"
+        ]
+      },
+      "3": {
+        "name": "Employee PPE Detection",
+        "shortDesc": "AI-based employee PPE detection system to ensure compliance with workplace safety protocols.",
+        "longDesc": "AI-based PPE detection system that recognizes whether employees are wearing appropriate personal protective equipment (PPE) in work areas. Uses computer vision technology to analyze images or video in real-time.",
+        "features": [
+          "Real-time PPE Detection via Computer Vision",
+          "Safety Violation Notifications",
+          "Automated Video & Image Analysis",
+          "Security System Integration",
+          "PPE Compliance Reports"
+        ]
+      }
+    }
+  },
+  "experience": {
+    "title": "EXPERIENCE",
+    "subtitle": "Focused on project execution & collaboration",
+    "headline": "From lab mentoring to industry projects.",
+    "workHabits": {
+      "label": "WORK HABITS",
+      "items": [
+        { "k": "Fast adapter", "v": "Learn new technologies + direct implementation" },
+        { "k": "Clean & scalable", "v": "Clear code structure & workflow" },
+        { "k": "Collaborative", "v": "Team communication to achieve targets" }
+      ]
+    },
+    "snapshot": {
+      "label": "SNAPSHOT",
+      "items": [
+        { "num": "3+", "label": "Roles held" },
+        { "num": "1+", "label": "Industry projects" },
+        { "num": "Yolo", "label": "PPE Detection" },
+        { "num": "Team", "label": "Active collaboration" }
+      ]
+    },
+    "list": [
+      {
+        "role": "Google Developer Student Club (GDSC)",
+        "place": "Campus Chapter",
+        "period": "August 2023 - September 2024",
+        "items": [
+          "Participated in mentoring programs and community development.",
+          "Built projects and joined technology-based activities.",
+          "Trained collaboration and technical communication skills."
+        ]
+      },
+      {
+        "role": "Computer Laboratory",
+        "place": "University / Campus Organization",
+        "period": "January 2024 - January 2026",
+        "items": [
+          "Guided lab practicum sessions and assisted lab operations.",
+          "Prepared structured learning materials and workflows.",
+          "Coordinated with the team to ensure smooth event execution."
+        ]
+      },
+      {
+        "role": "PT Century Batteries Indonesia",
+        "place": "Internship",
+        "period": "March 2025 - June 2025",
+        "items": [
+          "Built an E-Checksheet Pre-Use system for machine monitoring by the maintenance department.",
+          "Developed a Preventive Maintenance dashboard system for the maintenance department."
+        ]
+      },
+      {
+        "role": "PT AT Indonesia",
+        "place": "Internship",
+        "period": "January 2026 - Present",
+        "items": [
+          "Built a Camera Vision-based PPE detection system using Yolo.",
+          "Optimized data input processes and detection result handling.",
+          "Applied simple evaluations to ensure performance."
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "EDUCATION",
+    "competencies": {
+      "label": "COMPETENCIES",
+      "items": [
+        { "k": "Technical", "v": "Web development, system integration, and code structure" },
+        { "k": "Analytical", "v": "Clean data processing for measurable results" },
+        { "k": "Execution", "v": "Building end-to-end features with targets & timelines" }
+      ]
+    },
+    "achievements": {
+      "label": "ACHIEVEMENTS",
+      "items": [
+        "Head of Technical Core Team @ GDSC",
+        "Built E-Checksheet System",
+        "Preventive Maintenance Dashboard",
+        "PPE Detection using YOLO"
+      ]
+    },
+    "list": [
+      {
+        "title": "Bachelor of Informatics",
+        "place": "Universitas Singaperbangsa Karawang (UNSIKA)",
+        "period": "2022 - 2026",
+        "highlights": [
+          "Fresh Graduate with cumlaude honor.",
+          "Focused on end-to-end web application development and data structures.",
+          "Built projects using modern technology with emphasis on code quality.",
+          "Active in campus activities and organizations to broaden collaboration experience."
+        ]
+      },
+      {
+        "title": "MSIB Independent Study @ Vocasia",
+        "place": "Fullstack Web MERN Development",
+        "period": "2024 - 2024",
+        "highlights": [
+          "Fresh Graduate with cumlaude honor.",
+          "Focused on end-to-end web application development and data structures.",
+          "Built projects using modern technology with emphasis on code quality.",
+          "Active in campus activities and organizations to broaden collaboration experience."
+        ]
+      },
+      {
+        "title": "Industry Internship",
+        "place": "PT Century Batteries Indonesia & PT AT Indonesia",
+        "period": "2025 - Present",
+        "highlights": [
+          "Built E-Checksheet Pre-Use system and Preventive Maintenance dashboard.",
+          "Developed Camera Vision-based PPE detection system using YOLO.",
+          "Applied evaluation and data pipeline optimization for more stable results."
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "title": "CONTACT ME",
+    "desc1": "Got a cool project idea? Or just want to chat about tech? I'm always open to new collaborations and exciting opportunities.",
+    "desc2": "I usually reply within 24 business hours.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your dream project...",
+      "submit": "Send Message ✦",
+      "submitting": "Sending..."
+    },
+    "toast": "✦ Message sent successfully!"
+  },
+  "footer": {
+    "copy": "© 2026 Alif Fadillah Ummar. Built with lots of ☕",
+    "backToTop": "↑ Back to Top"
+  }
+}

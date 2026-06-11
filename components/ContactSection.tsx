@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef, useState, FormEvent, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useInView, motion, AnimatePresence } from "framer-motion";
 import { SectionHeader } from "./AboutSection";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
-import { useForm, ValidationError } from '@formspree/react';
+import { useForm, ValidationError } from "@formspree/react";
+import { useTranslations } from "next-intl";
 
 const CONTACT_LINKS = [
   { icon: <SiGmail />, label: "arszalzdarker@email.com", href: "mailto:arszalzdarker@email.com" },
@@ -14,6 +15,7 @@ const CONTACT_LINKS = [
 ];
 
 export default function ContactSection() {
+  const t = useTranslations("contact");
   const ref = useRef<HTMLElement>(null);
   const [state, handleSubmit] = useForm("mwvjbojr");
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -26,6 +28,11 @@ export default function ContactSection() {
     }
   }, [state.succeeded]);
 
+  const fields = [
+    { label: t("form.name"),  name: "name",  type: "text",  placeholder: "John Doe" },
+    { label: t("form.email"), name: "email", type: "email", placeholder: "john@email.com" },
+  ];
+
   return (
     <>
       <section
@@ -33,7 +40,7 @@ export default function ContactSection() {
         id="contact"
         className="bg-brutal-yellow px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
       >
-        <SectionHeader num="06" title="HUBUNGI SAYA" inView={inView} />
+        <SectionHeader num="06" title={t("title")} inView={inView} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-10">
           {/* Info */}
@@ -43,13 +50,8 @@ export default function ContactSection() {
             transition={{ delay: 0.1 }}
             className="space-y-6"
           >
-            <p className="font-body text-lg leading-relaxed text-black/70">
-              Punya ide proyek yang keren? Atau sekadar ingin ngobrol soal teknologi?
-              Saya selalu terbuka untuk kolaborasi baru dan kesempatan menarik.
-            </p>
-            <p className="font-body text-base text-black/60">
-              Biasanya saya membalas dalam 24 jam kerja.
-            </p>
+            <p className="font-body text-lg leading-relaxed text-black/70">{t("desc1")}</p>
+            <p className="font-body text-base text-black/60">{t("desc2")}</p>
 
             <div className="flex flex-col gap-3">
               {CONTACT_LINKS.map((link, i) => (
@@ -78,10 +80,7 @@ export default function ContactSection() {
             onSubmit={handleSubmit}
             className="flex flex-col gap-4"
           >
-            {[
-              { label: "Nama Lengkap", name: "name", type: "text", placeholder: "John Doe" },
-              { label: "Email", name: "email", type: "email", placeholder: "john@email.com" },
-            ].map((field, i) => (
+            {fields.map((field, i) => (
               <div key={i} className="flex flex-col gap-1.5">
                 <label className="font-body font-bold text-xs uppercase tracking-widest">
                   {field.label}
@@ -104,10 +103,10 @@ export default function ContactSection() {
 
             <div className="flex flex-col gap-1.5">
               <label className="font-body font-bold text-xs uppercase tracking-widest">
-                Pesan
+                {t("form.message")}
               </label>
               <textarea
-                placeholder="Ceritakan proyek impian kamu..."
+                placeholder={t("form.messagePlaceholder")}
                 name="message"
                 required
                 rows={5}
@@ -122,9 +121,9 @@ export default function ContactSection() {
               className="mt-2 px-8 py-4 bg-brutal-black text-brutal-yellow border-4 border-brutal-black font-body font-bold text-sm uppercase tracking-widest"
               style={{ boxShadow: "6px 6px 0px #0a0a0a" }}
             >
-              {state.submitting ? "Mengirim..." : "Kirim Pesan ✦"}
+              {state.submitting ? t("form.submitting") : t("form.submit")}
             </motion.button>
-          </motion.form>  
+          </motion.form>
         </div>
       </section>
 
@@ -139,7 +138,7 @@ export default function ContactSection() {
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
             className="fixed bottom-6 right-6 z-50 bg-brutal-black text-brutal-yellow border-4 border-brutal-black shadow-brutal px-6 py-4 font-body font-bold text-sm"
           >
-            ✦ Pesan berhasil dikirim!
+            {t("toast")}
           </motion.div>
         )}
       </AnimatePresence>

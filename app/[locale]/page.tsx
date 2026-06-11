@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import SplashScreen from "../components/SplashScreen";
+import SplashScreen from "../../components/SplashScreen";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Marquee from "@/components/Marquee";

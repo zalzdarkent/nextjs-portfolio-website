@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/lib/data";
 import { FaDocker, FaLaravel, FaPython, FaReact } from "react-icons/fa6";
 import { SiInertia, SiMysql, SiOpencv, SiShadcnui, SiTailwindcss, SiYolo, SiFlask, SiOnnx } from "react-icons/si";
+import { useTranslations } from "next-intl";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -28,6 +29,8 @@ const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
 };
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const t = useTranslations("portfolio");
+  const id = project ? String(project.id) : null;
   // Lock scroll
   useEffect(() => {
     if (project) {
@@ -75,7 +78,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <p className="font-mono text-xs font-bold uppercase tracking-widest mb-1 opacity-60">
                   {project.tags.join(" · ")}
                 </p>
-                <h3 className="font-display text-2xl font-extrabold">{project.name}</h3>
+                <h3 className="font-display text-2xl font-extrabold">{t(`projects.${id}.name`)}</h3>
               </div>
               <button
                 onClick={onClose}
@@ -87,12 +90,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Body */}
             <div className="p-6 space-y-6">
-              <p className="font-body text-base leading-relaxed text-black/70">{project.longDesc}</p>
+              <p className="font-body text-base leading-relaxed text-black/70">{t(`projects.${id}.longDesc`)}</p>
 
               {/* Tech */}
               <div>
                 <p className="font-mono text-xs font-bold uppercase tracking-widest text-black/40 mb-3">
-                  Teknologi yang Digunakan
+                  {t("modal.techLabel")}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((techName: string, index: number) => {
@@ -176,10 +179,10 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               {/* Features */}
               <div>
                 <p className="font-mono text-xs font-bold uppercase tracking-widest text-black/40 mb-3">
-                  Highlight Fitur
+                  {t("modal.featuresLabel")}
                 </p>
                 <ul className="space-y-2">
-                  {project.features.map((f, i) => (
+                  {(t.raw(`projects.${id}.features`) as string[]).map((f, i) => ( // ← t.raw untuk array
                     <li key={i} className="flex items-start gap-2 font-body text-sm">
                       <span className="text-brutal-orange font-bold mt-0.5">✦</span>
                       {f}

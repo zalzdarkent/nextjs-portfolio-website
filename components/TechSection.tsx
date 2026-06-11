@@ -4,7 +4,8 @@ import { useRef } from "react";
 import { useInView, motion } from "framer-motion";
 import { SectionHeader } from "./AboutSection";
 import { FaLaravel, FaReact, FaNodeJs } from "react-icons/fa";
-import { SiNextdotjs, SiCodeigniter, SiGit, SiGraphql, SiTailwindcss, SiTypescript, SiRedis, SiDocker, SiPostgresql, SiMysql } from "react-icons/si";
+import { SiNextdotjs, SiCodeigniter, SiGit, SiTailwindcss, SiTypescript, SiRedis, SiDocker, SiPostgresql, SiMysql } from "react-icons/si";
+import { useTranslations } from "next-intl";
 
 const TECHS= [
   { icon: <FaReact />, name: "React", level: "Expert" },
@@ -28,6 +29,7 @@ const LEVEL_COLORS: Record<string, string> = {
 };
 
 export default function TechSection() {
+  const t = useTranslations("tech");
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -39,7 +41,9 @@ export default function TechSection() {
     >
       <SectionHeader num="02" title="KEAHLIAN TEKNIS" inView={inView} light />
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-10">
+      <motion.div
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-10"
+      >
         {TECHS.map((tech, i) => (
           <motion.div
             key={i}
@@ -57,11 +61,11 @@ export default function TechSection() {
               className="inline-block mt-2 font-mono text-[10px] font-bold uppercase tracking-widest px-1.5 py-0.5 border-2 border-brutal-black"
               style={{ background: LEVEL_COLORS[tech.level] }}
             >
-              {tech.level}
+              {t(`levels.${tech.level}`)}
             </span>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
