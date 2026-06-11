@@ -39,7 +39,7 @@ export default function TechSection() {
       id="tech"
       className="bg-brutal-black px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black"
     >
-      <SectionHeader num="02" title="KEAHLIAN TEKNIS" inView={inView} light />
+      <SectionHeader num="02" title={t("title")} inView={inView} light />
 
       <motion.div
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-10"
