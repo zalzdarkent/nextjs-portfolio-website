@@ -21,8 +21,6 @@ export default function CustomCursor() {
     let animationFrameId: number;
     
     const render = () => {
-      // Nilai lerp sengaja dibuat agak lambat (0.12) biar efek kotaknya 'tertinggal' 
-      // di belakang mouse asli, khas web-web brutalist modern.
       cursorPos.current.x += (mousePos.current.x - cursorPos.current.x) * 0.12;
       cursorPos.current.y += (mousePos.current.y - cursorPos.current.y) * 0.12;
 
@@ -40,8 +38,6 @@ export default function CustomCursor() {
       
       if (isInteractable) {
         cursor.classList.add("hovered");
-        
-        // OPSIONAL: Jika ingin mengambil teks kustom saat hover (misal: "VIEW", "CLICK")
         const hoverText = (isInteractable as HTMLElement).getAttribute("data-hover-text");
         const badge = cursor.querySelector(".cursor-badge");
         if (badge && hoverText) {

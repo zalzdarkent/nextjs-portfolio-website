@@ -2,21 +2,28 @@
 
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
+import { useTransition } from "react";
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
 
   const switchLocale = (newLocale: string) => {
-    // Ganti prefix locale di URL: /id/... → /en/...
+    if (newLocale === locale) return;
     const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
-    router.push(newPath);
+    startTransition(() => {
+      router.push(newPath);
+    });
   };
 
   return (
-    <div className="flex border-3 border-brutal-black overflow-hidden shadow-brutal-sm">
+    <div className={`flex border-3 border-brutal-black overflow-hidden shadow-brutal-sm transition-opacity ${
+      isPending ? "opacity-70 pointer-events-none" : "" 
+    }`}>
       <button
+        disabled={isPending}
         onClick={() => switchLocale("id")}
         className={`px-3 py-1 font-mono text-xs font-bold uppercase transition-colors ${
           locale === "id"
@@ -24,10 +31,13 @@ export default function LanguageSwitcher() {
             : "bg-brutal-white text-brutal-black hover:bg-brutal-black/10"
         }`}
       >
-        ID
+        {isPending && locale === "en" ? "..." : "ID"}
       </button>
+
       <div className="w-[3px] bg-brutal-black" />
+
       <button
+        disabled={isPending}
         onClick={() => switchLocale("en")}
         className={`px-3 py-1 font-mono text-xs font-bold uppercase transition-colors ${
           locale === "en"
@@ -35,7 +45,7 @@ export default function LanguageSwitcher() {
             : "bg-brutal-white text-brutal-black hover:bg-brutal-black/10"
         }`}
       >
-        EN
+        {isPending && locale === "id" ? "..." : "EN"}
       </button>
     </div>
   );
