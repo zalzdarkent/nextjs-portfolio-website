@@ -222,7 +222,7 @@ export default function HeroSection() {
               <div className="absolute inset-0 rounded-full bg-brutal-white border-4 border-brutal-black overflow-hidden flex items-center justify-center transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]">
 
                 <Image
-                  src="/profile/alif.jpeg" // 💡 Taruh file foto kamu di dalam folder 'public' dengan nama ini
+                  src="/profile/zahw.jpeg" // 💡 Taruh file foto kamu di dalam folder 'public' dengan nama ini
                   alt="Alif Fadillah Umar"
                   width={112} // Sesuaikan dengan ukuran w-28 (28 * 4 = 112px)
                   height={112}

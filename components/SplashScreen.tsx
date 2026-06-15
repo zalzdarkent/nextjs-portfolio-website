@@ -1,20 +1,89 @@
 "use client";
 
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowRight, Braces, Code2, MousePointer2, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { FaLaravel, FaReact, FaNodeJs } from "react-icons/fa";
+import { SiCodeigniter, SiNextdotjs } from "react-icons/si";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 
 interface SplashScreenProps {
   onEnter: () => void;
   onComplete: () => void;
 }
 
-// Data elemen interaktif dengan posisi responsif (menggunakan % agar aman di semua layar)
-const floatingElements = [
-  { id: 1, type: "circle", size: "w-14 h-14 md:w-20 md:h-20", color: "bg-[#00F0FF]", top: "10%", left: "10%", rotate: 15 },
-  { id: 2, type: "square", size: "w-16 h-16 md:w-24 md:h-24", color: "bg-[#FF007A]", bottom: "12%", left: "8%", rotate: -15 },
-  { id: 3, type: "triangle", size: "w-16 h-16 md:w-24 md:h-24", color: "bg-[#00FF66]", top: "12%", right: "10%", rotate: 30 },
-  { id: 4, type: "star-like", size: "w-12 h-12 md:w-20 md:h-20", color: "bg-[#9D00FF]", bottom: "15%", right: "8%", rotate: -45 },
+type FloatingElement = {
+  id: number;
+  label: string;
+  type: "circle" | "square" | "triangle" | "diamond";
+  size: string;
+  color: string;
+  textColor?: string;
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
+  rotate: number;
+  delay: number;
+};
+
+const floatingElements: FloatingElement[] = [
+  {
+    id: 1,
+    label: "API",
+    type: "circle",
+    size: "w-16 h-16 md:w-24 md:h-24",
+    color: "bg-[#00F0FF]",
+    top: "9%",
+    left: "8%",
+    rotate: 12,
+    delay: 0.1,
+  },
+  {
+    id: 2,
+    label: "UI",
+    type: "square",
+    size: "w-16 h-16 md:w-24 md:h-24",
+    color: "bg-brutal-pink",
+    bottom: "12%",
+    left: "7%",
+    rotate: -12,
+    delay: 0.22,
+  },
+  {
+    id: 3,
+    label: "DB",
+    type: "triangle",
+    size: "w-20 h-20 md:w-28 md:h-28",
+    color: "bg-brutal-lime",
+    top: "11%",
+    right: "8%",
+    rotate: 28,
+    delay: 0.34,
+  },
+  {
+    id: 4,
+    label: "JS",
+    type: "diamond",
+    size: "w-14 h-14 md:w-20 md:h-20",
+    color: "bg-[#9D00FF]",
+    textColor: "text-white",
+    bottom: "14%",
+    right: "7%",
+    rotate: -42,
+    delay: 0.46,
+  },
 ];
+
+const techs = [
+  { icon: FaLaravel, bg: "#FF2D20", name: "Laravel" },
+  { icon: SiCodeigniter, bg: "#FF2D20", name: "CodeIgniter" },
+  { icon: FaReact, bg: "#121213", name: "React" },
+  { icon: SiNextdotjs, bg: "#FFFFFF", name: "Next.js" },
+  { icon: FaNodeJs, bg: "#83CD29", name: "Node.js" },
+];
+
+const loadingSteps = ["BOOT", "COMPILE", "POLISH", "LAUNCH"];
 
 export default function SplashScreen({
   onEnter,
@@ -22,214 +91,420 @@ export default function SplashScreen({
 }: SplashScreenProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  
-  // Ref ini penting sebagai "pagar" agar elemen tidak dilempar keluar dari layar monitor
-  const constraintsRef = useRef(null);
+  const constraintsRef = useRef<HTMLDivElement | null>(null);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 90, damping: 18, mass: 0.35 });
+  const springY = useSpring(mouseY, { stiffness: 90, damping: 18, mass: 0.35 });
+  const tiltX = useTransform(springY, [-300, 300], [4, -4]);
+  const tiltY = useTransform(springX, [-300, 300], [-5, 5]);
 
   useEffect(() => {
     if (!isLoading) return;
 
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(onComplete, 300);
+          window.clearInterval(interval);
+          window.setTimeout(onComplete, 450);
           return 100;
         }
-        return prev + Math.random() * 40;
-      });
-    }, 200);
 
-    return () => clearInterval(interval);
+        const next = prev + 9 + Math.random() * 17;
+        return Math.min(next, 100);
+      });
+    }, 170);
+
+    return () => window.clearInterval(interval);
   }, [isLoading, onComplete]);
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    mouseX.set(event.clientX - rect.left - rect.width / 2);
+    mouseY.set(event.clientY - rect.top - rect.height / 2);
+  };
 
   const handleStartLoading = () => {
     setIsLoading(true);
-    if (onEnter) onEnter();
+    onEnter();
   };
 
+  const activeStep = Math.min(
+    loadingSteps.length - 1,
+    Math.floor((Math.min(progress, 99) / 100) * loadingSteps.length)
+  );
+
   return (
-    <>
+    <motion.div
+      ref={constraintsRef}
+      onPointerMove={handlePointerMove}
+      initial={{ opacity: 1 }}
+      exit={{
+        y: "-104%",
+        rotate: -1.5,
+        transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] },
+      }}
+      className="
+        fixed inset-0 z-[9999]
+        flex items-center justify-center
+        overflow-hidden bg-brutal-yellow
+        select-none touch-none
+      "
+    >
       <motion.div
-        ref={constraintsRef} // Menjadikan seluruh area layar sebagai area bermain drag
-        initial={{ opacity: 1 }}
-        exit={{
-          scaleY: 0.95,
-          y: "-100%",
-          transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
+        aria-hidden
+        className="pointer-events-none absolute h-72 w-72 rounded-full bg-brutal-white opacity-40 blur-3xl"
+        style={{ x: springX, y: springY }}
+      />
+
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage: "radial-gradient(#0a0a0a 22%, transparent 23%)",
+          backgroundSize: "18px 18px",
         }}
-        className="
-          fixed inset-0 z-[9999]
-          bg-brutal-yellow
-          flex flex-col items-center justify-center
-          overflow-hidden
-          select-none
-          touch-none
-        "
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, #0a0a0a 3px, transparent 3px), linear-gradient(#0a0a0a 3px, transparent 3px)",
+          backgroundSize: "96px 96px",
+        }}
+      />
+
+      {/* <motion.div
+        aria-hidden
+        className="absolute left-4 top-8 hidden border-4 border-brutal-black bg-brutal-white px-5 py-2 font-mono text-sm font-bold uppercase shadow-brutal rotate-[-8deg] sm:block md:left-8 md:text-lg"
+        initial={{ x: -160, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.2, type: "spring", stiffness: 180, damping: 16 }}
       >
-        {/* TEXTURE BACKGROUND (Halftone Dots) */}
-        <div 
-          className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-          style={{
-            backgroundImage: `radial-gradient(#1a1a1a 22%, transparent 22%)`,
-            backgroundSize: '20px 20px'
-          }}
-        />
+        CTRL + ENTER
+      </motion.div> */}
 
-        {/* PLAYABLE & DRAGGABLE FLOATING ELEMENTS */}
-        {floatingElements.map((el) => {
-          return (
+      {/* <motion.div
+        aria-hidden
+        className="absolute bottom-8 right-4 hidden border-4 border-brutal-black bg-brutal-orange px-5 py-2 font-mono text-sm font-bold uppercase text-white shadow-brutal rotate-[8deg] sm:block md:right-8 md:text-lg"
+        initial={{ x: 160, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.32, type: "spring", stiffness: 180, damping: 16 }}
+      >
+        NO TEMPLATES
+      </motion.div> */}
+
+      {floatingElements.map((el) => (
+        <FloatingShape key={el.id} element={el} constraintsRef={constraintsRef} />
+      ))}
+
+      <motion.main
+        style={{ rotateX: tiltX, rotateY: tiltY, transformPerspective: 900 }}
+        className="relative z-20 w-full max-w-4xl px-5 text-center"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: -24, rotate: -3 }}
+          animate={{ opacity: 1, y: 0, rotate: -1 }}
+          transition={{ delay: 0.12, type: "spring", stiffness: 180, damping: 18 }}
+          className="mx-auto mb-5 inline-flex items-center gap-2 border-3 border-brutal-black bg-brutal-lime px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest shadow-brutal-sm sm:text-sm"
+        >
+          <Sparkles size={10} strokeWidth={3} />
+          Fullstack Portfolio
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92, rotate: 3 }}
+          animate={{ opacity: 1, scale: 1, rotate: -1 }}
+          transition={{ delay: 0.18, type: "spring", stiffness: 150, damping: 15 }}
+          className="
+            relative mx-auto max-w-[680px]
+            border-4 border-brutal-black bg-brutal-white
+            px-4 py-5 shadow-[10px_10px_0px_#0a0a0a]
+            sm:px-8 sm:py-6 md:shadow-[14px_14px_0px_#0a0a0a]
+          "
+        >
+          <motion.div
+            aria-hidden
+            className="absolute -left-4 -top-4 flex h-12 w-12 items-center justify-center border-4 border-brutal-black bg-brutal-pink text-white shadow-brutal-sm"
+            animate={{ rotate: [-6, 7, -6], y: [0, -5, 0] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Code2 size={24} strokeWidth={3} />
+          </motion.div>
+
+          <motion.div
+            aria-hidden
+            className="absolute -bottom-4 -right-4 flex h-12 w-12 items-center justify-center border-4 border-brutal-black bg-brutal-blue text-white shadow-brutal-sm"
+            animate={{ rotate: [6, -8, 6], y: [0, 5, 0] }}
+            transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Braces size={24} strokeWidth={3} />
+          </motion.div>
+
+          <div className="grid items-center gap-5 text-center sm:grid-cols-[220px_1fr] sm:text-left md:grid-cols-[250px_1fr]">
             <motion.div
-              key={el.id}
-              drag
-              dragConstraints={constraintsRef} // Mengunci agar tidak hilang keluar layar
-              dragElastic={0.2} // Efek memantul saat ditarik ke ujung layar
-              dragTransition={{ bounceStiffness: 400, bounceDamping: 25 }} // Efek inertia pas dilempar
-              whileDrag={{ 
-                scale: 1.15, 
-                rotate: el.rotate + 45,
-                cursor: "grabbing",
-                zIndex: 50 
+              initial={{ opacity: 0, x: -36, rotate: -5 }}
+              animate={{ opacity: 1, x: 0, rotate: -2 }}
+              transition={{ delay: 0.28, type: "spring", stiffness: 170, damping: 18 }}
+              whileHover={{
+                x: 6,
+                y: 6,
+                rotate: 1,
+                boxShadow: "3px 3px 0px #0a0a0a",
               }}
-              whileHover={{ 
-                scale: 1.1, 
-                rotate: el.rotate - 15,
-                cursor: "grab" 
-              }}
-              initial={{ scale: 0, opacity: 0, rotate: el.rotate }}
-              animate={{ 
-                scale: 1, 
-                opacity: 1,
-                y: [0, -12, 0], // Tetap mengambang otomatis kalau dianggurin
-              }}
-              transition={{
-                scale: { type: "spring", stiffness: 200, damping: 15 },
-                y: { repeat: Infinity, duration: 3 + el.id, ease: "easeInOut" },
-              }}
-              style={{
-                position: 'absolute',
-                top: el.top,
-                bottom: el.bottom,
-                left: el.left,
-                right: el.right,
-              }}
-              className="z-20 active:cursor-grabbing"
+              className="
+                group relative mx-auto aspect-[4/5] w-[190px]
+                border-4 border-brutal-black bg-brutal-yellow
+                p-2 shadow-[9px_9px_0px_#0a0a0a]
+                sm:w-full
+              "
             >
-              {/* Desain Elemen Neo-Brutalism */}
-              {el.type === "circle" && (
-                <div className={`${el.size} ${el.color} rounded-full border-4 border-brutal-black shadow-[4px_4px_0px_#1a1a1a]`} />
-              )}
-              {el.type === "square" && (
-                <div className={`${el.size} ${el.color} border-4 border-brutal-black shadow-[6px_6px_0px_#1a1a1a]`} />
-              )}
-              {el.type === "triangle" && (
-                <div 
-                  className={`${el.size} ${el.color} border-4 border-brutal-black shadow-[5px_5px_0px_#1a1a1a]`}
-                  style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }} // Menggunakan clip-path agar border border-4 tetap rapi mengikuti segitiga
+              <div
+                aria-hidden
+                className="absolute -right-3 -top-3 z-20 border-3 border-brutal-black bg-brutal-lime px-2 py-1 font-mono text-xs font-black uppercase shadow-brutal-sm"
+              >
+                ME
+              </div>
+              <div className="relative h-full overflow-hidden border-3 border-brutal-black bg-brutal-white">
+                <Image
+                  src="/profile/alif.jpeg"
+                  alt="Alif Fadillah Ummar"
+                  fill
+                  sizes="(max-width: 640px) 190px, 250px"
+                  priority
+                  className="object-cover grayscale contrast-125 transition-all duration-300 group-hover:scale-105 group-hover:grayscale-0"
                 />
-              )}
-              {el.type === "star-like" && (
-                <div className={`${el.size} ${el.color} border-4 border-brutal-black shadow-[4px_4px_0px_#1a1a1a] rotate-45`} />
-              )}
+                {/* <div
+                    aria-hidden
+                    className="absolute inset-0 mix-blend-multiply opacity-20"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(0deg, #0a0a0a 0 2px, transparent 2px 7px)",
+                    }}
+                  /> */}
+              </div>
             </motion.div>
-          );
-        })}
 
-        {/* MAIN CONTENT CONTAINER (RESPONSIVE WORK) */}
-        <div className="text-center px-4 z-10 max-w-xl w-full">
-          {/* PORTFOLIO */}
-          <motion.div
-            initial={{ y: -100, rotate: -6, opacity: 0 }}
-            animate={{ y: 0, rotate: -2, opacity: 1 }}
-            transition={{ duration: 0.6, type: "spring" }}
-            className="
-              inline-block
-              bg-brutal-white
-              border-4 border-brutal-black
-              shadow-[6px_6px_0px_#1a1a1a]
-              px-6 py-2 md:px-10 md:py-4
-              mb-6 md:mb-8
-              w-auto
-            "
-          >
-            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-brutal-black">
-              PORTFOLIO
-            </h1>
-          </motion.div>
+            <div>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.34 }}
+                className="mb-2 font-mono text-sm font-bold uppercase tracking-widest text-black/70 sm:text-base"
+              >
+                Alif Fadillah Ummar
+              </motion.p>
 
-          {/* ROLE */}
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="space-y-1 md:space-y-2"
-          >
-            <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-black leading-none text-brutal-black">
-              FULLSTACK
-            </h2>
-            <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-black leading-none text-brutal-black">
-              WEB DEVELOPER
-            </h2>
-          </motion.div>
-
-          {/* BUTTON / PROGRESS BAR */}
-          <div className="mt-8 md:mt-12 flex justify-center items-center min-h-[90px]">
-            {!isLoading ? (
-              <motion.button
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.4 }}
-                whileHover={{ x: -2, y: -2, boxShadow: "8px 8px 0px #FAFAF8" }}
-                whileTap={{ x: 4, y: 4, boxShadow: "0px 0px 0px #FAFAF8" }}
-                onClick={handleStartLoading}
+              <motion.h1
                 className="
-                  bg-brutal-black
-                  text-brutal-yellow
-                  border-4 border-brutal-white
-                  px-8 py-3 md:px-12 md:py-4
-                  font-mono text-lg md:text-xl font-bold
-                  uppercase tracking-widest
-                  cursor-pointer
-                  transition-shadow duration-100
+                  font-display
+                  text-[clamp(1.5rem,5vw,3.5rem)]
+                  font-black
+                  leading-[0.88]
+                  text-brutal-black
                 "
-                style={{ boxShadow: "5px 5px 0px #FAFAF8" }}
               >
-                ENTER →
-              </motion.button>
-            ) : (
+                FULLSTACK
+                <span
+                  className="
+                    mt-2 block w-fit
+                    mx-auto sm:mx-0
+                    border-4 border-brutal-black
+                    bg-brutal-yellow
+                    px-2 pb-1
+                    shadow-brutal
+                  "
+                >
+                  DEVELOPER
+                </span>
+              </motion.h1>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-5 flex flex-wrap items-center justify-center gap-2"
+          >
+            {techs.map(({ icon: Icon, bg, name }, index) => (
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="w-full px-4"
+                key={name}
+                whileHover={{ y: -4, rotate: index % 2 ? 2 : -2 }}
+                className="flex h-11 w-11 items-center justify-center border-3 border-brutal-black shadow-brutal-sm"
+                style={{ backgroundColor: bg }}
+                title={name}
               >
-                <div className="
-                  bg-brutal-white
-                  border-4 border-brutal-black
-                  p-1.5 md:p-2
-                  shadow-[4px_4px_0px_#1a1a1a]
-                  w-full max-w-[450px] mx-auto
-                "
+                <Icon
+                  size={22}
+                  className={name === "Next.js" ? "text-black" : "text-white"}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        <div className="mx-auto mt-8 flex min-h-[104px] max-w-xl items-center justify-center">
+          {!isLoading ? (
+            <motion.button
+              type="button"
+              initial={{ opacity: 0, y: 30, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 0.62, type: "spring", stiffness: 240, damping: 17 }}
+              whileHover={{
+                x: 5,
+                y: 5,
+                rotate: -1,
+                boxShadow: "2px 2px 0px #FAFAF8",
+              }}
+              whileTap={{ x: 8, y: 8, boxShadow: "0px 0px 0px #FAFAF8" }}
+              onClick={handleStartLoading}
+              className="
+                group inline-flex items-center justify-center gap-3
+                border-4 border-brutal-white bg-brutal-black
+                px-7 py-4 font-mono text-lg font-bold uppercase tracking-widest
+                text-brutal-yellow shadow-[8px_8px_0px_#FAFAF8]
+                transition-colors duration-150 hover:bg-brutal-pink hover:text-white
+                sm:px-10 sm:text-xl
+              "
+            >
+              Enter Site
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
+                className="inline-flex"
               >
+                <ArrowRight size={24} strokeWidth={3} />
+              </motion.span>
+            </motion.button>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 16, rotate: 1 }}
+              animate={{ opacity: 1, y: 0, rotate: -1 }}
+              className="w-full border-4 border-brutal-black bg-brutal-white p-2 shadow-brutal"
+            >
+              <div className="mb-2 flex items-center justify-between px-1 font-mono text-sm font-bold uppercase tracking-widest">
+                <span>{loadingSteps[activeStep]}</span>
+                <span>{Math.floor(progress)}%</span>
+              </div>
+              <div className="h-12 overflow-hidden border-3 border-brutal-black bg-brutal-yellow">
                 <motion.div
-                  className="h-10 md:h-12 bg-brutal-black flex items-center justify-center relative"
+                  className="relative h-full bg-brutal-black"
                   initial={{ width: "0%" }}
                   animate={{ width: `${Math.min(progress, 100)}%` }}
-                  transition={{ duration: 0.2, ease: "linear" }}
+                  transition={{ duration: 0.18, ease: "linear" }}
                 >
-                  <motion.span
-                    className="font-mono text-brutal-yellow font-bold text-base md:text-lg whitespace-nowrap"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: progress > 10 ? 1 : 0 }}
-                  >
-                    {Math.floor(progress)}%
-                  </motion.span>
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 opacity-70"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(-45deg, #FDE047 0 8px, transparent 8px 16px)",
+                    }}
+                  />
                 </motion.div>
               </div>
             </motion.div>
           )}
-          </div>
         </div>
-      </motion.div>
-    </>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-5 hidden items-center justify-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-black/60 sm:flex"
+        >
+          <MousePointer2 size={15} strokeWidth={3} />
+          Drag the shapes. Hover the poster. Then launch.
+        </motion.div>
+      </motion.main>
+    </motion.div>
+  );
+}
+
+function FloatingShape({
+  element,
+  constraintsRef,
+}: {
+  element: FloatingElement;
+  constraintsRef: React.RefObject<HTMLDivElement>;
+}) {
+  const position: CSSProperties = {
+    top: element.top,
+    bottom: element.bottom,
+    left: element.left,
+    right: element.right,
+  };
+
+  return (
+    <motion.div
+      drag
+      dragConstraints={constraintsRef}
+      dragElastic={0.18}
+      dragTransition={{ bounceStiffness: 450, bounceDamping: 24 }}
+      initial={{ scale: 0, opacity: 0, rotate: element.rotate }}
+      animate={{
+        scale: 1,
+        opacity: 1,
+        rotate: element.rotate,
+        y: [0, -14, 0],
+      }}
+      transition={{
+        scale: { delay: element.delay, type: "spring", stiffness: 220, damping: 14 },
+        opacity: { delay: element.delay, duration: 0.15 },
+        y: {
+          delay: element.delay,
+          repeat: Infinity,
+          duration: 3.2 + element.id * 0.35,
+          ease: "easeInOut",
+        },
+      }}
+      whileHover={{
+        scale: 1.12,
+        rotate: element.rotate + 12,
+        cursor: "grab",
+        boxShadow: "2px 2px 0px #0a0a0a",
+      }}
+      whileDrag={{
+        scale: 1.2,
+        rotate: element.rotate + 42,
+        cursor: "grabbing",
+        zIndex: 60,
+      }}
+      style={position}
+      className={`absolute z-10 ${element.size}`}
+    >
+      <div
+        className={`
+          grid h-full w-full place-items-center
+          border-4 border-brutal-black ${element.color}
+          font-mono text-base font-black uppercase ${element.textColor ?? "text-brutal-black"}
+          shadow-[7px_7px_0px_#0a0a0a]
+        `}
+        style={{
+          borderRadius: element.type === "circle" ? "999px" : "0",
+          clipPath:
+            element.type === "triangle"
+              ? "polygon(50% 0%, 0% 100%, 100% 100%)"
+              : undefined,
+          transform: element.type === "diamond" ? "rotate(45deg)" : undefined,
+        }}
+      >
+        <span
+          style={{
+            transform:
+              element.type === "diamond"
+                ? "rotate(-45deg)"
+                : element.type === "triangle"
+                  ? "translateY(18%)"
+                  : undefined,
+          }}
+        >
+          {element.label}
+        </span>
+      </div>
+    </motion.div>
   );
 }
