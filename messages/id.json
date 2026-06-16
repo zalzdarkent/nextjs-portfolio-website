@@ -35,7 +35,6 @@
   "tech": {
     "title": "KEAHLIAN TEKNIS",
     "levels": {
-      "Expert": "Ahli",
       "Advanced": "Mahir",
       "Intermediate": "Menengah",
       "Beginner": "Pemula"

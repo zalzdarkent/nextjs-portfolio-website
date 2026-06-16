@@ -8,17 +8,17 @@ import { SiNextdotjs, SiCodeigniter, SiGit, SiTailwindcss, SiTypescript, SiRedis
 import { useTranslations } from "next-intl";
 
 const TECHS= [
-  { icon: <FaReact />, name: "React", level: "Expert" },
-  { icon: <SiNextdotjs />, name: "Next.js", level: "Expert" },
-  { icon: <SiTypescript />, name: "TypeScript", level: "Expert" },
-  { icon: <FaNodeJs />, name: "Node.js", level: "Expert" },
-  { icon: <SiPostgresql />, name: "PostgreSQL", level: "Advanced" },
-  { icon: <SiRedis />, name: "Redis", level: "Advanced" },
-  { icon: <SiDocker />, name: "Docker", level: "Advanced" },
-  { icon: <SiTailwindcss />, name: "Tailwind CSS", level: "Expert" },
-  { icon: <SiGit />, name: "Git", level: "Expert" },
+  { icon: <FaReact />, name: "React", level: "Intermediate" },
+  { icon: <SiNextdotjs />, name: "Next.js", level: "Intermediate" },
+  { icon: <SiTypescript />, name: "TypeScript", level: "Intermediate" },
+  { icon: <FaNodeJs />, name: "Node.js", level: "Intermediate" },
+  { icon: <SiPostgresql />, name: "PostgreSQL", level: "Beginner" },
+  { icon: <SiRedis />, name: "Redis", level: "Beginner" },
+  { icon: <SiDocker />, name: "Docker", level: "Beginner" },
+  { icon: <SiTailwindcss />, name: "Tailwind CSS", level: "Intermediate" },
+  { icon: <SiGit />, name: "Git", level: "Intermediate" },
   { icon: <FaLaravel />, name: "Laravel", level: "Advanced" },
-  { icon: <SiCodeigniter />, name: "CodeIgniter", level: "Advanced" },
+  { icon: <SiCodeigniter />, name: "CodeIgniter", level: "Intermediate" },
   { icon: <SiMysql />, name: "MySQL", level: "Advanced" },
 ];
 
