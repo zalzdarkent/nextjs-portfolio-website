@@ -95,12 +95,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               {/* Project Image */}
               {project.image && (
                 <div className="relative w-full aspect-video border-3 border-brutal-black shadow-brutal-sm overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={t(`projects.${id}.name`)}
-                    fill
-                    className="object-cover"
-                  />
+                  <img src={project.image} alt={t(`projects.${id}.name`)} className="w-full h-full object-cover" />
                 </div>
               )}
 
