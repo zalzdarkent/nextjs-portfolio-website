@@ -90,10 +90,22 @@
           "Laporan Kepatuhan APD"
         ]
       },
-      "modal": {
-        "techLabel": "Teknologi yang Digunakan",
-        "featuresLabel": "Highlight Fitur"
+      "4": {
+        "name": "SpicyPlay Music Player",
+        "shortDesc": "Aplikasi pemutar musik berbasis web dengan tampilan modern dan fitur sintesis suara interaktif.",
+        "longDesc": "SpicyPlay Music Player adalah aplikasi web pemutar musik interaktif yang dibangun dengan React dan Vite. Aplikasi ini menyediakan antarmuka modern untuk memutar musik serta dilengkapi dengan synth grovebox untuk eksplorasi suara kreatif. Dibangun dengan performa tinggi dan pengalaman pengguna yang responsif.",
+        "features": [
+          "Pemutar Musik dengan Kontrol Putar, Jeda, & Volume",
+          "Synth Groovebox untuk Eksplorasi Suara Kreatif",
+          "Daftar Putar & Manajemen Antrean Musik",
+          "Tampilan Modern & Responsif dengan Tailwind CSS",
+          "Performa Cepat dengan Vite"
+        ]
       }
+    },
+    "modal": {
+      "techLabel": "Teknologi yang Digunakan",
+      "featuresLabel": "Highlight Fitur"
     }
   },
   "experience": {

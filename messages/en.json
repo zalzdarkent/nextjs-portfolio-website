@@ -42,6 +42,10 @@
   },
   "portfolio": {
     "title": "PORTFOLIO",
+    "modal": {
+      "techLabel": "Technologies Used",
+      "featuresLabel": "Feature Highlights"
+    },
     "detailBtn": "Detail →",
     "filter": {
       "all": "All",
@@ -88,6 +92,18 @@
           "Automated Video & Image Analysis",
           "Security System Integration",
           "PPE Compliance Reports"
+        ]
+      },
+      "4": {
+        "name": "SpicyPlay Music Player",
+        "shortDesc": "Web-based music player with a modern interface and interactive sound synthesis features.",
+        "longDesc": "SpicyPlay Music Player is an interactive web music player built with React and Vite. It features a modern interface for playing music along with a synth groovebox for creative sound exploration. Built for high performance and responsive user experience.",
+        "features": [
+          "Music Player with Play, Pause & Volume Controls",
+          "Synth Groovebox for Creative Sound Exploration",
+          "Playlist & Music Queue Management",
+          "Modern & Responsive UI with Tailwind CSS",
+          "Fast Performance with Vite"
         ]
       }
     }

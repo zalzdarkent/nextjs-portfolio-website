@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Project } from "@/lib/data";
 import { FaDocker, FaLaravel, FaPython, FaReact } from "react-icons/fa6";
-import { SiInertia, SiMysql, SiOpencv, SiShadcnui, SiTailwindcss, SiYolo, SiFlask, SiOnnx } from "react-icons/si";
+import { SiInertia, SiMysql, SiOpencv, SiShadcnui, SiTailwindcss, SiYolo, SiFlask, SiOnnx, SiVite } from "react-icons/si";
 import { useTranslations } from "next-intl";
 
 interface ProjectModalProps {
@@ -20,6 +21,7 @@ const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
   "Shadcn": { icon: SiShadcnui, bg: "#000000", text: "#FFFFFF" },
   "MySQL": { icon: SiMysql, bg: "#00758F", text: "#F29111" },
   "Docker": { icon: FaDocker, bg: "#2496ED", text: "#FFFFFF" },
+  "Vite": { icon: SiVite, bg: "#FFFFFF", text: "#db12ee" },
 
   "Python": { icon: FaPython, bg: "#FFFFF", text: "#3776AB" },
   "OpenCV": { icon: SiOpencv, bg: "#FFFFFF", text: "#5C3EE8" },
@@ -90,6 +92,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Body */}
             <div className="p-6 space-y-6">
+              {/* Project Image */}
+              {project.image && (
+                <div className="relative w-full aspect-video border-3 border-brutal-black shadow-brutal-sm overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={t(`projects.${id}.name`)}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+
               <p className="font-body text-base leading-relaxed text-black/70">{t(`projects.${id}.longDesc`)}</p>
 
               {/* Tech */}
