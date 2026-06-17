@@ -89,7 +89,7 @@ export default function AboutSection() {
     }, 600);
 
     try {
-      const response = await fetch("/resume/CV_Alif_Fadillah_Ummar.pdf");
+      const response = await fetch("/resume/CV_ENG_Alif_Fadillah_Ummar.pdf");
       if (!response.ok) throw new Error("File tidak ditemukan");
 
       const blob = await response.blob();
@@ -98,7 +98,7 @@ export default function AboutSection() {
       const tempLink = document.createElement("a");
       tempLink.href = url;
 
-      const fileName = "/resume/CV_Alif_Fadillah_Ummar.pdf".split("/").pop();
+      const fileName = "/resume/CV_ENG_Alif_Fadillah_Ummar.pdf".split("/").pop();
       if (fileName) tempLink.download = fileName;
 
       document.body.appendChild(tempLink);

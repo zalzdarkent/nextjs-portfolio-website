@@ -166,7 +166,7 @@ export default function SplashScreen({
           backgroundSize: "18px 18px",
         }}
       />
-      <div
+      {/* <div
         aria-hidden
         className="absolute inset-0 opacity-[0.08]"
         style={{
@@ -174,7 +174,7 @@ export default function SplashScreen({
             "linear-gradient(90deg, #0a0a0a 3px, transparent 3px), linear-gradient(#0a0a0a 3px, transparent 3px)",
           backgroundSize: "96px 96px",
         }}
-      />
+      /> */}
 
       {/* <motion.div
         aria-hidden

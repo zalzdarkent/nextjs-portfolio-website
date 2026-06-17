@@ -33,6 +33,16 @@ export const metadata: Metadata = {
     default: "Alif Fadillah Ummar - Junior Software Engineer",
     template: "%s | Alif Fadillah Ummar",
   },
+  alternates: {
+    canonical: "https://alif-fadillah-portfolio.vercel.app",
+    languages: {
+      "id": "https://alif-fadillah-portfolio.vercel.app/id",
+      "en": "https://alif-fadillah-portfolio.vercel.app/en",
+    },
+  },
+  icons: {
+    icon: "/logo/logo.png",
+  },
   description: "Fresh Graduate S1 Informatika Unsika.",
   openGraph: {
     title: "Alif Fadillah Ummar - Junior Software Engineer",
