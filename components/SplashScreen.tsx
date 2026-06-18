@@ -169,7 +169,13 @@ export default function SplashScreen({
         className="absolute inset-0 opacity-[0.08]"
         style={{
           backgroundImage:
-            "linear-gradient(90deg, #0a0a0a 3px, transparent 3px), linear-gradient(#0a0a0a 3px, transparent 3px)",
+            `repeating-linear-gradient(
+                45deg,
+                #000,
+                #000 1px,
+                transparent 1px,
+                transparent 8px
+            )`,
           backgroundSize: "96px 96px",
         }}
       />
@@ -222,53 +228,53 @@ export default function SplashScreen({
           </motion.div>
 
           <div className="grid items-center gap-5 text-center sm:grid-cols-[220px_1fr] sm:text-left md:grid-cols-[250px_1fr]">
-        <motion.div
-          initial={{ opacity: 0, x: -60, rotate: -8, scale: 0.85 }}
-          animate={{ opacity: 1, x: 0, rotate: -2, scale: 1 }}
-          transition={{ delay: 0.35, type: "spring", stiffness: 140, damping: 16, duration: 0.8 }}
-          whileHover={{
-            x: 8,
-            y: 8,
-            rotate: 2,
-            scale: 1.02,
-            boxShadow: "4px 4px 0px #0a0a0a",
-            transition: { type: "spring", stiffness: 200, damping: 15 },
-          }}
-          className="
+            <motion.div
+              initial={{ opacity: 0, x: -60, rotate: -8, scale: 0.85 }}
+              animate={{ opacity: 1, x: 0, rotate: -2, scale: 1 }}
+              transition={{ delay: 0.35, type: "spring", stiffness: 140, damping: 16, duration: 0.8 }}
+              whileHover={{
+                x: 8,
+                y: 8,
+                rotate: 2,
+                scale: 1.02,
+                boxShadow: "4px 4px 0px #0a0a0a",
+                transition: { type: "spring", stiffness: 200, damping: 15 },
+              }}
+              className="
             group relative mx-auto aspect-[4/5] w-[190px]
             border-4 border-brutal-black bg-brutal-yellow
             p-2 shadow-[9px_9px_0px_#0a0a0a]
             sm:w-full
           "
-        >
+            >
               <div
                 aria-hidden
                 className="absolute -right-3 -top-3 z-20 border-3 border-brutal-black bg-brutal-lime px-2 py-1 font-mono text-xs font-black uppercase shadow-brutal-sm"
               >
                 ME
               </div>
-                <div className="relative h-full overflow-hidden border-3 border-brutal-black bg-brutal-white">
-                  <motion.div
-                    initial={{ scale: 1.3, rotate: -3, opacity: 0 }}
-                    animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                    transition={{ delay: 0.55, type: "spring", stiffness: 100, damping: 14, duration: 1.2 }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src="/profile/alif.jpeg"
-                      alt="Alif Fadillah Ummar"
-                      fill
-                      sizes="(max-width: 640px) 190px, 250px"
-                      priority
-                      className="object-cover grayscale contrast-125 transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0 group-hover:rotate-0"
-                    />
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5, rotate: 180 }}
-                    animate={{ opacity: 0.15, scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.7, duration: 1.5, ease: "easeOut" }}
-                    className="absolute inset-0 mix-blend-multiply pointer-events-none"
+              <div className="relative h-full overflow-hidden border-3 border-brutal-black bg-brutal-white">
+                <motion.div
+                  initial={{ scale: 1.3, rotate: -3, opacity: 0 }}
+                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                  transition={{ delay: 0.55, type: "spring", stiffness: 100, damping: 14, duration: 1.2 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src="/profile/alif.jpeg"
+                    alt="Alif Fadillah Ummar"
+                    fill
+                    sizes="(max-width: 640px) 190px, 250px"
+                    priority
+                    className="object-cover grayscale contrast-125 transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0 group-hover:rotate-0"
                   />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5, rotate: 180 }}
+                  animate={{ opacity: 0.15, scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.7, duration: 1.5, ease: "easeOut" }}
+                  className="absolute inset-0 mix-blend-multiply pointer-events-none"
+                />
                 {/* <div
                     aria-hidden
                     className="absolute inset-0 mix-blend-multiply opacity-20"
