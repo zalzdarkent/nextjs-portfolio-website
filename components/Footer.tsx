@@ -17,12 +17,6 @@ export default function Footer() {
       <span className="font-mono text-xs text-white/40">
         {t("copy")}
       </span>
-      <a
-        href="#home"
-        className="px-5 py-2.5 bg-brutal-yellow text-brutal-black border-3 border-brutal-black shadow-brutal-sm font-body font-bold text-xs uppercase tracking-widest transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-1 active:translate-y-1"
-      >
-        {t("backToTop")}
-      </a>
     </footer>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Braces, Code2, MousePointer2, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { FaLaravel, FaReact, FaNodeJs } from "react-icons/fa";
@@ -25,6 +25,7 @@ type FloatingElement = {
   right?: string;
   rotate: number;
   delay: number;
+  hiddenOnMobile?: boolean;
 };
 
 const floatingElements: FloatingElement[] = [
@@ -38,6 +39,7 @@ const floatingElements: FloatingElement[] = [
     left: "8%",
     rotate: 12,
     delay: 0.1,
+    hiddenOnMobile: true,
   },
   {
     id: 2,
@@ -49,6 +51,7 @@ const floatingElements: FloatingElement[] = [
     left: "7%",
     rotate: -12,
     delay: 0.22,
+    hiddenOnMobile: true
   },
   {
     id: 3,
@@ -60,6 +63,7 @@ const floatingElements: FloatingElement[] = [
     right: "8%",
     rotate: 28,
     delay: 0.34,
+    hiddenOnMobile: true
   },
   {
     id: 4,
@@ -72,6 +76,7 @@ const floatingElements: FloatingElement[] = [
     right: "7%",
     rotate: -42,
     delay: 0.46,
+    hiddenOnMobile: true
   },
 ];
 
@@ -99,6 +104,7 @@ export default function SplashScreen({
   const springY = useSpring(mouseY, { stiffness: 90, damping: 18, mass: 0.35 });
   const tiltX = useTransform(springY, [-300, 300], [4, -4]);
   const tiltY = useTransform(springX, [-300, 300], [-5, 5]);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (!isLoading) return;
@@ -160,41 +166,8 @@ export default function SplashScreen({
 
       <div
         aria-hidden
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage: "radial-gradient(#0a0a0a 22%, transparent 23%)",
-          backgroundSize: "18px 18px",
-        }}
+        className="absolute inset-0 bg-cubes opacity-[0.50]"
       />
-      {/* <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage:
-            "linear-gradient(90deg, #0a0a0a 3px, transparent 3px), linear-gradient(#0a0a0a 3px, transparent 3px)",
-          backgroundSize: "96px 96px",
-        }}
-      /> */}
-
-      {/* <motion.div
-        aria-hidden
-        className="absolute left-4 top-8 hidden border-4 border-brutal-black bg-brutal-white px-5 py-2 font-mono text-sm font-bold uppercase shadow-brutal rotate-[-8deg] sm:block md:left-8 md:text-lg"
-        initial={{ x: -160, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.2, type: "spring", stiffness: 180, damping: 16 }}
-      >
-        CTRL + ENTER
-      </motion.div> */}
-
-      {/* <motion.div
-        aria-hidden
-        className="absolute bottom-8 right-4 hidden border-4 border-brutal-black bg-brutal-orange px-5 py-2 font-mono text-sm font-bold uppercase text-white shadow-brutal rotate-[8deg] sm:block md:right-8 md:text-lg"
-        initial={{ x: 160, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.32, type: "spring", stiffness: 180, damping: 16 }}
-      >
-        NO TEMPLATES
-      </motion.div> */}
 
       {floatingElements.map((el) => (
         <FloatingShape key={el.id} element={el} constraintsRef={constraintsRef} />
@@ -350,8 +323,11 @@ export default function SplashScreen({
           {!isLoading ? (
             <motion.button
               type="button"
-              initial={{ opacity: 0, y: 30, scale: 0.92 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              exit={{ opacity: 0, scale: 1.2, rotate: 5 }}
               transition={{ delay: 0.62, type: "spring", stiffness: 240, damping: 17 }}
               whileHover={{
                 x: 5,
@@ -366,11 +342,22 @@ export default function SplashScreen({
                 border-4 border-brutal-white bg-brutal-black
                 px-7 py-4 font-mono text-lg font-bold uppercase tracking-widest
                 text-brutal-yellow shadow-[8px_8px_0px_#FAFAF8]
-                transition-colors duration-150 hover:bg-brutal-pink hover:text-white
+                transition-colors duration-150
                 sm:px-10 sm:text-xl
               "
             >
-              Enter Site
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={isHovered ? "letsgo" : "enter"}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  {isHovered ? "Let's Go!!" : "Enter Site"}
+                </motion.span>
+              </AnimatePresence>
+
               <motion.span
                 animate={{ x: [0, 4, 0] }}
                 transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
@@ -414,7 +401,7 @@ export default function SplashScreen({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="mt-5 hidden items-center justify-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-black/60 sm:flex"
+          className="mt-5 hidden items-center justify-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-white/90 sm:flex"
         >
           <MousePointer2 size={15} strokeWidth={3} />
           Drag the shapes. Hover the poster. Then launch.
@@ -478,7 +465,7 @@ function FloatingShape({
     >
       <div
         className={`
-          grid h-full w-full place-items-center
+          ${element.hiddenOnMobile ? "hidden lg:grid" : "grid"} h-full w-full place-items-center
           border-4 border-brutal-black ${element.color}
           font-mono text-base font-black uppercase ${element.textColor ?? "text-brutal-black"}
           shadow-[7px_7px_0px_#0a0a0a]

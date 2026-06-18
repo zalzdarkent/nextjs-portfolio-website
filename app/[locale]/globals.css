@@ -29,28 +29,53 @@ body {
 }
 
 @media (max-width: 640px) {
-  body { cursor: auto; }
+  body {
+    cursor: auto;
+  }
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #FAFAF8; border-left: 3px solid #0a0a0a; }
-::-webkit-scrollbar-thumb { background: #0a0a0a; }
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAFAF8;
+  border-left: 3px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0a0a0a;
+}
 
 /* ── Marquee ── */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
+
 .animate-marquee {
   animation: marquee 20s linear infinite;
 }
 
 /* ── Pulse dot ── */
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
+
 .animate-pulse-dot {
   animation: pulse-dot 1.5s ease-in-out infinite;
 }
@@ -69,10 +94,11 @@ body {
 .cursor-box {
   width: 16px;
   height: 16px;
-  background-color: #BFFF00; /* Warna Limau / Neon khas Brutalism */
+  background-color: #BFFF00;
+  /* Warna Limau / Neon khas Brutalism */
   border: 3px solid #000000;
   /* Hard shadow kaku tanpa blur */
-  box-shadow: 2px 2px 0px #000000; 
+  box-shadow: 2px 2px 0px #000000;
   transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.15s;
 }
 
@@ -80,8 +106,10 @@ body {
 .custom-brutalist-cursor.hovered .cursor-box {
   width: 32px;
   height: 32px;
-  background-color: #FF6B35; /* Ganti warna kontras lain saat hover */
-  transform: rotate(45deg); /* Berputar kaku ala brutalism */
+  background-color: #FF6B35;
+  /* Ganti warna kontras lain saat hover */
+  transform: rotate(45deg);
+  /* Berputar kaku ala brutalism */
   box-shadow: 3px 3px 0px #000000;
 }
 
@@ -111,18 +139,58 @@ body {
   transform: translateY(32px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
+
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* ── Stagger children ── */
-.stagger > *:nth-child(1) { transition-delay: 0s; }
-.stagger > *:nth-child(2) { transition-delay: 0.08s; }
-.stagger > *:nth-child(3) { transition-delay: 0.16s; }
-.stagger > *:nth-child(4) { transition-delay: 0.24s; }
-.stagger > *:nth-child(5) { transition-delay: 0.32s; }
-.stagger > *:nth-child(6) { transition-delay: 0.40s; }
+.stagger>*:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.stagger>*:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+.stagger>*:nth-child(3) {
+  transition-delay: 0.16s;
+}
+
+.stagger>*:nth-child(4) {
+  transition-delay: 0.24s;
+}
+
+.stagger>*:nth-child(5) {
+  transition-delay: 0.32s;
+}
+
+.stagger>*:nth-child(6) {
+  transition-delay: 0.40s;
+}
 
 /* ── Modal scroll lock ── */
-body.modal-open { overflow: hidden; }
+body.modal-open {
+  overflow: hidden;
+}
+
+
+.bg-cubes {
+  --s: 200px;
+  --c1: #0a0a0a;
+  --c2: #616161;
+  --c3: #2a2a2a;
+
+  background:
+    repeating-conic-gradient(from 30deg,
+      transparent 0 120deg,
+      var(--c3) 0 180deg) calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+
+    repeating-conic-gradient(from 30deg,
+      var(--c1) 0 60deg,
+      var(--c2) 0 120deg,
+      var(--c3) 0 180deg);
+
+  background-size: var(--s) calc(var(--s) * 0.577);
+}

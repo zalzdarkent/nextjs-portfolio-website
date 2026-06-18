@@ -115,18 +115,39 @@
     "workHabits": {
       "label": "KEBIASAAN KERJA",
       "items": [
-        { "k": "Cepat adaptasi", "v": "Belajar teknologi baru + penerapan langsung" },
-        { "k": "Rapi & scalable", "v": "Struktur kode & alur pengerjaan yang jelas" },
-        { "k": "Kolaboratif", "v": "Komunikasi tim untuk mencapai target" }
+        {
+          "k": "Cepat adaptasi",
+          "v": "Belajar teknologi baru + penerapan langsung"
+        },
+        {
+          "k": "Rapi & scalable",
+          "v": "Struktur kode & alur pengerjaan yang jelas"
+        },
+        {
+          "k": "Kolaboratif",
+          "v": "Komunikasi tim untuk mencapai target"
+        }
       ]
     },
     "snapshot": {
       "label": "SNAPSHOT",
       "items": [
-        { "num": "3+", "label": "Rangkaian peran" },
-        { "num": "1+", "label": "Proyek industri" },
-        { "num": "Yolo", "label": "Deteksi APD" },
-        { "num": "Tim", "label": "Kolaborasi aktif" }
+        {
+          "num": "3+",
+          "label": "Rangkaian peran"
+        },
+        {
+          "num": "1+",
+          "label": "Proyek industri"
+        },
+        {
+          "num": "Yolo",
+          "label": "Deteksi APD"
+        },
+        {
+          "num": "Tim",
+          "label": "Kolaborasi aktif"
+        }
       ]
     },
     "list": [
@@ -176,9 +197,18 @@
     "competencies": {
       "label": "KOMPETENSI",
       "items": [
-        { "k": "Teknis", "v": "Web development, integrasi sistem, dan struktur kode" },
-        { "k": "Analitik", "v": "Proses data yang rapi untuk hasil yang bisa diukur" },
-        { "k": "Eksekusi", "v": "Membangun fitur end-to-end dengan target & timeline" }
+        {
+          "k": "Teknis",
+          "v": "Web development, integrasi sistem, dan struktur kode"
+        },
+        {
+          "k": "Analitik",
+          "v": "Proses data yang rapi untuk hasil yang bisa diukur"
+        },
+        {
+          "k": "Eksekusi",
+          "v": "Membangun fitur end-to-end dengan target & timeline"
+        }
       ]
     },
     "achievements": {
