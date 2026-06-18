@@ -49,7 +49,7 @@ export default function Home() {
 
       const scrollPercentage = (scrollTop / docHeight) * 100;
 
-      setShowBackToTop(scrollPercentage > 10);
+      setShowBackToTop(scrollPercentage > 5);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -136,7 +136,7 @@ export default function Home() {
               border-4 border-brutal-black
               bg-brutal-yellow
               font-mono text-2xl font-black
-              shadow-[8px_8px_0px_#0A0A0A]
+              shadow-[8px_8px_0px_#0A0A0A] hover:shadow-brutal-hover
             "
           >
             {/* <PiRocketLight/> */}
