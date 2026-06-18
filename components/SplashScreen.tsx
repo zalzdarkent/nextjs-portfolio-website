@@ -113,14 +113,14 @@ export default function SplashScreen({
       setProgress((prev) => {
         if (prev >= 100) {
           window.clearInterval(interval);
-          window.setTimeout(onComplete, 450);
+          window.setTimeout(onComplete, 600);
           return 100;
         }
 
-        const next = prev + 9 + Math.random() * 17;
+        const next = prev + 4 + Math.random() * 8;
         return Math.min(next, 100);
       });
-    }, 170);
+    }, 280);
 
     return () => window.clearInterval(interval);
   }, [isLoading, onComplete]);
@@ -166,11 +166,16 @@ export default function SplashScreen({
 
       <div
         aria-hidden
-        className="absolute inset-0 bg-cubes opacity-[0.50]"
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, #0a0a0a 3px, transparent 3px), linear-gradient(#0a0a0a 3px, transparent 3px)",
+          backgroundSize: "96px 96px",
+        }}
       />
 
-      {floatingElements.map((el) => (
-        <FloatingShape key={el.id} element={el} constraintsRef={constraintsRef} />
+      {floatingElements.map((el, idx) => (
+        <FloatingShape key={el.id} element={el} constraintsRef={constraintsRef} index={idx} />
       ))}
 
       <motion.main
@@ -217,38 +222,53 @@ export default function SplashScreen({
           </motion.div>
 
           <div className="grid items-center gap-5 text-center sm:grid-cols-[220px_1fr] sm:text-left md:grid-cols-[250px_1fr]">
-            <motion.div
-              initial={{ opacity: 0, x: -36, rotate: -5 }}
-              animate={{ opacity: 1, x: 0, rotate: -2 }}
-              transition={{ delay: 0.28, type: "spring", stiffness: 170, damping: 18 }}
-              whileHover={{
-                x: 6,
-                y: 6,
-                rotate: 1,
-                boxShadow: "3px 3px 0px #0a0a0a",
-              }}
-              className="
-                group relative mx-auto aspect-[4/5] w-[190px]
-                border-4 border-brutal-black bg-brutal-yellow
-                p-2 shadow-[9px_9px_0px_#0a0a0a]
-                sm:w-full
-              "
-            >
+        <motion.div
+          initial={{ opacity: 0, x: -60, rotate: -8, scale: 0.85 }}
+          animate={{ opacity: 1, x: 0, rotate: -2, scale: 1 }}
+          transition={{ delay: 0.35, type: "spring", stiffness: 140, damping: 16, duration: 0.8 }}
+          whileHover={{
+            x: 8,
+            y: 8,
+            rotate: 2,
+            scale: 1.02,
+            boxShadow: "4px 4px 0px #0a0a0a",
+            transition: { type: "spring", stiffness: 200, damping: 15 },
+          }}
+          className="
+            group relative mx-auto aspect-[4/5] w-[190px]
+            border-4 border-brutal-black bg-brutal-yellow
+            p-2 shadow-[9px_9px_0px_#0a0a0a]
+            sm:w-full
+          "
+        >
               <div
                 aria-hidden
                 className="absolute -right-3 -top-3 z-20 border-3 border-brutal-black bg-brutal-lime px-2 py-1 font-mono text-xs font-black uppercase shadow-brutal-sm"
               >
                 ME
               </div>
-              <div className="relative h-full overflow-hidden border-3 border-brutal-black bg-brutal-white">
-                <Image
-                  src="/profile/alif.jpeg"
-                  alt="Alif Fadillah Ummar"
-                  fill
-                  sizes="(max-width: 640px) 190px, 250px"
-                  priority
-                  className="object-cover grayscale contrast-125 transition-all duration-300 group-hover:scale-105 group-hover:grayscale-0"
-                />
+                <div className="relative h-full overflow-hidden border-3 border-brutal-black bg-brutal-white">
+                  <motion.div
+                    initial={{ scale: 1.3, rotate: -3, opacity: 0 }}
+                    animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                    transition={{ delay: 0.55, type: "spring", stiffness: 100, damping: 14, duration: 1.2 }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src="/profile/alif.jpeg"
+                      alt="Alif Fadillah Ummar"
+                      fill
+                      sizes="(max-width: 640px) 190px, 250px"
+                      priority
+                      className="object-cover grayscale contrast-125 transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0 group-hover:rotate-0"
+                    />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5, rotate: 180 }}
+                    animate={{ opacity: 0.15, scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.7, duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 mix-blend-multiply pointer-events-none"
+                  />
                 {/* <div
                     aria-hidden
                     className="absolute inset-0 mix-blend-multiply opacity-20"
@@ -271,6 +291,9 @@ export default function SplashScreen({
               </motion.p>
 
               <motion.h1
+                initial={{ opacity: 0, y: 30, rotateX: -15 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ delay: 0.42, type: "spring", stiffness: 120, damping: 14, duration: 0.9 }}
                 className="
                   font-display
                   text-[clamp(1.5rem,5vw,3.5rem)]
@@ -305,15 +328,25 @@ export default function SplashScreen({
             {techs.map(({ icon: Icon, bg, name }, index) => (
               <motion.div
                 key={name}
-                whileHover={{ y: -4, rotate: index % 2 ? 2 : -2 }}
+                initial={{ opacity: 0, y: 20, scale: 0.6, rotate: index % 2 ? -12 : 12 }}
+                animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+                transition={{ delay: 0.55 + index * 0.08, type: "spring", stiffness: 180, damping: 12 }}
+                whileHover={{ y: -6, scale: 1.15, rotate: index % 2 ? 4 : -4, transition: { type: "spring", stiffness: 300, damping: 15 } }}
+                whileTap={{ scale: 0.9, rotate: index % 2 ? -6 : 6 }}
                 className="flex h-11 w-11 items-center justify-center border-3 border-brutal-black shadow-brutal-sm"
                 style={{ backgroundColor: bg }}
                 title={name}
               >
-                <Icon
-                  size={22}
-                  className={name === "Next.js" ? "text-black" : "text-white"}
-                />
+                <motion.span
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.6 + index * 0.08, type: "spring", stiffness: 200, damping: 10 }}
+                >
+                  <Icon
+                    size={22}
+                    className={name === "Next.js" ? "text-black" : "text-white"}
+                  />
+                </motion.span>
               </motion.div>
             ))}
           </motion.div>
@@ -401,7 +434,7 @@ export default function SplashScreen({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="mt-5 hidden items-center justify-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-white/90 sm:flex"
+          className="mt-5 hidden items-center justify-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-black/90 sm:flex"
         >
           <MousePointer2 size={15} strokeWidth={3} />
           Drag the shapes. Hover the poster. Then launch.
@@ -414,9 +447,11 @@ export default function SplashScreen({
 function FloatingShape({
   element,
   constraintsRef,
+  index,
 }: {
   element: FloatingElement;
   constraintsRef: React.RefObject<HTMLDivElement>;
+  index: number;
 }) {
   const position: CSSProperties = {
     top: element.top,
@@ -431,32 +466,35 @@ function FloatingShape({
       dragConstraints={constraintsRef}
       dragElastic={0.18}
       dragTransition={{ bounceStiffness: 450, bounceDamping: 24 }}
-      initial={{ scale: 0, opacity: 0, rotate: element.rotate }}
+      initial={{ scale: 0, opacity: 0, rotate: element.rotate + (index % 2 ? 90 : -90), x: index % 2 ? -100 : 100 }}
       animate={{
         scale: 1,
         opacity: 1,
         rotate: element.rotate,
-        y: [0, -14, 0],
+        x: 0,
+        y: [0, -18, 0],
       }}
       transition={{
-        scale: { delay: element.delay, type: "spring", stiffness: 220, damping: 14 },
-        opacity: { delay: element.delay, duration: 0.15 },
+        scale: { delay: element.delay + index * 0.06, type: "spring", stiffness: 200, damping: 12 },
+        opacity: { delay: element.delay + index * 0.06, duration: 0.2 },
+        x: { delay: element.delay + index * 0.06, type: "spring", stiffness: 150, damping: 15 },
         y: {
-          delay: element.delay,
+          delay: element.delay + index * 0.06,
           repeat: Infinity,
-          duration: 3.2 + element.id * 0.35,
+          duration: 3.5 + element.id * 0.4 + index * 0.2,
           ease: "easeInOut",
         },
       }}
       whileHover={{
-        scale: 1.12,
-        rotate: element.rotate + 12,
+        scale: 1.18,
+        rotate: element.rotate + (index % 2 ? 18 : -18),
         cursor: "grab",
-        boxShadow: "2px 2px 0px #0a0a0a",
+        boxShadow: "3px 3px 0px #0a0a0a",
+        transition: { type: "spring", stiffness: 250, damping: 12 },
       }}
       whileDrag={{
-        scale: 1.2,
-        rotate: element.rotate + 42,
+        scale: 1.25,
+        rotate: element.rotate + 50,
         cursor: "grabbing",
         zIndex: 60,
       }}
