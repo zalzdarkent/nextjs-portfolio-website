@@ -15,7 +15,7 @@ export interface Tech {
   icon: string;
   name: string;
   level: "Expert" | "Advanced" | "Intermediate";
-}
+} 
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 

@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS } from "@/lib/data";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import Image from "next/image";
 
 export default function Navbar() {
   const t = useTranslations("nav");
@@ -66,7 +65,7 @@ export default function Navbar() {
           onClick={() => handleNavClick("#home")}
           className="font-display text-2xl font-extrabold tracking-tight text-brutal-black hover:opacity-80 transition-opacity"
         >
-          <Image 
+          <img 
             src="/logo/logo.png"
             alt="Logo"
             width={50}

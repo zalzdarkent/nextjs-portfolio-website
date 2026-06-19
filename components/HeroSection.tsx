@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { FaLaravel, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiNextdotjs, SiCodeigniter } from "react-icons/si";
 import { TypeAnimation } from "react-type-animation";
@@ -81,6 +81,51 @@ export function ScrambleText() {
 }
 
 export default function HeroSection() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(mouseY, {
+    stiffness: 120,
+    damping: 15,
+    mass: 0.5,
+  });
+
+  const rotateY = useSpring(mouseX, {
+    stiffness: 120,
+    damping: 15,
+    mass: 0.5,
+  });
+
+  const translateX = useSpring(mouseX, {
+    stiffness: 120,
+    damping: 15,
+  });
+
+  const translateY = useSpring(mouseY, {
+    stiffness: 120,
+    damping: 15,
+  });
+
+  const handleMouseMove = (
+    e: React.MouseEvent<HTMLDivElement>
+  ) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    mouseX.set((x - centerX) / 25);
+    mouseY.set((y - centerY) / 25);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   const sectionRef = useRef<HTMLElement>(null);
   const t = useTranslations("hero");
 
@@ -204,8 +249,17 @@ export default function HeroSection() {
           npm run dev ▶
         </motion.div>
 
-        {/* Profile card */}  
+        {/* Profile card */}
         <motion.div
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{
+            rotateX,
+            rotateY,
+            x: translateX,
+            y: translateY,
+            transformStyle: "preserve-3d",
+          }}
           initial={{ opacity: 0, y: 30, rotate: -2 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ delay: 0.4, type: "spring", stiffness: 200, damping: 24 }}
