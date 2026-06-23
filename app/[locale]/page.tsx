@@ -21,26 +21,22 @@ export default function Home() {
   const [showSplash, setShowSplash] = useState<boolean | null>(null);
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  
-  // State baru untuk mendeteksi roket lagi meluncur atau tidak
   const [isLaunching, setIsLaunching] = useState(false);
 
   const handleEnter = () => {
-    // Called when user clicks ENTER button
+    
   };
 
   const scrollToTop = () => {
-    setIsLaunching(true); // 1. Aktifkan animasi getar & api di tempat
+    setIsLaunching(true); 
 
-    // 2. Beri jeda 300ms (efek nahan tenaga/charge up) sebelum mulai gulir ke atas
     setTimeout(() => {
       window.scrollTo({
         top: 0,
-        behavior: "smooth", // Gulir halaman dengan smooth bawaan browser
+        behavior: "smooth", 
       });
     }, 300);
 
-    // 3. Reset status meluncur setelah halaman dipastikan sudah sampai di atas
     setTimeout(() => {
       setIsLaunching(false);
     }, 1200); 
@@ -84,7 +80,6 @@ export default function Home() {
     return null;
   }
 
-  // Array buatan untuk merender 5 partikel api/asap secara acak
   const particles = Array.from({ length: 5 });
 
   return (
@@ -128,8 +123,6 @@ export default function Home() {
             animate={{ 
               opacity: 1, 
               scale: 1, 
-              // Pas awal launch (300ms pertama) y tetap 0 biar getar di tempat, 
-              // setelah itu baru melesat ke atas (-y) keluar layar
               y: isLaunching ? [0, 0, -100, -500] : 0,
               opacity: isLaunching ? [1, 1, 0.8, 0] : 1
             }}
@@ -148,7 +141,6 @@ export default function Home() {
               type: "spring",
               stiffness: 300,
               damping: 20,
-              // Buat durasi y-nya sedikit lebih lambat (0.8s) biar pas sama gerakan scroll halaman
               y: { duration: isLaunching ? 0.8 : undefined, ease: "easeInOut" },
               opacity: { duration: isLaunching ? 0.8 : undefined }
             }}
