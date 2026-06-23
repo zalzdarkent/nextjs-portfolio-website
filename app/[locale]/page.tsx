@@ -24,7 +24,7 @@ export default function Home() {
   const [isLaunching, setIsLaunching] = useState(false);
 
   const handleEnter = () => {
-    
+
   };
 
   const scrollToTop = () => {
@@ -120,8 +120,7 @@ export default function Home() {
         {showBackToTop && (
           <motion.button
             initial={{ opacity: 0, scale: 0.7, y: 20 }}
-            animate={{ 
-              opacity: 1, 
+            animate={{  
               scale: 1, 
               y: isLaunching ? [0, 0, -100, -500] : 0,
               opacity: isLaunching ? [1, 1, 0.8, 0] : 1
