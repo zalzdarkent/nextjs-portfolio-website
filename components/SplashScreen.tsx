@@ -105,6 +105,7 @@ export default function SplashScreen({
   const tiltX = useTransform(springY, [-300, 300], [4, -4]);
   const tiltY = useTransform(springX, [-300, 300], [-5, 5]);
   const [isHovered, setIsHovered] = useState(false);
+  const [hoveredTech, setHoveredTech] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isLoading) return;
@@ -334,25 +335,62 @@ export default function SplashScreen({
             {techs.map(({ icon: Icon, bg, name }, index) => (
               <motion.div
                 key={name}
-                initial={{ opacity: 0, y: 20, scale: 0.6, rotate: index % 2 ? -12 : 12 }}
-                animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-                transition={{ delay: 0.55 + index * 0.08, type: "spring", stiffness: 180, damping: 12 }}
-                whileHover={{ y: -6, scale: 1.15, rotate: index % 2 ? 4 : -4, transition: { type: "spring", stiffness: 300, damping: 15 } }}
-                whileTap={{ scale: 0.9, rotate: index % 2 ? -6 : 6 }}
-                className="flex h-11 w-11 items-center justify-center border-3 border-brutal-black shadow-brutal-sm"
+                onHoverStart={() => setHoveredTech(name)}
+                onHoverEnd={() => setHoveredTech(null)}
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                  scale: 0.6,
+                  rotate: index % 2 ? -12 : 12,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  rotate: 0,
+                }}
+                transition={{
+                  delay: 0.55 + index * 0.08,
+                  type: "spring",
+                  stiffness: 180,
+                  damping: 12,
+                }}
+                whileHover={{
+                  y: -6,
+                  scale: 1.15,
+                  rotate: index % 2 ? 4 : -4,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                  rotate: index % 2 ? -6 : 6,
+                }}
+                className="relative flex h-11 w-11 items-center justify-center border-3 border-brutal-black shadow-brutal-sm"
                 style={{ backgroundColor: bg }}
-                title={name}
               >
-                <motion.span
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.6 + index * 0.08, type: "spring", stiffness: 200, damping: 10 }}
-                >
-                  <Icon
-                    size={22}
-                    className={name === "Next.js" ? "text-black" : "text-white"}
-                  />
-                </motion.span>
+                <Icon
+                  size={22}
+                  className={name === "Next.js" ? "text-black" : "text-white"}
+                />
+
+                <AnimatePresence>
+                  {hoveredTech === name && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.9, x: "-50%" }}
+                      animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                      exit={{ opacity: 0, y: 8, scale: 0.9, x: "-50%" }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                      }}
+                      className="pointer-events-none absolute -top-16 left-1/2 z-50 whitespace-nowrap rounded-xl border-2 border-brutal-black bg-white px-3 py-1 text-xs font-black shadow-brutal-sm"
+                    >
+                      {name}
+
+                      <div className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 rotate-45 border-r-2 border-b-2 border-brutal-black bg-white" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </motion.div>
