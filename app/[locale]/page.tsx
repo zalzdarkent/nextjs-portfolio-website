@@ -14,26 +14,36 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import ExperienceSection from "@/components/ExperienceSection";
 import EducationSection from "@/components/EducationSection";
-import { RocketIcon } from "lucide-react";
-import { PiRocketLight } from "react-icons/pi";
 import { BsFillRocketFill } from "react-icons/bs";
-
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [showSplash, setShowSplash] = useState<boolean | null>(null);
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  
+  // State baru untuk mendeteksi roket lagi meluncur atau tidak
+  const [isLaunching, setIsLaunching] = useState(false);
 
   const handleEnter = () => {
     // Called when user clicks ENTER button
   };
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    setIsLaunching(true); // 1. Aktifkan animasi getar & api di tempat
+
+    // 2. Beri jeda 300ms (efek nahan tenaga/charge up) sebelum mulai gulir ke atas
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Gulir halaman dengan smooth bawaan browser
+      });
+    }, 300);
+
+    // 3. Reset status meluncur setelah halaman dipastikan sudah sampai di atas
+    setTimeout(() => {
+      setIsLaunching(false);
+    }, 1200); 
   };
 
   const handleComplete = () => {
@@ -74,6 +84,9 @@ export default function Home() {
     return null;
   }
 
+  // Array buatan untuk merender 5 partikel api/asap secara acak
+  const particles = Array.from({ length: 5 });
+
   return (
     <>
       <CustomCursor />
@@ -106,30 +119,41 @@ export default function Home() {
 
           <Footer />
         </>
-        )} 
+      )}
 
       <AnimatePresence>
         {showBackToTop && (
           <motion.button
             initial={{ opacity: 0, scale: 0.7, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              // Pas awal launch (300ms pertama) y tetap 0 biar getar di tempat, 
+              // setelah itu baru melesat ke atas (-y) keluar layar
+              y: isLaunching ? [0, 0, -100, -500] : 0,
+              opacity: isLaunching ? [1, 1, 0.8, 0] : 1
+            }}
             exit={{ opacity: 0, scale: 0.7, y: 20 }}
-            whileHover={{
+            whileHover={!isLaunching ? {
               x: 4,
               y: 4,
               boxShadow: "2px 2px 0px #0A0A0A",
-            }}
-            whileTap={{
+            } : {}}
+            whileTap={!isLaunching ? {
               x: 8,
               y: 8,
               boxShadow: "0px 0px 0px #0A0A0A",
-            }}
+            } : {}}
             transition={{
               type: "spring",
               stiffness: 300,
               damping: 20,
+              // Buat durasi y-nya sedikit lebih lambat (0.8s) biar pas sama gerakan scroll halaman
+              y: { duration: isLaunching ? 0.8 : undefined, ease: "easeInOut" },
+              opacity: { duration: isLaunching ? 0.8 : undefined }
             }}
             onClick={scrollToTop}
+            disabled={isLaunching}
             className="
               fixed bottom-6 right-6 z-[999]
               flex h-16 w-16 items-center justify-center
@@ -137,10 +161,52 @@ export default function Home() {
               bg-brutal-yellow
               font-mono text-2xl font-black
               shadow-[8px_8px_0px_#0A0A0A] hover:shadow-brutal-hover
+              disabled:pointer-events-none
             "
           >
-            {/* <PiRocketLight/> */}
-            <BsFillRocketFill />
+            {/* Wrapper Icon Roket dengan Animasi Getar saat Launch */}
+            <motion.div
+              animate={isLaunching ? {
+                x: [0, -3, 3, -3, 3, -2, 2, 0],
+                y: [0, -1, 1, -2, 2, -1, 0],
+                scale: [1, 1.15, 1.25, 1.2]
+              } : {}}
+              transition={{ 
+                repeat: isLaunching ? Infinity : 0, 
+                duration: 0.1 // Getaran dibuat lebih cepat/intens
+              }}
+            >
+              <BsFillRocketFill />
+            </motion.div>
+
+            {/* Efek Api & Asap Berbrutal-style */}
+            {isLaunching && (
+              <div className="absolute top-[100%] left-1/2 -translate-x-1/2 flex flex-col items-center">
+                {particles.map((_, index) => {
+                  const colors = ["bg-red-500", "bg-orange-500", "bg-yellow-400", "bg-gray-400"];
+                  const randomColor = colors[index % colors.length];
+                  
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 1, y: 0, scale: 1 }}
+                      animate={{ 
+                        opacity: 0, 
+                        y: [0, 30 + index * 10], // Semburan api lebih panjang ke bawah
+                        scale: [1, 1.8, 0.1], 
+                        x: (index % 2 === 0 ? 1 : -1) * (index * 6) 
+                      }}
+                      transition={{
+                        duration: 0.6, // Efek api bertahan sedikit lebih lama
+                        ease: "easeOut",
+                        delay: index * 0.03
+                      }}
+                      className={`absolute w-4 h-4 rounded-full border-2 border-black ${randomColor}`}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </motion.button>
         )}
       </AnimatePresence>

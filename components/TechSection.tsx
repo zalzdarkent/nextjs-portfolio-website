@@ -63,11 +63,9 @@ export default function TechSection() {
             <motion.span
               className="text-3xl flex mb-2 items-center justify-center text-brutal-black"
               variants={{
-                // Kondisi awal: warna hitam/default (atau warna lain sesuai keinginan Anda)
                 initial: { color: "#000000" },
-                // Kondisi saat kartu di-hover: animasi mulus ke warna asli tech
                 hover: {
-                  color: tech.color || "#000000", // Jika tidak ada warna (seperti Next.js), tetap hitam
+                  color: tech.color || "#000000",
                   transition: { duration: 0.3, ease: "easeInOut" }
                 }
               }}
