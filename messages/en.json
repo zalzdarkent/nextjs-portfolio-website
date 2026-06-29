@@ -105,6 +105,18 @@
           "Modern & Responsive UI with Tailwind CSS",
           "Fast Performance with Vite"
         ]
+      },
+      "5": {
+        "name": "Monitoring IP Address CCTV",
+        "shortDesc": "Web-based CCTV IP Address monitoring system to prevent IP duplication and data errors.",
+        "longDesc": "CCTV IP Address Monitoring System is a web-based application built to manage and monitor CCTV IP addresses across an organization. The system helps prevent IP duplication, tracks CCTV status, and ensures accurate data management. Built with PHP and SQLSRV for reliable database integration.",
+        "features": [
+          "CCTV IP Address Management & Monitoring",
+          "Duplicate IP Address Detection & Prevention",
+          "CCTV Status Tracking (Active/Inactive)",
+          "Search & Filter by Location or IP",
+          "Excel/PDF Reporting for Audit"
+        ]
       }
     }
   },
@@ -242,5 +254,11 @@
   "footer": {
     "copy": "© 2026 Alif Fadillah Ummar. Built with lots of ☕",
     "backToTop": "↑ Back to Top"
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "PAGE NOT FOUND",
+    "desc": "Oops! The page you're looking for doesn't exist or has been moved.",
+    "btn": "← Back to Home"
   }
 }

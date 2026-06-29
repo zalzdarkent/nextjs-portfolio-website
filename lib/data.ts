@@ -31,7 +31,7 @@ export const PROJECTS: Project[] = [
   {
     id: 2,
     tags: ["web", "fullstack"],
-    image: "/projects/absen_aslab.png",
+    image: "/projects/absen_aslab.png",         
     tech: ["Laravel", "React", "Inertia.js", "Tailwind CSS", "Shadcn", "MySQL", "Docker"],
     github: "https://github.com/zalzdarkent/absensi_aslab_react",
     live: "http://aslab.my.id",
@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
     image: "/projects/deteksi-apd.png",
     tech: ["Python", "OpenCV", "Yolo", "Flask", "ONNX"],
     github: "https://github.com/zalzdarkent/deteksi_apd_next",
-    live: "NULL",
+    live: "",
   },
   {
     id: 4,
@@ -50,7 +50,15 @@ export const PROJECTS: Project[] = [
     image: "/projects/spicyplay.png",
     tech: ["React", "Vite", "Tailwind CSS"],
     github: "https://github.com/zalzdarkent/synth-groovebox", 
-    live: "https://onlinetest.unsika.ac.id",
+    live: "",
+  },
+  {
+    id: 5,
+    tags: ["web", "fullstack"],
+    image: "/projects/monitoring_cctv.png",
+    tech: ["PHP", "SQLSRV", "Bootstrap", "Jquery", "Javascript"],
+    github: "", 
+    live: "",
   },
 ];
 

@@ -2,11 +2,11 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { Project } from "@/lib/data";
-import { FaDocker, FaLaravel, FaPython, FaReact } from "react-icons/fa6";
-import { SiInertia, SiMysql, SiOpencv, SiShadcnui, SiTailwindcss, SiYolo, SiFlask, SiOnnx, SiVite } from "react-icons/si";
+import { FaDocker, FaLaravel, FaPython, FaReact, FaPhp } from "react-icons/fa6";
+import { SiInertia, SiMysql, SiOpencv, SiShadcnui, SiTailwindcss, SiYolo, SiFlask, SiOnnx, SiVite, SiBootstrap, SiJquery, SiJavascript } from "react-icons/si";
 import { useTranslations } from "next-intl";
+import { DiMsqlServer } from "react-icons/di";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -14,6 +14,7 @@ interface ProjectModalProps {
 }
 
 const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
+  // web
   "Laravel": { icon: FaLaravel, bg: "#FF2D20", text: "#FFFFFF" },
   "React": { icon: FaReact, bg: "#20232A", text: "#61DAFB" },
   "Inertia.js": { icon: SiInertia, bg: "#9553E9", text: "#FFFFFF" },
@@ -22,12 +23,20 @@ const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
   "MySQL": { icon: SiMysql, bg: "#00758F", text: "#F29111" },
   "Docker": { icon: FaDocker, bg: "#2496ED", text: "#FFFFFF" },
   "Vite": { icon: SiVite, bg: "#FFFFFF", text: "#db12ee" },
+  "PHP": { icon: FaPhp, bg: "#777BB4", text: "#FFFFFF" },
+  "SQLSRV": { icon: DiMsqlServer, bg: "#CC2927", text: "#FFFFFF" },
+  "Bootstrap": { icon: SiBootstrap, bg: "#7952B3", text: "#FFFFFF" },
+  "Jquery": { icon: SiJquery, bg: "#0769AD", text: "#FFFFFF" },
+  "Javascript": { icon: SiJavascript, bg: "#F7DF1E", text: "#000000" },
 
+  // ai/ml
   "Python": { icon: FaPython, bg: "#FFFFF", text: "#3776AB" },
   "OpenCV": { icon: SiOpencv, bg: "#FFFFFF", text: "#5C3EE8" },
   "Yolo": { icon: SiYolo, bg: "#FFFFF", text: "#005CED" },
   "Flask": { icon: SiFlask, bg: "#000000", text: "#FFFFFF" },
   "ONNX": { icon: SiOnnx, bg: "#005CED", text: "#FFFFFF" },
+
+  // mobile
 };
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {

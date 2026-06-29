@@ -101,6 +101,18 @@
           "Tampilan Modern & Responsif dengan Tailwind CSS",
           "Performa Cepat dengan Vite"
         ]
+      },
+      "5": {
+        "name": "Monitoring IP Address CCTV",
+        "shortDesc": "Sistem monitoring IP Address CCTV berbasis web untuk mencegah duplikasi IP Address dan kesalahan data CCTV.",
+        "longDesc": "Sistem Monitoring IP Address CCTV adalah aplikasi berbasis web yang dibangun untuk mengelola dan memonitor IP Address CCTV di seluruh organisasi. Sistem ini membantu mencegah duplikasi IP, melacak status CCTV, dan memastikan manajemen data yang akurat. Dibangun dengan PHP dan SQLSRV untuk integrasi database yang handal.",
+        "features": [
+          "Manajemen & Monitoring IP Address CCTV",
+          "Deteksi & Pencegahan Duplikasi IP Address",
+          "Pelacakan Status CCTV (Aktif/Tidak Aktif)",
+          "Pencarian & Filter berdasarkan Lokasi atau IP",
+          "Pelaporan Excel/PDF untuk Audit"
+        ]
       }
     },
     "modal": {
@@ -272,5 +284,11 @@
   "footer": {
     "copy": "© 2026 Alif Fadillah Ummar. Dibangun dengan banyak ☕",
     "backToTop": "↑ Ke Atas"
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "HALAMAN TIDAK DITEMUKAN",
+    "desc": "Ups! Halaman yang kamu cari tidak ada atau telah dipindahkan.",
+    "btn": "← Kembali ke Beranda"
   }
 }
