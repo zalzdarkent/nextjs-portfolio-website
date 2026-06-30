@@ -74,7 +74,7 @@ Edit file **`lib/data.ts`** untuk:
 
 ### Ganti nama & bio
 
-Cari teks `"Aryo Kusuma"` dan `"ARYO.DEV"` di semua file komponen, lalu ganti sesuai nama kamu.
+Cari teks `"Alif"` dan `"Alif.DEV"` di semua file komponen, lalu ganti sesuai nama kamu.
 
 ### Ubah warna tema
 

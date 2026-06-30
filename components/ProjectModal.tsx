@@ -40,7 +40,7 @@ const techIconMap: Record<string, { icon: any; bg: string; text: string }> = {
 };
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
-  const t = useTranslations("portfolio");
+  const t = useTranslations("projects");
   const id = project ? String(project.id) : null;
   // Lock scroll
   useEffect(() => {

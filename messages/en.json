@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About",
     "tech": "Skills",
-    "portfolio": "Portfolio",
+    "projects": "Projects",
     "experience": "Experience",
     "education": "Education",
     "contact": "Contact"
@@ -40,8 +40,8 @@
       "Beginner": "Beginner"
     }
   },
-  "portfolio": {
-    "title": "PORTFOLIO",
+  "projects": {
+    "title": "Projects",
     "modal": {
       "techLabel": "Technologies Used",
       "featuresLabel": "Feature Highlights"
@@ -236,6 +236,26 @@
         ]
       }
     ]
+  },
+  "testimonials": {
+    "title": "WHAT THEY SAY",
+    "list": {
+      "1": {
+        "name": "Gilbert Gamas",
+        "role": "Junior Fullstack Developer",
+        "text": "Fadal is a great partner to collaborate with. We work on many projects together during college. His dedication and coding skills are top-notch, always delivering clean and functional results."
+      },
+      "2": {
+        "name": "Annisa Dewi",
+        "role": "Lab Assistant Coordinator",
+        "text": "Working with Fadil on the lab system was great. He has a strong understanding of system architecture and always finds efficient solutions to complex problems."
+      },
+      "3": {
+        "name": "Rizky Pratama",
+        "role": "UI/UX Designer",
+        "text": "Alif is one of the most dedicated developers I know. He really pays attention to detail and always makes sure the final product matches the design perfectly."
+      }
+    }
   },
   "contact": {
     "title": "CONTACT ME",

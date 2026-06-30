@@ -7,8 +7,8 @@ import ProjectModal from "./ProjectModal";
 import { PROJECTS, FILTER_OPTIONS, Project } from "@/lib/data";
 import { useTranslations } from "next-intl";
 
-export default function PortfolioSection() {
-  const t = useTranslations("portfolio");
+export default function ProjectsSection() {
+  const t = useTranslations("projects");
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [activeFilter, setActiveFilter] = useState("all");
@@ -20,7 +20,7 @@ export default function PortfolioSection() {
 
   return (
     <>
-      <section ref={ref} id="portfolio" className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black">
+      <section ref={ref} id="projects" className="px-6 sm:px-10 lg:px-14 py-20 border-b-4 border-brutal-black">
         <SectionHeader num="03" title={t("title")} inView={inView} />
 
         {/* Filter bar */}
@@ -64,7 +64,7 @@ export default function PortfolioSection() {
 }
 
 function ProjectCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
-  const t = useTranslations("portfolio");
+  const t = useTranslations("projects");
   const id = String(project.id);
 
   const TAG_STYLES: Record<string, string> = {

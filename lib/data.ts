@@ -1,6 +1,6 @@
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type Tag = "web" | "mobile" | "ai" | "ml" | "fullstack";
+export type Tag = "web" | "iot" | "ai" | "ml" | "fullstack";
 
 export interface Project {
   id: number;
@@ -15,7 +15,18 @@ export interface Tech {
   icon: string;
   name: string;
   level: "Expert" | "Advanced" | "Intermediate";
-} 
+}
+
+export interface Testimonial {
+  id: number;
+  avatar?: string;
+}
+
+export const TESTIMONIALS: Testimonial[] = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+]; 
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -66,7 +77,7 @@ export const NAV_LINKS = [
   { href: "#home",       key: "home" },
   { href: "#about",      key: "about" },
   { href: "#tech",       key: "tech" },
-  { href: "#portfolio",  key: "portfolio" },
+  { href: "#projects",  key: "projects" },
   { href: "#pengalaman", key: "experience" },
   { href: "#education",  key: "education" },
   { href: "#contact",    key: "contact" },
@@ -75,7 +86,7 @@ export const NAV_LINKS = [
 export const FILTER_OPTIONS: { key: string; value: string }[] = [
   { key: "all",       value: "all" },
   { key: "web",       value: "web" },
-  { key: "mobile",    value: "mobile" },
+  { key: "iot",    value: "iot" },
   { key: "ai",        value: "ai" },
   { key: "fullstack", value: "fullstack" },
 ];

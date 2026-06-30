@@ -10,11 +10,16 @@ export default function Navbar() {
   const t = useTranslations("nav");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home"); // State untuk simpan link yang aktif
+  const [activeSection, setActiveSection] = useState("home");
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    // 1. Efek shadow pas scroll
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+    };
     window.addEventListener("scroll", onScroll);
 
     // 2. Intersection Observer untuk deteksi section yang aktif pas di-scroll
@@ -59,6 +64,14 @@ export default function Navbar() {
           scrolled ? "shadow-brutal" : ""
         }`}
       >
+        {/* Scroll Progress Bar */}
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-brutal-black/10">
+          <div
+            className="h-full bg-brutal-black border-r-2 border-brutal-black transition-[width] duration-100 ease-linear"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+
         {/* Logo */}
         <a
           href="#home"

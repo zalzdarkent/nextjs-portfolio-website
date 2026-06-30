@@ -3,7 +3,7 @@
     "home": "Beranda",
     "about": "Tentang",
     "tech": "Keahlian",
-    "portfolio": "Portofolio",
+    "projects": "Proyek",
     "experience": "Pengalaman",
     "education": "Pendidikan",
     "contact": "Kontak"
@@ -40,13 +40,13 @@
       "Beginner": "Pemula"
     }
   },
-  "portfolio": {
-    "title": "PORTOFOLIO",
+  "projects": {
+    "title": "Proyek",
     "detailBtn": "Detail →",
     "filter": {
       "all": "Semua",
       "web": "Web App",
-      "mobile": "Mobile",
+      "iot": "iot",
       "ai": "AI / ML",
       "fullstack": "Full Stack"
     },
@@ -266,6 +266,26 @@
         ]
       }
     ]
+  },
+  "testimonials": {
+    "title": "KATA MEREKA",
+    "list": {
+      "1": {
+        "name": "Gilbert Gamas",
+        "role": "Junior Fullstack Developer",
+        "text": "Fadal adalah partner yang sangat baik untuk diajak bekerja sama. Kami mengerjakan banyak proyek bersama selama kuliah. Dedikasi dan skill coding-nya luar biasa, selalu memberikan hasil yang bersih dan fungsional."
+      },
+      "2": {
+        "name": "Annisa Dewi",
+        "role": "Koordinator Asisten Lab",
+        "text": "Bekerja dengan Fadil pada sistem lab sangat menyenangkan. Dia punya pemahaman yang kuat tentang arsitektur sistem dan selalu menemukan solusi efisien untuk masalah yang kompleks."
+      },
+      "3": {
+        "name": "Rizky Pratama",
+        "role": "UI/UX Designer",
+        "text": "Alif adalah salah satu developer paling berdedikasi yang saya kenal. Dia sangat memperhatikan detail dan selalu memastikan produk akhir sesuai dengan desain dengan sempurna."
+      }
+    }
   },
   "contact": {
     "title": "HUBUNGI SAYA",

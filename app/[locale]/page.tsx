@@ -8,7 +8,8 @@ import HeroSection from "@/components/HeroSection";
 import Marquee from "@/components/Marquee";
 import AboutSection from "@/components/AboutSection";
 import TechSection from "@/components/TechSection";
-import PortfolioSection from "@/components/PortfolioSection";
+import ProjectsSection from "@/components/ProjectsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
@@ -106,7 +107,8 @@ export default function Home() {
             <Marquee />
             <AboutSection />
             <TechSection />
-            <PortfolioSection />
+            <ProjectsSection />
+            {/* <TestimonialsSection /> */}
             <ExperienceSection />
             <EducationSection />
             <ContactSection />
