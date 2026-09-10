@@ -11,9 +11,9 @@ export function Toaster() {
         unstyled: true,
         classNames: {
           toast:
-            "w-full flex items-center gap-3 px-5 py-4 border-4 border-brutal-black font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200",
-          title: "font-mono font-extrabold text-xs uppercase tracking-wider",
-          description: "font-body text-xs font-semibold normal-case opacity-90 mt-1",
+            "w-full flex items-center gap-3 px-5 py-4 border-4 border-brutal-black font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-brutal",
+          title: "font-mono font-extrabold text-xs uppercase tracking-wider text-brutal-black",
+          description: "font-body text-xs font-semibold normal-case opacity-90 mt-1 text-brutal-black",
           actionButton:
             "px-3 py-1 bg-brutal-black text-brutal-yellow font-mono text-xs font-bold uppercase border-2 border-brutal-black shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] active:translate-x-[2px] active:translate-y-[2px]",
           cancelButton:
@@ -21,15 +21,15 @@ export function Toaster() {
           closeButton:
             "bg-brutal-black text-brutal-yellow border-2 border-brutal-black font-bold text-xs flex items-center justify-center w-6 h-6 hover:bg-brutal-yellow hover:text-brutal-black transition-colors",
           default:
-            "bg-brutal-white text-brutal-black shadow-brutal",
+            "bg-brutal-white text-brutal-black",
           success:
-            "bg-brutal-yellow text-brutal-black shadow-brutal",
+            "bg-brutal-yellow text-brutal-black",
           error:
-            "bg-brutal-pink text-white shadow-brutal",
+            "bg-brutal-white text-brutal-black",
           info:
-            "bg-brutal-blue text-white shadow-brutal",
+            "bg-brutal-blue text-brutal-black",
           warning:
-            "bg-brutal-orange text-white shadow-brutal",
+            "bg-brutal-orange text-brutal-black",
         },
       }}
       icons={{

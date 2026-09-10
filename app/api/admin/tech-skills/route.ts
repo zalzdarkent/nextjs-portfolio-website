@@ -2,12 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const skills = await prisma.techSkill.findMany({
     orderBy: { sortOrder: "asc" },
   });
 
   return NextResponse.json(skills);
+}
+
+export async function POST(req: NextRequest) {
+  return PUT(req);
 }
 
 export async function PUT(req: NextRequest) {

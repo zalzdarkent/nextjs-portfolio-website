@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const [workHabits, snapshotItems, competencies, achievements] =
     await Promise.all([
@@ -12,6 +14,10 @@ export async function GET() {
     ]);
 
   return NextResponse.json({ workHabits, snapshotItems, competencies, achievements });
+}
+
+export async function POST(req: NextRequest) {
+  return PUT(req);
 }
 
 export async function PUT(req: NextRequest) {

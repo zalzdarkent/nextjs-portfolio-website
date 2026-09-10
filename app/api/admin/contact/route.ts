@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const [content, links] = await Promise.all([
     prisma.contactContent.findMany({ orderBy: { locale: "asc" } }),
@@ -9,6 +11,10 @@ export async function GET() {
   ]);
 
   return NextResponse.json({ content, links });
+}
+
+export async function POST(req: NextRequest) {
+  return PUT(req);
 }
 
 export async function PUT(req: NextRequest) {
