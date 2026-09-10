@@ -1,17 +1,23 @@
 "use client";
 
-import type { Metadata } from "next";
 import { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import CustomCursor from "@/components/CustomCursor";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminHeader from "@/components/admin/AdminHeader";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isLoginPage = pathname === "/admin/login";
   const [authOk, setAuthOk] = useState(false);
 
   useEffect(() => {
+    if (isLoginPage) {
+      setAuthOk(true);
+      return;
+    }
+
     const checkAuth = async () => {
       try {
         const res = await fetch("/api/admin/auth/check");
@@ -25,12 +31,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       }
     };
     checkAuth();
-  }, [router]);
+  }, [router, isLoginPage]);
 
   const handleLogout = useCallback(async () => {
     await fetch("/api/auth/logout", { method: "POST" });
     router.push("/admin/login");
   }, [router]);
+
+  if (isLoginPage) {
+    return (
+      <>
+        <CustomCursor />
+        {children}
+      </>
+    );
+  }
 
   if (!authOk) {
     return (

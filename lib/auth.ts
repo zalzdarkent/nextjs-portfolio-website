@@ -39,9 +39,9 @@ export async function getSession(): Promise<JwtPayload | null> {
 
 export function setSessionCookie(token: string): string {
   const maxAge = 60 * 60 * 24; // 24 hours
-  return `${COOKIE_NAME}=${token}; Path=/admin; Max-Age=${maxAge}; HttpOnly; SameSite=Lax`;
+  return `${COOKIE_NAME}=${token}; Path=/; Max-Age=${maxAge}; HttpOnly; SameSite=Lax`;
 }
 
 export function clearSessionCookie(): string {
-  return `${COOKIE_NAME}=; Path=/admin; Max-Age=0; HttpOnly; SameSite=Lax`;
+  return `${COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax`;
 }
