@@ -36,12 +36,14 @@ export default function ExperienceSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
-  const defaultExpList = t.raw("list") as {
-    role: string;
-    place: string;
-    period: string;
-    items: string[];
-  }[];
+  const rawList = (t.raw("list") as any[]) || [];
+  const defaultExpList = rawList.map((exp: any, idx: number) => ({
+    role: exp.role || "",
+    place: exp.place || "",
+    period: exp.period || "",
+    logoPath: LOGOS[idx % LOGOS.length],
+    items: (exp.items as string[]) || [],
+  }));
 
   const defaultWorkHabits = t.raw("workHabits.items") as { k: string; v: string }[];
   const defaultSnapshotItems = t.raw("snapshot.items") as { num: string; label: string }[];
@@ -58,10 +60,11 @@ export default function ExperienceSection() {
           const filtered = data
             .filter((e) => e.locale === locale)
             .sort((a, b) => a.sortOrder - b.sortOrder)
-            .map((e) => ({
+            .map((e, idx) => ({
               role: e.role,
               place: e.place,
               period: e.period,
+              logoPath: e.logoPath || LOGOS[idx % LOGOS.length],
               items: e.items.sort((a, b) => a.sortOrder - b.sortOrder).map((it) => it.text),
             }));
           if (filtered.length > 0) setExpList(filtered);
@@ -113,7 +116,7 @@ export default function ExperienceSection() {
               <div className="mt-6 space-y-4">
                 {expList.map((exp, idx) => (
                   <motion.div
-                    key={exp.role}
+                    key={exp.role + idx}
                     initial={{ opacity: 0, y: 12 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.35, delay: idx * 0.06 }}
@@ -123,12 +126,10 @@ export default function ExperienceSection() {
                   >
                     <div className="flex flex-wrap items-baseline justify-between gap-3">
                       <div className="flex items-start gap-3">
-                        <span className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black shadow-brutal-sm">
-                          <Image
-                            src={LOGOS[idx % LOGOS.length]}
+                        <span className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black shadow-brutal-sm bg-white overflow-hidden">
+                          <img
+                            src={exp.logoPath || LOGOS[idx % LOGOS.length]}
                             alt={`${exp.role} logo`}
-                            width={40}
-                            height={40}
                             className="w-8 h-8 object-contain"
                           />
                         </span>
