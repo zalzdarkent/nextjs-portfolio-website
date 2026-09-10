@@ -42,7 +42,7 @@ export async function PUT(
   const body = await req.json();
   const { locale, role, place, period, sortOrder, logoPath, items } = body;
 
-  const experience = await prisma.$transaction(async (tx) => {
+  const experience = await prisma.$transaction(async (tx: any) => {
     await tx.experienceItem.deleteMany({ where: { experienceId: Number(id) } });
 
     return tx.experience.update({
